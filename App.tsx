@@ -22,7 +22,8 @@ import {
   CreditCard, 
   MessageCircle,
   TrendingUp,
-  Play
+  Play,
+  ShieldAlert
 } from 'lucide-react';
 
 // --- Helper Functions ---
@@ -30,13 +31,11 @@ import {
 const getEmbedUrl = (url: string) => {
   if (!url) return '';
   
-  // Handle Vimeo
   if (url.includes('vimeo.com')) {
     const videoId = url.split('vimeo.com/')[1].split('?')[0];
     return `https://player.vimeo.com/video/${videoId}`;
   }
 
-  // Handle YouTube
   let videoId = '';
   if (url.includes('/shorts/')) {
     videoId = url.split('/shorts/')[1].split('?')[0];
@@ -102,16 +101,14 @@ const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({ posterUrl, videoU
   const finalIframeSrc = useMemo(() => {
     if (!embedUrl) return '';
     if (embedUrl.includes('vimeo.com')) {
-      // muted=0 for sound, autoplay=1 to start immediately after click interaction
       return `${embedUrl}?autoplay=1&muted=0&badge=0&autopause=0&player_id=0&app_id=58479`;
     }
-    // mute=0 for sound on YouTube
     return `${embedUrl}?autoplay=1&mute=0&playsinline=1&rel=0&modestbranding=1`;
   }, [embedUrl]);
 
   return (
     <div 
-      className={`w-full ${isVertical ? 'aspect-[9/16] max-w-[320px] mx-auto' : 'aspect-video'} rounded-[2.5rem] overflow-hidden relative shadow-2xl group cursor-pointer border-4 border-white/10 hover:border-pink-600/50 transition-all duration-500 bg-slate-900`}
+      className={`w-full ${isVertical ? 'aspect-[9/16] max-w-[280px] mx-auto' : 'aspect-video'} rounded-3xl overflow-hidden relative shadow-2xl group cursor-pointer transition-all duration-500 bg-slate-900 border border-white/5`}
       onClick={() => embedUrl && setIsPlaying(true)}
     >
       {!isPlaying ? (
@@ -120,15 +117,14 @@ const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({ posterUrl, videoU
             className="absolute inset-0 bg-cover bg-center opacity-100 transition-transform duration-700 group-hover:scale-105" 
             style={{ backgroundImage: `url('${posterUrl}')` }}
           />
-          {/* Overlay sutil apenas para destacar o botão de play */}
-          <div className="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition-colors" />
+          <div className="absolute inset-0 bg-black/30 group-hover:bg-black/10 transition-colors" />
           <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-8">
-            <div className="w-16 h-16 md:w-20 md:h-20 bg-pink-600 rounded-full flex items-center justify-center text-white shadow-2xl shadow-pink-600/60 transform group-hover:scale-125 transition-transform duration-300 mb-6 border-4 border-white/20">
-              <Play size={32} fill="currentColor" className="ml-1" />
+            <div className="w-14 h-14 md:w-16 md:h-16 bg-pink-600 rounded-full flex items-center justify-center text-white shadow-2xl shadow-pink-600/60 transform group-hover:scale-110 transition-transform duration-300 mb-4 border-2 border-white/40 backdrop-blur-sm">
+              <Play size={24} fill="currentColor" className="ml-1" />
             </div>
             {label && (
-              <div className="bg-black/40 backdrop-blur-md px-5 py-2.5 rounded-full border border-white/20 transform group-hover:-translate-y-1 transition-transform">
-                <p className="text-white text-[10px] font-black uppercase tracking-[0.2em]">{label}</p>
+              <div className="bg-black/60 backdrop-blur-md px-4 py-2 rounded-full border border-white/20 transform group-hover:-translate-y-1 transition-transform">
+                <p className="text-white text-[9px] font-black uppercase tracking-[0.2em]">{label}</p>
               </div>
             )}
           </div>
@@ -220,33 +216,32 @@ const ImageCarousel: React.FC<ImageCarouselProps> = ({ images, aspectRatio = "as
 
 const Navbar: React.FC = () => (
   <nav className="fixed top-0 left-0 w-full z-50 bg-white/80 backdrop-blur-xl border-b border-gray-100">
-    <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-center">
-      <span className="text-slate-900 font-black text-xl tracking-tighter uppercase italic">PAPELARIA<span className="text-pink-600">DESCOMPLICADA</span></span>
+    <div className="max-w-6xl mx-auto px-6 h-14 flex items-center justify-center">
+      <span className="text-slate-900 font-black text-lg tracking-tighter uppercase italic">PAPELARIA<span className="text-pink-600">DESCOMPLICADA</span></span>
     </div>
   </nav>
 );
 
 const Hero: React.FC = () => (
-  <section className="pt-32 pb-24 px-6 bg-slate-950 text-white flex flex-col items-center text-center relative overflow-hidden">
-    <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[600px] bg-pink-600/5 blur-[120px] rounded-full -z-10" />
+  <section className="pt-24 pb-16 px-6 bg-slate-950 text-white flex flex-col items-center text-center relative overflow-hidden">
+    <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-pink-600/5 blur-[100px] rounded-full -z-10" />
     
     <div className="max-w-4xl mx-auto flex flex-col items-center">
-      <div className="inline-flex items-center gap-2 px-5 py-2 bg-pink-600/10 text-pink-400 rounded-full text-[10px] font-black uppercase tracking-[0.25em] mb-10 border border-pink-500/20 shadow-xl">
-        <AlertCircle size={14} /> OPORTUNIDADE ÚNICA DE RENDA EXTRA
+      <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-pink-600/10 text-pink-400 rounded-full text-[9px] font-black uppercase tracking-[0.2em] mb-8 border border-pink-500/20 shadow-xl">
+        <AlertCircle size={12} /> OPORTUNIDADE ÚNICA DE RENDA EXTRA
       </div>
       
-      <h1 className="text-2xl md:text-3xl lg:text-4xl font-extrabold mb-8 leading-[1.2] tracking-tight uppercase max-w-4xl mx-auto">
+      <h1 className="text-xl md:text-3xl lg:text-4xl font-extrabold mb-6 leading-[1.2] tracking-tight uppercase max-w-4xl mx-auto">
         Ganhe até <span className="text-pink-500">R$ 1.000,00 por semana</span> com papelaria personalizada — mesmo sem impressora e começando do zero.
       </h1>
       
-      <p className="text-sm md:text-base text-slate-400 mb-12 font-medium max-w-xl mx-auto leading-relaxed">
+      <p className="text-xs md:text-sm text-slate-400 mb-8 font-medium max-w-lg mx-auto leading-relaxed">
         Com um app simples e intuitivo, você escolhe e baixa moldes de festas infantis prontos para vender — sem precisar de experiência ou maquinário caro. Tudo em PDF.
       </p>
 
-      {/* Mini VSL */}
-      <div className="w-full max-w-3xl mb-14">
+      <div className="w-full max-w-2xl px-4">
         <CustomVideoPlayer 
-          posterUrl="https://images.unsplash.com/photo-1513519245088-0e12902e35ca?auto=format&fit=crop&q=80&w=1200&h=675"
+          posterUrl="https://i.postimg.cc/sX0hqL2w/1.webp"
           label="Assistir: O segredo do App em 30 segundos"
           videoUrl="https://vimeo.com/1161223581"
           isVertical={true}
@@ -268,43 +263,36 @@ const Features: React.FC = () => {
   ];
 
   return (
-    <section className="py-24 bg-white px-6 overflow-hidden">
+    <section className="py-16 bg-white px-6 overflow-hidden">
       <div className="max-w-4xl mx-auto">
-        <div className="text-center mb-16">
-          <p className="text-pink-600 font-black text-[11px] uppercase tracking-[0.4em] mb-4">TECNOLOGIA EXCLUSIVA</p>
-          <h2 className="text-2xl md:text-3xl font-black text-slate-900 mb-6 uppercase tracking-tighter italic">O SEU ATELIÊ NA PALMA DA MÃO</h2>
-          <p className="text-slate-500 text-sm font-medium max-w-2xl mx-auto mb-12">Esqueça programas complexos como Silhouette Studio ou Photoshop. Nosso app foi desenhado para você escolher, personalizar e vender em minutos, baixando tudo em PDF direto do aplicativo.</p>
+        <div className="text-center mb-12">
+          <p className="text-pink-600 font-black text-[10px] uppercase tracking-[0.4em] mb-3">TECNOLOGIA EXCLUSIVA</p>
+          <h2 className="text-xl md:text-2xl font-black text-slate-900 mb-4 uppercase tracking-tighter italic">O SEU ATELIÊ NA PALMA DA MÃO</h2>
+          <p className="text-slate-500 text-xs font-medium max-w-xl mx-auto">Esqueça programas complexos. Nosso app foi desenhado para você escolher, personalizar e vender em minutos, baixando tudo em PDF.</p>
         </div>
 
-        {/* Carrossel em formato de tela de celular 9:16 (vertical para celular) */}
-        <div className="mb-20">
+        <div className="mb-16">
           <ImageCarousel 
             images={images} 
             aspectRatio="aspect-[9/16]" 
-            maxWidth="max-w-[320px]" 
+            maxWidth="max-w-[280px]" 
           />
         </div>
 
-        <div className="space-y-16">
-          <h3 className="text-xl font-black text-slate-900 uppercase tracking-tight text-center mb-12 italic">O QUE VOCÊ PODE FAZER:</h3>
-          
-          <div className="grid md:grid-cols-3 gap-12">
-            {[
-              { icon: <Layers size={28} />, title: "Moldes Prontos para Festas", desc: "Acesse temas populares como Unicórnio, Safari, Patrulha Canina e muito mais." },
-              { icon: <Zap size={28} />, title: "Kits Completos", desc: "Caixinhas (milk, bala, coração, pirâmide), toppers e tags em um só lugar." },
-              { icon: <Printer size={28} />, title: "Download Exclusivo em PDF", desc: "Arquivos prontos para baixar em alta resolução. Basta imprimir e vender." }
-            ].map((item, idx) => (
-              <div key={idx} className="flex flex-col items-center text-center group">
-                <div className="w-20 h-20 bg-slate-950 rounded-[2rem] flex items-center justify-center text-pink-500 mb-8 group-hover:bg-pink-600 group-hover:text-white group-hover:scale-110 group-hover:rotate-3 transition-all duration-300 shadow-xl">
-                  {item.icon}
-                </div>
-                <div>
-                  <h4 className="text-base font-black text-slate-900 uppercase tracking-tight mb-3 group-hover:text-pink-600 transition-colors">{item.title}</h4>
-                  <p className="text-slate-500 text-xs font-medium leading-relaxed px-4">{item.desc}</p>
-                </div>
+        <div className="grid md:grid-cols-3 gap-8">
+          {[
+            { icon: <Layers size={24} />, title: "Moldes Prontos", desc: "Acesse temas populares como Safari, Patrulha Canina e muito mais." },
+            { icon: <Zap size={24} />, title: "Kits Completos", desc: "Caixinhas, toppers e tags em um só lugar." },
+            { icon: <Printer size={24} />, title: "Download PDF", desc: "Arquivos prontos para baixar em alta resolução. Basta imprimir e vender." }
+          ].map((item, idx) => (
+            <div key={idx} className="flex flex-col items-center text-center group bg-slate-50 p-8 rounded-3xl border border-slate-100 transition-all hover:-translate-y-2">
+              <div className="w-16 h-16 bg-slate-950 rounded-2xl flex items-center justify-center text-pink-500 mb-6 group-hover:bg-pink-600 group-hover:text-white transition-all shadow-lg">
+                {item.icon}
               </div>
-            ))}
-          </div>
+              <h4 className="text-[13px] font-black text-slate-900 uppercase tracking-tight mb-2">{item.title}</h4>
+              <p className="text-slate-500 text-[11px] font-medium leading-relaxed">{item.desc}</p>
+            </div>
+          ))}
         </div>
       </div>
     </section>
@@ -330,18 +318,18 @@ const Results: React.FC = () => {
   }, []);
 
   return (
-    <section className="py-24 bg-slate-50 px-6 border-y border-slate-200">
+    <section className="py-16 bg-slate-50 px-6 border-y border-slate-200">
       <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-12">
-          <h2 className="text-2xl md:text-3xl font-black text-slate-900 mb-4 uppercase tracking-tighter">O RESULTADO REAL QUE VOCÊ VAI ENTREGAR</h2>
-          <p className="text-slate-500 font-medium max-w-2xl mx-auto uppercase text-[10px] tracking-[0.3em] font-black">Confira os kits de alta lucratividade montados pelas nossas alunas</p>
+        <div className="text-center mb-10">
+          <h2 className="text-xl md:text-2xl font-black text-slate-900 mb-2 uppercase tracking-tighter italic">O RESULTADO QUE VOCÊ VAI ENTREGAR</h2>
+          <p className="text-slate-500 font-black text-[9px] tracking-[0.3em] uppercase">Kits de alta lucratividade montados por alunas</p>
         </div>
 
         <ImageCarousel images={resultImages} />
 
-        <div className="text-center mt-16">
-           <a href="#offer" className="inline-flex items-center gap-4 bg-slate-900 hover:bg-slate-950 text-white text-[11px] font-black py-4 px-10 rounded-full transition-all uppercase tracking-widest shadow-xl">
-             Ver Oferta Completa <ArrowRight size={16} />
+        <div className="text-center mt-12">
+           <a href="#offer" className="inline-flex items-center gap-3 bg-slate-900 hover:bg-slate-950 text-white text-[10px] font-black py-4 px-8 rounded-full transition-all uppercase tracking-widest shadow-xl">
+             Ver Oferta Completa <ArrowRight size={14} />
            </a>
         </div>
       </div>
@@ -352,8 +340,8 @@ const Results: React.FC = () => {
 const Deliverables: React.FC = () => {
   const items = [
     { title: "App Completo", desc: "Acesso vitalício à plataforma intuitiva.", icon: <Smartphone /> },
-    { title: "Moldes gerados automaticamente", desc: "Basta você baixar, imprimir, montar e faturar muito.", icon: <FileText /> },
-    { title: "Temas 2026", desc: "Temas tendência para faturar muito em 2026.", icon: <TrendingUp /> },
+    { title: "Moldes Automáticos", desc: "Baixe, imprima, monte e fature.", icon: <FileText /> },
+    { title: "Temas 2026", desc: "Temas tendência para lucrar no próximo ano.", icon: <TrendingUp /> },
     { title: "Licença Comercial", desc: "Direito total para vender e lucrar.", icon: <Award /> },
     { title: "Atualizações", desc: "Novos temas inseridos periodicamente.", icon: <Clock /> },
     { title: "Suporte", desc: "Apoio via e-mail para qualquer dúvida.", icon: <MessageCircle /> },
@@ -365,37 +353,44 @@ const Deliverables: React.FC = () => {
   ];
 
   return (
-    <section className="py-24 bg-white px-6">
-      <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-20">
-          <p className="text-pink-600 font-black text-[11px] uppercase tracking-[0.4em] mb-4">PACOTE COMPLETO</p>
-          <h2 className="text-2xl md:text-3xl font-black text-slate-900 uppercase tracking-tighter italic">O QUE VOCÊ VAI RECEBER:</h2>
+    <section className="py-16 bg-white px-6">
+      <div className="max-w-5xl mx-auto">
+        <div className="text-center mb-12">
+          <p className="text-pink-600 font-black text-[10px] uppercase tracking-[0.4em] mb-3">CONTEÚDO DO CURSO</p>
+          <h2 className="text-xl md:text-2xl font-black text-slate-900 uppercase tracking-tighter italic">O QUE VOCÊ VAI RECEBER:</h2>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
+        <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 mb-12">
           {items.map((item, i) => (
-            <div key={i} className="p-10 rounded-[2.5rem] bg-slate-950 border border-white/5 flex flex-col items-start group hover:bg-slate-900 hover:-translate-y-3 hover:shadow-2xl hover:shadow-pink-600/10 transition-all duration-500 cursor-default">
-              <div className="text-pink-500 mb-8 w-12 h-12 bg-white/5 rounded-2xl flex items-center justify-center shadow-sm group-hover:bg-pink-600 group-hover:text-white group-hover:scale-110 group-hover:rotate-6 transition-all duration-300">
-                {React.cloneElement(item.icon as React.ReactElement, { size: 24 })}
+            <div key={i} className="p-6 rounded-3xl bg-slate-950 border border-white/5 flex flex-col items-start group hover:bg-slate-900 transition-all duration-300">
+              <div className="text-pink-500 mb-4 w-10 h-10 bg-white/5 rounded-xl flex items-center justify-center">
+                {React.cloneElement(item.icon as React.ReactElement, { size: 20 })}
               </div>
-              <h4 className="text-base font-black mb-2 uppercase tracking-tight text-white leading-tight group-hover:text-pink-500 transition-colors">{item.title}</h4>
-              <p className="text-xs text-slate-400 leading-relaxed font-medium">{item.desc}</p>
+              <h4 className="text-[11px] font-black mb-1 uppercase tracking-tight text-white">{item.title}</h4>
+              <p className="text-[10px] text-slate-500 leading-tight font-medium">{item.desc}</p>
             </div>
           ))}
         </div>
 
-        <div className="grid md:grid-cols-2 gap-8">
-          {bonuses.map((bonus, i) => (
-            <div key={i} className="relative p-10 rounded-[2.5rem] bg-slate-950 border-2 border-pink-600/20 overflow-hidden hover:border-pink-600/50 hover:shadow-2xl hover:shadow-pink-600/10 transition-all duration-500 group hover:-translate-y-2">
-               <div className="absolute top-6 right-6 bg-pink-600 text-white px-3 py-1 rounded-full text-[9px] font-black uppercase tracking-widest shadow-lg animate-pulse">GRÁTIS</div>
-               <div className="w-12 h-12 bg-white/5 rounded-2xl flex items-center justify-center text-pink-500 shadow-sm mb-8 group-hover:bg-pink-600 group-hover:text-white group-hover:scale-110 transition-all duration-300">
-                <Gift size={24} />
-               </div>
-               <h4 className="text-lg font-black text-white uppercase tracking-tight mb-2 group-hover:text-pink-500 transition-colors">{bonus.title}</h4>
-               <p className="text-xs text-slate-400 font-medium leading-relaxed mb-6">{bonus.desc}</p>
-               <span className="text-[10px] font-black text-pink-400 uppercase tracking-widest italic line-through">Valor Original: {bonus.value}</span>
-            </div>
-          ))}
+        {/* Highlighted Bonuses Section */}
+        <div className="bg-pink-50 p-8 rounded-[2.5rem] border-2 border-pink-200 shadow-xl shadow-pink-500/5 relative overflow-hidden">
+          <div className="absolute -top-10 -right-10 w-40 h-40 bg-pink-100 rounded-full blur-3xl -z-0" />
+          <div className="text-center mb-8 relative z-10">
+            <h3 className="text-lg font-black text-pink-600 uppercase tracking-tighter italic">PRESENTE EXCLUSIVO PARA VOCÊ HOJE</h3>
+            <p className="text-slate-500 text-[10px] font-black tracking-widest uppercase">VOCÊ NÃO PAGA NADA POR ESTES BÔNUS</p>
+          </div>
+          <div className="grid md:grid-cols-2 gap-6 relative z-10">
+            {bonuses.map((bonus, i) => (
+              <div key={i} className="p-6 rounded-2xl bg-white border border-pink-100 shadow-sm flex flex-col items-center text-center group transition-transform hover:scale-105">
+                 <div className="w-10 h-10 bg-pink-600 rounded-full flex items-center justify-center text-white mb-4 shadow-lg shadow-pink-600/20">
+                  <Gift size={20} />
+                 </div>
+                 <h4 className="text-xs font-black text-slate-900 uppercase tracking-tight mb-1">{bonus.title}</h4>
+                 <p className="text-[10px] text-slate-500 font-medium leading-tight mb-3">{bonus.desc}</p>
+                 <span className="text-[9px] font-black text-pink-600 px-3 py-1 bg-pink-50 rounded-full uppercase tracking-widest italic line-through decoration-slate-400">VALE {bonus.value}</span>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>
@@ -404,66 +399,73 @@ const Deliverables: React.FC = () => {
 
 const Pricing: React.FC = () => {
   return (
-    <section id="offer" className="py-24 bg-white px-6">
-      <div className="max-w-xl mx-auto">
-        <div className="bg-slate-950 rounded-[3rem] overflow-hidden shadow-[0_50px_100px_rgba(0,0,0,0.4)] border border-white/5 relative transform hover:scale-[1.01] transition-transform duration-500">
-          <div className="bg-pink-600 py-4 text-center text-white text-[11px] font-black uppercase tracking-[0.3em]">
+    <section id="offer" className="py-16 bg-white px-6">
+      <div className="max-w-lg mx-auto">
+        <div className="bg-slate-950 rounded-[2.5rem] overflow-hidden shadow-[0_40px_80px_rgba(0,0,0,0.3)] border border-white/5 relative">
+          <div className="bg-pink-600 py-3 text-center text-white text-[10px] font-black uppercase tracking-[0.3em]">
             PAGAMENTO ÚNICO • SEM MENSALIDADE
           </div>
           
-          <div className="p-10 md:p-14 text-center">
-            <h3 className="text-2xl font-black text-white mb-2 uppercase tracking-tighter italic">PAPELARIA DESCOMPLICADA</h3>
-            <p className="text-[10px] font-black text-slate-500 uppercase tracking-[0.3em] mb-12">APP + MOLDES + BÔNUS</p>
+          <div className="p-8 md:p-10 text-center">
+            <h3 className="text-xl font-black text-white mb-1 uppercase tracking-tighter italic">PAPELARIA DESCOMPLICADA</h3>
+            <p className="text-[9px] font-black text-slate-500 uppercase tracking-[0.3em] mb-8">ACESSO TOTAL + MOLDES + BÔNUS</p>
             
-            <div className="mb-14">
-              <div className="flex flex-col items-center justify-center text-white min-h-[140px]">
-                <p className="text-slate-400 text-xs font-black uppercase tracking-widest mb-2">Aproveite a oferta de lançamento</p>
-                <div className="h-px w-20 bg-pink-600 mb-6" />
+            <div className="mb-10">
+              <div className="flex flex-col items-center justify-center text-white">
+                <p className="text-slate-400 text-[9px] font-black uppercase tracking-widest mb-1">Aproveite a oferta de lançamento</p>
+                <div className="h-px w-12 bg-pink-600 mb-4" />
                 <div className="flex flex-col items-center">
-                   <span className="text-slate-500 text-xs line-through font-bold mb-1">DE R$ 197,00</span>
+                   <span className="text-slate-500 text-[10px] line-through font-bold mb-1">DE R$ 197,00</span>
                    <div className="flex items-baseline gap-1">
-                     <span className="text-white text-xl font-black">R$</span>
+                     <span className="text-white text-lg font-black">R$</span>
                      <span className="text-white text-6xl font-black tracking-tighter">37</span>
-                     <span className="text-white text-xl font-black">,00</span>
+                     <span className="text-white text-lg font-black">,00</span>
                    </div>
                 </div>
               </div>
             </div>
 
-            <div className="space-y-4 mb-14 text-left">
+            <div className="space-y-3 mb-10 text-left">
               {[
-                "Acesso Vitalício ao App de Edição",
-                "MOLDES GERADOS EM SEGUNDOS AUTOMATICAMENTE",
-                "Temas Infantis de Alta Demanda",
-                "Licença para Vender ilimitado",
-                "Garantia Incondicional de 7 Dias",
-                "2 Bônus Exclusivos Grátis"
+                "Acesso Vitalício ao App",
+                "Moldes gerados em segundos",
+                "Temas Infantis Premium",
+                "Licença Comercial de Vendas",
+                "Garantia Incondicional",
+                "Todos os Bônus Grátis"
               ].map(item => (
-                <div key={item} className="flex items-center gap-4 text-[10px] font-bold text-slate-400 border-b border-white/5 pb-4 last:border-0 group">
-                  <Unlock size={14} className="text-pink-500 flex-shrink-0 group-hover:scale-125 transition-transform" /> {item}
+                <div key={item} className="flex items-center gap-3 text-[10px] font-bold text-slate-400 border-b border-white/5 pb-3 last:border-0">
+                  <Unlock size={12} className="text-pink-500 flex-shrink-0" /> {item}
                 </div>
               ))}
             </div>
 
-            <button className="w-full bg-pink-600 hover:bg-pink-700 text-white text-base font-black py-6 rounded-2xl transition-all uppercase tracking-tight shadow-2xl shadow-pink-600/40 hover:-translate-y-1 active:scale-95 mb-8">
-              QUERO ACESSAR AGORA
+            <button className="w-full bg-pink-600 hover:bg-pink-700 text-white text-sm font-black py-5 rounded-2xl transition-all uppercase tracking-tight shadow-xl shadow-pink-600/30 active:scale-95 mb-8">
+              QUERO MEU ACESSO AGORA
             </button>
             
-            <div className="space-y-4 opacity-50">
-              <div className="flex items-center justify-center gap-2 text-[9px] font-black text-slate-400 uppercase tracking-widest">
-                <ShieldCheck size={14} className="text-green-500" /> SITE 100% SEGURO
-              </div>
-              <div className="flex items-center justify-center gap-6 grayscale filter brightness-200">
-                <CreditCard size={18} className="text-white" />
-                <span className="text-white text-[9px] font-black">PIX • CARTÃO • BOLETO</span>
-              </div>
+            <div className="flex items-center justify-center gap-4 opacity-50 grayscale brightness-200">
+              <CreditCard size={16} className="text-white" />
+              <span className="text-white text-[8px] font-black uppercase tracking-widest italic">PIX • CARTÃO • BOLETO</span>
             </div>
           </div>
         </div>
         
-        <div className="text-center mt-12 bg-slate-50 p-8 rounded-[2.5rem] border border-slate-100">
-          <p className="text-slate-400 text-[10px] font-black uppercase tracking-widest mb-4">GARANTIA DE RISCO ZERO</p>
-          <p className="text-slate-600 text-[10px] font-medium leading-relaxed">Se em até 7 dias você não gostar do app ou achar que não é pra você, devolvemos 100% do seu dinheiro. Sem burocracia.</p>
+        {/* Highlighted Guarantee Section */}
+        <div className="mt-8 bg-slate-50 p-6 rounded-[2rem] border-2 border-slate-200 flex flex-col md:flex-row items-center gap-6 shadow-sm">
+          <div className="w-20 h-20 flex-shrink-0 bg-white rounded-full border-4 border-pink-500 flex items-center justify-center text-pink-500 shadow-inner">
+            <ShieldAlert size={40} strokeWidth={2.5} />
+          </div>
+          <div className="text-center md:text-left">
+            <h4 className="text-[13px] font-black text-slate-900 uppercase tracking-tighter mb-1">SATISFAÇÃO GARANTIDA OU SEU DINHEIRO DE VOLTA</h4>
+            <p className="text-slate-500 text-[10px] font-medium leading-relaxed">
+              Você tem <span className="text-pink-600 font-black">7 DIAS INTEIROS</span> para testar nosso app. Se não gostar, devolvemos 100% do seu investimento na hora. Sem perguntas, sem estresse.
+            </p>
+          </div>
+        </div>
+
+        <div className="flex items-center justify-center gap-2 text-[9px] font-black text-slate-400 uppercase tracking-[0.2em] mt-6">
+          <ShieldCheck size={14} className="text-green-500" /> COMPRA TOTALMENTE SEGURA E CRIPTOGRAFADA
         </div>
       </div>
     </section>
@@ -482,21 +484,21 @@ const FAQ: React.FC = () => {
   ];
 
   return (
-    <section className="py-24 bg-white px-6">
-      <div className="max-w-3xl mx-auto">
-        <h2 className="text-xl md:text-2xl font-black text-center mb-16 uppercase tracking-tighter text-slate-900 italic">DÚVIDAS FREQUENTES</h2>
-        <div className="space-y-4">
+    <section className="py-16 bg-white px-6">
+      <div className="max-w-2xl mx-auto">
+        <h2 className="text-lg md:text-xl font-black text-center mb-10 uppercase tracking-tighter text-slate-900 italic">DÚVIDAS FREQUENTES</h2>
+        <div className="space-y-3">
           {questions.map((item, i) => (
-            <div key={i} className="border border-slate-100 rounded-[1.5rem] overflow-hidden transition-all duration-300">
+            <div key={i} className="border border-slate-100 rounded-2xl overflow-hidden transition-all duration-300 shadow-sm">
               <button 
                 onClick={() => setOpenIndex(openIndex === i ? null : i)}
-                className="w-full flex items-center justify-between p-6 md:p-8 text-left bg-white hover:bg-slate-50 transition-colors"
+                className="w-full flex items-center justify-between p-5 md:p-6 text-left bg-white hover:bg-slate-50 transition-colors"
               >
-                <span className="font-black text-slate-800 uppercase tracking-tight text-[10px] md:text-xs leading-relaxed pr-6">{item.q}</span>
-                <ChevronDown size={16} className={`text-pink-500 transition-transform duration-500 flex-shrink-0 ${openIndex === i ? 'rotate-180' : 'rotate-0'}`} />
+                <span className="font-black text-slate-800 uppercase tracking-tight text-[10px] md:text-[11px] leading-relaxed pr-4">{item.q}</span>
+                <ChevronDown size={14} className={`text-pink-500 transition-transform duration-500 flex-shrink-0 ${openIndex === i ? 'rotate-180' : 'rotate-0'}`} />
               </button>
               {openIndex === i && (
-                <div className="p-8 pt-0 text-[11px] text-slate-500 leading-relaxed font-medium">
+                <div className="p-6 pt-0 text-[10px] text-slate-500 leading-relaxed font-medium bg-white">
                   {item.a}
                 </div>
               )}
@@ -509,30 +511,30 @@ const FAQ: React.FC = () => {
 };
 
 const Footer: React.FC = () => (
-  <footer className="py-24 bg-slate-950 text-center px-6 border-t border-white/5">
+  <footer className="py-16 bg-slate-950 text-center px-6 border-t border-white/5">
     <div className="max-w-4xl mx-auto">
-      <span className="text-white font-black text-xl tracking-tighter block uppercase italic mb-12">PAPELARIA<span className="text-pink-600">DESCOMPLICADA</span></span>
+      <span className="text-white font-black text-lg tracking-tighter block uppercase italic mb-8">PAPELARIA<span className="text-pink-600">DESCOMPLICADA</span></span>
       
-      <div className="flex flex-wrap justify-center gap-10 text-[9px] font-black text-slate-500 uppercase tracking-[0.4em] mb-12">
+      <div className="flex flex-wrap justify-center gap-6 text-[8px] font-black text-slate-600 uppercase tracking-[0.4em] mb-10">
         <a href="#" className="hover:text-pink-600 transition-colors">Privacidade</a>
         <a href="#" className="hover:text-pink-600 transition-colors">Termos</a>
         <a href="#" className="hover:text-pink-600 transition-colors">Contato</a>
       </div>
 
-      <p className="text-slate-600 text-[8px] font-bold leading-relaxed max-w-2xl mx-auto uppercase tracking-widest mb-10 opacity-70">
+      <p className="text-slate-700 text-[8px] font-bold leading-relaxed max-w-xl mx-auto uppercase tracking-widest mb-8 opacity-60">
         Resultados podem variar. Este site não faz parte do Facebook Inc ou Google Inc. Toda informação é de nossa responsabilidade.
       </p>
 
-      <div className="h-px w-20 bg-slate-800 mx-auto mb-10" />
+      <div className="h-px w-12 bg-slate-800 mx-auto mb-8" />
       
-      <p className="text-[8px] font-black text-slate-700 uppercase tracking-[0.5em]">© 2025 PAPELARIA DESCOMPLICADA • TODOS OS DIREITOS RESERVADOS</p>
+      <p className="text-[8px] font-black text-slate-800 uppercase tracking-[0.4em]">© 2025 PAPELARIA DESCOMPLICADA • TODOS OS DIREITOS RESERVADOS</p>
     </div>
   </footer>
 );
 
 const App: React.FC = () => {
   return (
-    <div className="min-h-screen bg-white selection:bg-pink-100 selection:text-pink-600 antialiased overflow-x-hidden">
+    <div className="min-h-screen bg-white selection:bg-pink-100 selection:text-pink-600 antialiased overflow-x-hidden font-sans">
       <Navbar />
       <Hero />
       <Features />

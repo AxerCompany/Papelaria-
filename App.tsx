@@ -283,7 +283,7 @@ const Features: React.FC = () => {
           {[
             { icon: <Layers size={24} />, title: "Moldes Prontos", desc: "Acesse temas populares como Safari, Patrulha Canina e muito mais." },
             { icon: <Zap size={24} />, title: "Kits Completos", desc: "Caixinhas, toppers e tags em um só lugar." },
-            { icon: <Printer size={24} />, title: "Download PDF", desc: "Arquivos prontos para baixar em alta resolução. Basta imprimir e vender." }
+            { icon: <Printer size={24} />, title: "Download PDF", desc: "Arquivos prontos para baixar em alta resolution. Basta imprimir e vender." }
           ].map((item, idx) => (
             <div key={idx} className="flex flex-col items-center text-center group bg-slate-50 p-8 rounded-3xl border border-slate-100 transition-all hover:-translate-y-2">
               <div className="w-16 h-16 bg-slate-950 rounded-2xl flex items-center justify-center text-pink-500 mb-6 group-hover:bg-pink-600 group-hover:text-white transition-all shadow-lg">
@@ -341,7 +341,7 @@ const Deliverables: React.FC = () => {
   const items = [
     { title: "App Completo", desc: "Acesso vitalício à plataforma intuitiva.", icon: <Smartphone /> },
     { title: "Moldes Automáticos", desc: "Baixe, imprima, monte e fature.", icon: <FileText /> },
-    { title: "Temas 2026", desc: "Temas tendência para lucrar no próximo ano.", icon: <TrendingUp /> },
+    { title: "Temas 2026", desc: "Os temas que são tendência absoluta para faturar alto em 2026.", icon: <TrendingUp /> },
     { title: "Licença Comercial", desc: "Direito total para vender e lucrar.", icon: <Award /> },
     { title: "Atualizações", desc: "Novos temas inseridos periodicamente.", icon: <Clock /> },
     { title: "Suporte", desc: "Apoio via e-mail para qualquer dúvida.", icon: <MessageCircle /> },
@@ -355,9 +355,10 @@ const Deliverables: React.FC = () => {
   return (
     <section className="py-16 bg-white px-6">
       <div className="max-w-5xl mx-auto">
-        <div className="text-center mb-12">
-          <p className="text-pink-600 font-black text-[10px] uppercase tracking-[0.4em] mb-3">CONTEÚDO DO CURSO</p>
-          <h2 className="text-xl md:text-2xl font-black text-slate-900 uppercase tracking-tighter italic">O QUE VOCÊ VAI RECEBER:</h2>
+        <div className="text-center mb-16">
+          <p className="text-pink-600 font-black text-[12px] md:text-[14px] uppercase tracking-[0.5em] mb-4">CONTEÚDO DO CURSO</p>
+          <h2 className="text-3xl md:text-5xl lg:text-6xl font-black text-slate-900 uppercase tracking-tighter italic leading-none">O QUE VOCÊ VAI RECEBER:</h2>
+          <div className="w-24 h-1.5 bg-pink-600 mx-auto mt-6 rounded-full" />
         </div>
 
         <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 mb-12">

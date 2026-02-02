@@ -275,7 +275,7 @@ const Features: React.FC = () => {
           <ImageCarousel 
             images={images} 
             aspectRatio="aspect-[9/16]" 
-            maxWidth="max-w-[280px]" 
+            maxWidth="max-w-[360px]" 
           />
         </div>
 
@@ -326,12 +326,6 @@ const Results: React.FC = () => {
         </div>
 
         <ImageCarousel images={resultImages} />
-
-        <div className="text-center mt-12">
-           <a href="#offer" className="inline-flex items-center gap-3 bg-slate-900 hover:bg-slate-950 text-white text-xs font-black py-5 px-10 rounded-full transition-all uppercase tracking-widest shadow-xl">
-             Ver Oferta Completa <ArrowRight size={16} />
-           </a>
-        </div>
       </div>
     </section>
   );
@@ -341,7 +335,7 @@ const Deliverables: React.FC = () => {
   const items = [
     { title: "App Completo", desc: "Acesso vitalício à plataforma intuitiva.", icon: <Smartphone /> },
     { title: "Moldes Automáticos", desc: "Baixe, imprima, monte e fature.", icon: <FileText /> },
-    { title: "Temas 2026", desc: "Os temas que são tendência absoluta para faturar alto em 2026.", icon: <TrendingUp /> },
+    { title: "Temas 2026", desc: "Os temas que são tendência absoluta para faturar alto neste ano de 2026.", icon: <TrendingUp /> },
     { title: "Licença Comercial", desc: "Direito total para vender e lucrar.", icon: <Award /> },
     { title: "Atualizações", desc: "Novos temas inseridos periodicamente.", icon: <Clock /> },
     { title: "Suporte", desc: "Apoio via e-mail para qualquer dúvida.", icon: <MessageCircle /> },

@@ -240,11 +240,11 @@ const Hero: React.FC = () => (
       </div>
       
       <h1 className="text-2xl md:text-3xl lg:text-5xl font-extrabold mb-6 leading-[1.2] tracking-tight uppercase max-w-4xl mx-auto">
-        Ganhe até <span className="text-pink-500">R$ 1.000,00 por semana</span> com papelaria personalizada — mesmo sem impressora e começando do zero.
+        Ganhe até <span className="text-pink-500">R$ 1.000,00 por semana</span> com papelaria personalizada — mesmo começando do zero.
       </h1>
       
       <p className="text-sm md:text-base lg:text-lg text-slate-400 mb-8 font-medium max-w-xl mx-auto leading-relaxed">
-        Com um app simples e intuitivo, você escolhe e baixa moldes de festas infantis prontos para vender — sem precisar de experiência ou maquinário caro. Tudo em PDF.
+        Com um app simples e intuitivo, você escolhe e baixa moldes de festas infantis prontos para vender — sem precisar de experiência ou maquinário caro.
       </p>
 
       <div className="w-full max-w-2xl px-4">
@@ -282,8 +282,8 @@ const HowItWorks: React.FC = () => (
           },
           { 
             icon: <Share2 size={32} />, 
-            title: "✅ 3. Poste e venda seus kits nas redes sociais", 
-            desc: "Fotos bonitas no status do WhatsApp ou Instagram e… pronto. Tem sempre alguém querendo uma festa linda feita à mão — e você pode ser a pessoa que vende." 
+            title: "✅ 3. Mostre seu trabalho e veja os pedidos chegarem", 
+            desc: "Quando você compartilha o que faz, as pessoas veem valor. Festa infantil é o que mais vende — e os seus kits feitos à mão chamam atenção na hora." 
           }
         ].map((item, idx) => (
           <div key={idx} className="bg-white p-10 rounded-[2.5rem] shadow-xl shadow-slate-200/50 border border-slate-100 flex flex-col items-start transition-all hover:scale-[1.02] duration-300">
@@ -316,7 +316,7 @@ const Features: React.FC = () => {
         <div className="text-center mb-10">
           <p className="text-pink-600 font-black text-[12px] uppercase tracking-[0.4em] mb-3">TECNOLOGIA EXCLUSIVA</p>
           <h2 className="text-2xl md:text-3xl font-black text-slate-900 mb-4 uppercase tracking-tighter italic">O SEU ATELIÊ NA PALMA DA MÃO</h2>
-          <p className="text-slate-500 text-sm md:text-base font-medium max-w-xl mx-auto leading-relaxed">Esqueça programas complexos. Nosso app foi desenhado para você escolher, personalizar e vender em minutos, baixando tudo em PDF.</p>
+          <p className="text-slate-500 text-sm md:text-base font-medium max-w-xl mx-auto leading-relaxed">Esqueça programas complexos. Nosso app foi desenhado para você escolher, personalizar e vender em minutos.</p>
         </div>
 
         <div className="mb-12">
@@ -570,7 +570,7 @@ const FAQ: React.FC = () => {
   const questions = [
     { q: "O acesso é vitalício?", a: "Sim! Você terá acesso ao app e a todas as atualizações para sempre, sem cobranças mensais." },
     { q: "Preciso de um computador?", a: "Absolutamente não. Nosso app foi desenvolvido para ser usado 100% via celular ou tablet." },
-    { q: "Como recebo o acesso?", a: "Imediatamente após a aprovação do pagamento. Você receberá um e-mail com o link de login e sua senha pessoal." },
+    { q: "Como recebo o acesso?", a: "Imediatamente após a aprovação do pagamento. Você receberá um e-mail com the link de login e sua senha pessoal." },
     { q: "Não tenho impressora, posso vender?", a: "Com certeza! Muitas alunas vendem o kit digital (PDF) para o cliente imprimir, ou levam em gráficas rápidas. O lucro continua sendo altíssimo." },
     { q: "O suporte é via WhatsApp?", a: "O suporte principal para dúvidas técnicas é via e-mail para garantir que nenhuma solicitação seja perdida e tudo seja respondido rapidamente." }
   ];

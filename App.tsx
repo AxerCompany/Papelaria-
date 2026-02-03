@@ -313,7 +313,7 @@ const Features: React.FC = () => {
     "https://i.postimg.cc/B6wKkzvx/3.webp",
     "https://i.postimg.cc/xCFzhZdC/4.webp",
     "https://i.postimg.cc/MTrQNLGX/5.webp",
-    "https://i.postimg.cc/FRnL8KY/6.webp",
+    "https://i.postimg.cc/FRnL86KY/6.webp", // URL CORRIGIDA NOVAMENTE COM A NOVA HASH FORNECIDA
     "https://i.postimg.cc/wvbmZrB7/7.webp"
   ];
 
@@ -649,6 +649,15 @@ const Footer: React.FC = () => (
 );
 
 const App: React.FC = () => {
+  useEffect(() => {
+    // Forçar disparo do PageView para garantir ativação no Pixel Helper
+    // Pequeno delay ajuda o SDK da Meta a inicializar totalmente
+    const timer = setTimeout(() => {
+       trackEvent('PageView');
+    }, 500);
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <div className="min-h-screen bg-white selection:bg-pink-100 selection:text-pink-600 antialiased overflow-x-hidden font-sans">
       <Navbar />

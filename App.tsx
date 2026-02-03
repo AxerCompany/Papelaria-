@@ -504,8 +504,8 @@ const Pricing: React.FC = () => {
       value: 37.00,
       currency: 'BRL'
     });
-    // Simulating redirect to checkout
-    window.location.href = "#"; // Replace with real checkout URL
+    // Redirect to the updated CartPanda checkout URL
+    window.location.href = "https://milionario2026.mycartpanda.com/checkout/206645965:1";
   };
 
   return (

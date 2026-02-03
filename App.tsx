@@ -7,7 +7,7 @@ import {
   ShieldCheck, 
   ArrowRight, 
   ChevronDown, 
-  ChevronLeft,
+  ChevronLeft, 
   ChevronRight,
   Layers, 
   Zap, 
@@ -23,7 +23,15 @@ import {
   MessageCircle,
   TrendingUp,
   Play,
-  ShieldAlert
+  ShieldAlert,
+  MousePointer2,
+  Scissors,
+  Share2,
+  Rocket,
+  Camera,
+  Target,
+  DollarSign,
+  Package
 } from 'lucide-react';
 
 // --- Helper Functions ---
@@ -223,29 +231,69 @@ const Navbar: React.FC = () => (
 );
 
 const Hero: React.FC = () => (
-  <section className="pt-24 pb-16 px-6 bg-slate-950 text-white flex flex-col items-center text-center relative overflow-hidden">
+  <section className="pt-24 pb-12 px-6 bg-slate-950 text-white flex flex-col items-center text-center relative overflow-hidden">
     <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-pink-600/5 blur-[100px] rounded-full -z-10" />
     
     <div className="max-w-4xl mx-auto flex flex-col items-center">
-      <div className="inline-flex items-center gap-2 px-5 py-2 bg-pink-600/10 text-pink-400 rounded-full text-[11px] font-black uppercase tracking-[0.2em] mb-8 border border-pink-500/20 shadow-xl">
+      <div className="inline-flex items-center gap-2 px-5 py-2 bg-pink-600/10 text-pink-400 rounded-full text-[11px] font-black uppercase tracking-[0.2em] mb-6 border border-pink-500/20 shadow-xl">
         <AlertCircle size={14} /> OPORTUNIDADE ÚNICA DE RENDA EXTRA
       </div>
       
-      <h1 className="text-2xl md:text-3xl lg:text-5xl font-extrabold mb-8 leading-[1.2] tracking-tight uppercase max-w-4xl mx-auto">
+      <h1 className="text-2xl md:text-3xl lg:text-5xl font-extrabold mb-6 leading-[1.2] tracking-tight uppercase max-w-4xl mx-auto">
         Ganhe até <span className="text-pink-500">R$ 1.000,00 por semana</span> com papelaria personalizada — mesmo sem impressora e começando do zero.
       </h1>
       
-      <p className="text-sm md:text-base lg:text-lg text-slate-400 mb-10 font-medium max-w-xl mx-auto leading-relaxed">
+      <p className="text-sm md:text-base lg:text-lg text-slate-400 mb-8 font-medium max-w-xl mx-auto leading-relaxed">
         Com um app simples e intuitivo, você escolhe e baixa moldes de festas infantis prontos para vender — sem precisar de experiência ou maquinário caro. Tudo em PDF.
       </p>
 
       <div className="w-full max-w-2xl px-4">
         <CustomVideoPlayer 
           posterUrl="https://i.postimg.cc/sX0hqL2w/1.webp"
-          label="Assistir: O segredo do App em 30 segundos"
+          label="Clique para assistir com som"
           videoUrl="https://vimeo.com/1161223581"
           isVertical={true}
         />
+      </div>
+    </div>
+  </section>
+);
+
+const HowItWorks: React.FC = () => (
+  <section className="py-16 bg-slate-50 px-6 border-b border-slate-200">
+    <div className="max-w-6xl mx-auto">
+      <div className="text-center mb-12">
+        <p className="text-pink-600 font-black text-[12px] uppercase tracking-[0.4em] mb-3">O MÉTODO</p>
+        <h2 className="text-2xl md:text-3xl font-black text-slate-900 mb-4 uppercase tracking-tighter italic leading-tight">COMO FUNCIONA O PROCESSO:</h2>
+        <div className="w-16 h-1 bg-pink-600 mx-auto rounded-full" />
+      </div>
+
+      <div className="grid md:grid-cols-3 gap-8">
+        {[
+          { 
+            icon: <MousePointer2 size={32} />, 
+            title: "✅ 1. Os moldes prontos vêm do app direto pro seu celular", 
+            desc: "Nada de programas complicados. Você escolhe o tema, e o app gera o molde automático — prontos pra baixar e usar." 
+          },
+          { 
+            icon: <Scissors size={32} />, 
+            title: "✅ 2. Imprima e monte com o que você tem em casa", 
+            desc: "Papel, tesoura, cola. Você imprime os moldes em qualquer gráfica ou impressora simples e monta tudo com a mão." 
+          },
+          { 
+            icon: <Share2 size={32} />, 
+            title: "✅ 3. Poste e venda seus kits nas redes sociais", 
+            desc: "Fotos bonitas no status do WhatsApp ou Instagram e… pronto. Tem sempre alguém querendo uma festa linda feita à mão — e você pode ser a pessoa que vende." 
+          }
+        ].map((item, idx) => (
+          <div key={idx} className="bg-white p-10 rounded-[2.5rem] shadow-xl shadow-slate-200/50 border border-slate-100 flex flex-col items-start transition-all hover:scale-[1.02] duration-300">
+            <div className="w-14 h-14 bg-pink-600/10 rounded-2xl flex items-center justify-center text-pink-600 mb-8">
+              {item.icon}
+            </div>
+            <h4 className="text-base md:text-lg font-black text-slate-900 uppercase tracking-tight mb-4 leading-tight">{item.title}</h4>
+            <p className="text-slate-500 text-sm md:text-base font-medium leading-relaxed">{item.desc}</p>
+          </div>
+        ))}
       </div>
     </div>
   </section>
@@ -263,15 +311,15 @@ const Features: React.FC = () => {
   ];
 
   return (
-    <section className="py-16 bg-white px-6 overflow-hidden">
+    <section className="py-12 bg-white px-6 overflow-hidden">
       <div className="max-w-4xl mx-auto">
-        <div className="text-center mb-12">
-          <p className="text-pink-600 font-black text-[12px] uppercase tracking-[0.4em] mb-4">TECNOLOGIA EXCLUSIVA</p>
-          <h2 className="text-2xl md:text-3xl font-black text-slate-900 mb-6 uppercase tracking-tighter italic">O SEU ATELIÊ NA PALMA DA MÃO</h2>
-          <p className="text-slate-500 text-sm md:text-base font-medium max-w-xl mx-auto">Esqueça programas complexos. Nosso app foi desenhado para você escolher, personalizar e vender em minutos, baixando tudo em PDF.</p>
+        <div className="text-center mb-10">
+          <p className="text-pink-600 font-black text-[12px] uppercase tracking-[0.4em] mb-3">TECNOLOGIA EXCLUSIVA</p>
+          <h2 className="text-2xl md:text-3xl font-black text-slate-900 mb-4 uppercase tracking-tighter italic">O SEU ATELIÊ NA PALMA DA MÃO</h2>
+          <p className="text-slate-500 text-sm md:text-base font-medium max-w-xl mx-auto leading-relaxed">Esqueça programas complexos. Nosso app foi desenhado para você escolher, personalizar e vender em minutos, baixando tudo em PDF.</p>
         </div>
 
-        <div className="mb-16">
+        <div className="mb-12">
           <ImageCarousel 
             images={images} 
             aspectRatio="aspect-[9/16]" 
@@ -279,7 +327,7 @@ const Features: React.FC = () => {
           />
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-3 gap-6">
           {[
             { icon: <Layers size={28} />, title: "Moldes Prontos", desc: "Acesse temas populares como Safari, Patrulha Canina e muito mais." },
             { icon: <Zap size={28} />, title: "Kits Completos", desc: "Caixinhas, toppers e tags em um só lugar." },
@@ -318,9 +366,9 @@ const Results: React.FC = () => {
   }, []);
 
   return (
-    <section className="py-16 bg-slate-50 px-6 border-y border-slate-200">
+    <section className="py-12 bg-slate-50 px-6 border-y border-slate-200">
       <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-10">
+        <div className="text-center mb-8">
           <h2 className="text-2xl md:text-3xl font-black text-slate-900 mb-2 uppercase tracking-tighter italic">O RESULTADO QUE VOCÊ VAI ENTREGAR</h2>
           <p className="text-slate-500 font-black text-xs tracking-[0.3em] uppercase">Kits de alta lucratividade montados por alunas</p>
         </div>
@@ -332,59 +380,109 @@ const Results: React.FC = () => {
 };
 
 const Deliverables: React.FC = () => {
-  const items = [
-    { title: "App Completo", desc: "Acesso vitalício à plataforma intuitiva.", icon: <Smartphone /> },
-    { title: "Moldes Automáticos", desc: "Baixe, imprima, monte e fature.", icon: <FileText /> },
-    { title: "Temas 2026", desc: "Os temas que são tendência absoluta para faturar alto neste ano de 2026.", icon: <TrendingUp /> },
-    { title: "Licença Comercial", desc: "Direito total para vender e lucrar.", icon: <Award /> },
-    { title: "Atualizações", desc: "Novos temas inseridos periodicamente.", icon: <Clock /> },
-    { title: "Suporte", desc: "Apoio via e-mail para qualquer dúvida.", icon: <MessageCircle /> },
-  ];
-
-  const bonuses = [
-    { title: "BÔNUS 1: Guia de Precificação", desc: "Como cobrar de forma lucrativa sendo iniciante.", value: "R$ 47" },
-    { title: "BÔNUS 2: Lista de Materiais", desc: "O que você precisa para começar com pouco.", value: "R$ 37" },
-  ];
-
   return (
-    <section className="py-16 bg-white px-6">
-      <div className="max-w-5xl mx-auto">
-        <div className="text-center mb-16">
-          <p className="text-pink-600 font-black text-[14px] md:text-[16px] uppercase tracking-[0.5em] mb-4">CONTEÚDO DO CURSO</p>
-          <h2 className="text-3xl md:text-5xl lg:text-7xl font-black text-slate-900 uppercase tracking-tighter italic leading-none">O QUE VOCÊ VAI RECEBER:</h2>
-          <div className="w-24 h-2 bg-pink-600 mx-auto mt-6 rounded-full" />
-        </div>
-
-        <div className="grid grid-cols-2 lg:grid-cols-3 gap-5 mb-12">
-          {items.map((item, i) => (
-            <div key={i} className="p-7 rounded-3xl bg-slate-950 border border-white/5 flex flex-col items-start group hover:bg-slate-900 transition-all duration-300">
-              <div className="text-pink-500 mb-5 w-12 h-12 bg-white/5 rounded-2xl flex items-center justify-center">
-                {React.cloneElement(item.icon as React.ReactElement, { size: 24 })}
+    <section className="py-12 bg-white px-6">
+      <div className="max-w-4xl mx-auto">
+        {/* Bônus Especial - Ultra Destacado */}
+        <div className="relative group mb-12">
+          <div className="absolute -inset-2 bg-gradient-to-r from-pink-600 to-pink-400 rounded-[3rem] blur-xl opacity-25 group-hover:opacity-40 transition-opacity" />
+          <div className="relative bg-white border-4 border-pink-600 rounded-[2.8rem] p-8 md:p-14 shadow-2xl overflow-hidden">
+            <div className="absolute top-0 right-0 w-40 h-40 bg-pink-50 rounded-full blur-3xl -z-0 translate-x-1/2 -translate-y-1/2" />
+            
+            <div className="flex flex-col items-center text-center relative z-10">
+              <div className="inline-flex items-center gap-2 px-6 py-2.5 bg-pink-600 text-white rounded-full text-[13px] font-black uppercase tracking-[0.2em] mb-10 shadow-lg shadow-pink-600/20">
+                <Rocket size={18} /> BÔNUS ESPECIAL: COMO VENDER AINDA ESSA SEMANA
               </div>
-              <h4 className="text-sm font-black mb-2 uppercase tracking-tight text-white">{item.title}</h4>
-              <p className="text-xs text-slate-500 leading-tight font-medium">{item.desc}</p>
+              
+              <h3 className="text-2xl md:text-4xl font-black text-slate-900 mb-6 uppercase tracking-tight italic leading-[1.1]">
+                Montar os kits é simples. <br className="hidden md:block" />
+                <span className="text-pink-600">Agora você vai aprender a vender rápido</span>, mesmo começando do zero.
+              </h3>
+              
+              <p className="text-slate-500 text-sm md:text-lg font-medium mb-12 max-w-2xl leading-relaxed">
+                Nesse bônus exclusivo, você descobre o caminho mais curto para o dinheiro no bolso:
+              </p>
+
+              <div className="w-full grid md:grid-cols-1 gap-4 text-left max-w-xl mb-12">
+                {[
+                  { text: "O que postar pra chamar atenção", icon: <Share2 size={16} /> },
+                  { text: "Como conseguir os primeiros pedidos usando só o seu celular", icon: <Smartphone size={16} /> },
+                  { text: "Como tirar fotos simples que vendem o produto por você", icon: <Camera size={16} /> },
+                  { text: "Estratégias pra vender em grupos, no Instagram e até no boca a boca", icon: <Target size={16} /> },
+                  { text: "Como cobrar e entregar de um jeito fácil e seguro", icon: <CreditCard size={16} /> }
+                ].map((point, idx) => (
+                  <div key={idx} className="flex items-center gap-4 bg-pink-50/50 p-5 rounded-2xl border border-pink-100/50 group/item transition-all hover:bg-pink-100">
+                    <span className="flex-shrink-0 w-8 h-8 bg-pink-600 text-white rounded-full flex items-center justify-center text-xs font-black group-hover/item:scale-110 transition-transform">
+                      {idx + 1}
+                    </span>
+                    <p className="text-slate-800 text-sm md:text-base font-bold">{point.text}</p>
+                  </div>
+                ))}
+              </div>
+
+              <div className="flex flex-col gap-6 w-full items-center">
+                <div className="bg-slate-950 text-white px-8 py-4 rounded-2xl flex items-center gap-4 shadow-xl">
+                  <span className="text-xl md:text-2xl">📲</span>
+                  <p className="text-xs md:text-sm font-black uppercase tracking-widest leading-tight">
+                    Tudo testado, direto ao ponto, <span className="text-pink-500">sem enrolação.</span>
+                  </p>
+                </div>
+                
+                <div className="flex items-start md:items-center gap-3 bg-pink-600/5 p-6 rounded-[2rem] border border-pink-200">
+                  <span className="text-2xl flex-shrink-0">👉</span>
+                  <p className="text-slate-900 text-base md:text-xl font-black italic tracking-tight leading-tight">
+                    Com esse bônus, você pode fazer sua primeira venda <span className="text-pink-600 underline">ainda essa semana.</span> Literalmente.
+                  </p>
+                </div>
+              </div>
             </div>
-          ))}
+          </div>
         </div>
 
-        {/* Highlighted Bonuses Section */}
-        <div className="bg-pink-50 p-10 rounded-[2.5rem] border-2 border-pink-200 shadow-xl shadow-pink-500/5 relative overflow-hidden">
-          <div className="absolute -top-10 -right-10 w-40 h-40 bg-pink-100 rounded-full blur-3xl -z-0" />
-          <div className="text-center mb-10 relative z-10">
-            <h3 className="text-xl font-black text-pink-600 uppercase tracking-tighter italic">PRESENTE EXCLUSIVO PARA VOCÊ HOJE</h3>
-            <p className="text-slate-500 text-[11px] font-black tracking-widest uppercase">VOCÊ NÃO PAGA NADA POR ESTES BÔNUS</p>
-          </div>
-          <div className="grid md:grid-cols-2 gap-8 relative z-10">
-            {bonuses.map((bonus, i) => (
-              <div key={i} className="p-8 rounded-3xl bg-white border border-pink-100 shadow-sm flex flex-col items-center text-center group transition-transform hover:scale-105">
-                 <div className="w-12 h-12 bg-pink-600 rounded-full flex items-center justify-center text-white mb-5 shadow-lg shadow-pink-600/20">
-                  <Gift size={24} />
-                 </div>
-                 <h4 className="text-sm font-black text-slate-900 uppercase tracking-tight mb-2">{bonus.title}</h4>
-                 <p className="text-xs text-slate-500 font-medium leading-relaxed mb-4">{bonus.desc}</p>
-                 <span className="text-[10px] font-black text-pink-600 px-4 py-1.5 bg-pink-50 rounded-full uppercase tracking-widest italic line-through decoration-slate-400">VALE {bonus.value}</span>
+        {/* Bônus de Precificação e Materiais - ULTRA DESTACADOS */}
+        <div className="grid md:grid-cols-2 gap-8">
+          {/* Bônus de Precificação */}
+          <div className="relative group">
+            <div className="absolute -inset-1 bg-gradient-to-b from-green-400 to-green-600 rounded-[2.5rem] blur opacity-10" />
+            <div className="relative bg-white border-2 border-slate-100 rounded-[2.5rem] p-10 shadow-xl overflow-hidden flex flex-col items-center text-center transition-all hover:scale-[1.02]">
+              <div className="w-20 h-20 bg-green-500 rounded-3xl flex items-center justify-center text-white mb-8 rotate-3 shadow-lg shadow-green-500/30">
+                <DollarSign size={40} />
               </div>
-            ))}
+              <div className="mb-6">
+                <h4 className="text-xl font-black text-slate-900 uppercase tracking-tight mb-2 italic">GUIA DE PRECIFICAÇÃO</h4>
+                <p className="text-slate-500 font-bold text-sm leading-relaxed px-4">
+                  Aprenda como cobrar de forma lucrativa mesmo sendo iniciante. Pare de perder dinheiro!
+                </p>
+              </div>
+              <div className="mt-auto w-full pt-8 border-t border-slate-50">
+                <span className="text-[11px] font-black text-green-600 px-6 py-2 bg-green-50 rounded-full uppercase tracking-[0.2em] italic line-through decoration-slate-400">
+                  VALE R$ 47,00
+                </span>
+                <p className="text-[10px] text-slate-400 mt-3 font-black uppercase tracking-widest">LIBERADO GRÁTIS HOJE</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Bônus Lista de Materiais */}
+          <div className="relative group">
+            <div className="absolute -inset-1 bg-gradient-to-b from-blue-400 to-blue-600 rounded-[2.5rem] blur opacity-10" />
+            <div className="relative bg-white border-2 border-slate-100 rounded-[2.5rem] p-10 shadow-xl overflow-hidden flex flex-col items-center text-center transition-all hover:scale-[1.02]">
+              <div className="w-20 h-20 bg-blue-500 rounded-3xl flex items-center justify-center text-white mb-8 -rotate-3 shadow-lg shadow-blue-500/30">
+                <Package size={40} />
+              </div>
+              <div className="mb-6">
+                <h4 className="text-xl font-black text-slate-900 uppercase tracking-tight mb-2 italic">LISTA DE MATERIAIS</h4>
+                <p className="text-slate-500 font-bold text-sm leading-relaxed px-4">
+                  O guia exato do que você precisa para começar agora mesmo com o mínimo possível.
+                </p>
+              </div>
+              <div className="mt-auto w-full pt-8 border-t border-slate-50">
+                <span className="text-[11px] font-black text-blue-600 px-6 py-2 bg-blue-50 rounded-full uppercase tracking-[0.2em] italic line-through decoration-slate-400">
+                  VALE R$ 37,00
+                </span>
+                <p className="text-[10px] text-slate-400 mt-3 font-black uppercase tracking-widest">LIBERADO GRÁTIS HOJE</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -394,7 +492,7 @@ const Deliverables: React.FC = () => {
 
 const Pricing: React.FC = () => {
   return (
-    <section id="offer" className="py-16 bg-white px-6">
+    <section id="offer" className="py-12 bg-white px-6">
       <div className="max-w-lg mx-auto">
         <div className="bg-slate-950 rounded-[2.5rem] overflow-hidden shadow-[0_40px_80px_rgba(0,0,0,0.3)] border border-white/5 relative">
           <div className="bg-pink-600 py-3 text-center text-white text-[12px] font-black uppercase tracking-[0.3em]">
@@ -446,8 +544,7 @@ const Pricing: React.FC = () => {
           </div>
         </div>
         
-        {/* Highlighted Guarantee Section */}
-        <div className="mt-10 bg-slate-50 p-8 rounded-[2.5rem] border-2 border-slate-200 flex flex-col md:flex-row items-center gap-8 shadow-sm">
+        <div className="mt-8 bg-slate-50 p-8 rounded-[2.5rem] border-2 border-slate-200 flex flex-col md:flex-row items-center gap-8 shadow-sm">
           <div className="w-24 h-24 flex-shrink-0 bg-white rounded-full border-4 border-pink-500 flex items-center justify-center text-pink-500 shadow-inner">
             <ShieldAlert size={48} strokeWidth={2.5} />
           </div>
@@ -479,9 +576,9 @@ const FAQ: React.FC = () => {
   ];
 
   return (
-    <section className="py-16 bg-white px-6">
+    <section className="py-12 bg-white px-6">
       <div className="max-w-2xl mx-auto">
-        <h2 className="text-xl md:text-2xl font-black text-center mb-12 uppercase tracking-tighter text-slate-900 italic">DÚVIDAS FREQUENTES</h2>
+        <h2 className="text-xl md:text-2xl font-black text-center mb-10 uppercase tracking-tighter text-slate-900 italic">DÚVIDAS FREQUENTES</h2>
         <div className="space-y-4">
           {questions.map((item, i) => (
             <div key={i} className="border border-slate-100 rounded-2xl overflow-hidden transition-all duration-300 shadow-sm">
@@ -506,7 +603,7 @@ const FAQ: React.FC = () => {
 };
 
 const Footer: React.FC = () => (
-  <footer className="py-16 bg-slate-950 text-center px-6 border-t border-white/5">
+  <footer className="py-12 bg-slate-950 text-center px-6 border-t border-white/5">
     <div className="max-w-4xl mx-auto">
       <span className="text-white font-black text-xl tracking-tighter block uppercase italic mb-8">PAPELARIA<span className="text-pink-600">DESCOMPLICADA</span></span>
       
@@ -532,6 +629,7 @@ const App: React.FC = () => {
     <div className="min-h-screen bg-white selection:bg-pink-100 selection:text-pink-600 antialiased overflow-x-hidden font-sans">
       <Navbar />
       <Hero />
+      <HowItWorks />
       <Features />
       <Results />
       <Deliverables />

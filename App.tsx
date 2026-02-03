@@ -499,13 +499,17 @@ const Deliverables: React.FC = () => {
 
 const Pricing: React.FC = () => {
   const handlePurchase = () => {
+    // Tracking InitiateCheckout before redirect
     trackEvent('InitiateCheckout', {
       content_name: 'Papelaria Descomplicada Access',
       value: 37.00,
       currency: 'BRL'
     });
-    // Redirect to the updated CartPanda checkout URL
-    window.location.href = "https://milionario2026.mycartpanda.com/checkout/206645965:1";
+    
+    // Safety delay to ensure Pixel fires before navigation (300ms is standard)
+    setTimeout(() => {
+      window.location.href = "https://milionario2026.mycartpanda.com/checkout/206645965:1";
+    }, 300);
   };
 
   return (
@@ -645,11 +649,6 @@ const Footer: React.FC = () => (
 );
 
 const App: React.FC = () => {
-  useEffect(() => {
-    // Explicitly track PageView on mount to ensure SPAs register the hit correctly
-    trackEvent('PageView');
-  }, []);
-
   return (
     <div className="min-h-screen bg-white selection:bg-pink-100 selection:text-pink-600 antialiased overflow-x-hidden font-sans">
       <Navbar />

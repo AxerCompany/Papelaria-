@@ -58,6 +58,13 @@ const getEmbedUrl = (url: string) => {
   return videoId ? `https://www.youtube.com/embed/${videoId}` : url;
 };
 
+// --- Tracking Helper ---
+const trackEvent = (eventName: string, data?: any) => {
+  if (typeof window !== 'undefined' && (window as any).fbq) {
+    (window as any).fbq('track', eventName, data);
+  }
+};
+
 // --- Reusable Components ---
 
 const ScarcityNotification: React.FC = () => {
@@ -306,7 +313,7 @@ const Features: React.FC = () => {
     "https://i.postimg.cc/B6wKkzvx/3.webp",
     "https://i.postimg.cc/xCFzhZdC/4.webp",
     "https://i.postimg.cc/MTrQNLGX/5.webp",
-    "https://i.postimg.cc/FRnL86KY/6.webp",
+    "https://i.postimg.cc/FRnL8KY/6.webp",
     "https://i.postimg.cc/wvbmZrB7/7.webp"
   ];
 
@@ -491,6 +498,16 @@ const Deliverables: React.FC = () => {
 };
 
 const Pricing: React.FC = () => {
+  const handlePurchase = () => {
+    trackEvent('InitiateCheckout', {
+      content_name: 'Papelaria Descomplicada Access',
+      value: 37.00,
+      currency: 'BRL'
+    });
+    // Simulating redirect to checkout
+    window.location.href = "#"; // Replace with real checkout URL
+  };
+
   return (
     <section id="offer" className="py-12 bg-white px-6">
       <div className="max-w-lg mx-auto">
@@ -533,7 +550,10 @@ const Pricing: React.FC = () => {
               ))}
             </div>
 
-            <button className="w-full bg-pink-600 hover:bg-pink-700 text-white text-base font-black py-6 rounded-2xl transition-all uppercase tracking-tight shadow-xl shadow-pink-600/30 active:scale-95 mb-10">
+            <button 
+              onClick={handlePurchase}
+              className="w-full bg-pink-600 hover:bg-pink-700 text-white text-base font-black py-6 rounded-2xl transition-all uppercase tracking-tight shadow-xl shadow-pink-600/30 active:scale-95 mb-10"
+            >
               QUERO MEU ACESSO AGORA
             </button>
             
@@ -570,7 +590,7 @@ const FAQ: React.FC = () => {
   const questions = [
     { q: "O acesso é vitalício?", a: "Sim! Você terá acesso ao app e a todas as atualizações para sempre, sem cobranças mensais." },
     { q: "Preciso de um computador?", a: "Absolutamente não. Nosso app foi desenvolvido para ser usado 100% via celular ou tablet." },
-    { q: "Como recebo o acesso?", a: "Imediatamente após a aprovação do pagamento. Você receberá um e-mail com the link de login e sua senha pessoal." },
+    { q: "Como recebo o acesso?", a: "Imediatamente após a aprovação do pagamento. Você receberá um e-mail com o link de login e sua senha pessoal." },
     { q: "Não tenho impressora, posso vender?", a: "Com certeza! Muitas alunas vendem o kit digital (PDF) para o cliente imprimir, ou levam em gráficas rápidas. O lucro continua sendo altíssimo." },
     { q: "O suporte é via WhatsApp?", a: "O suporte principal para dúvidas técnicas é via e-mail para garantir que nenhuma solicitação seja perdida e tudo seja respondido rapidamente." }
   ];
@@ -625,6 +645,11 @@ const Footer: React.FC = () => (
 );
 
 const App: React.FC = () => {
+  useEffect(() => {
+    // Explicitly track PageView on mount to ensure SPAs register the hit correctly
+    trackEvent('PageView');
+  }, []);
+
   return (
     <div className="min-h-screen bg-white selection:bg-pink-100 selection:text-pink-600 antialiased overflow-x-hidden font-sans">
       <Navbar />

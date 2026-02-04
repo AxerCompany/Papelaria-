@@ -33,7 +33,8 @@ import {
   DollarSign,
   Package,
   Timer,
-  Users
+  Users,
+  Volume2
 } from 'lucide-react';
 
 // --- Helper Functions ---
@@ -70,7 +71,7 @@ const trackEvent = (eventName: string, data?: any) => {
 // --- Reusable Components ---
 
 const CountdownTimer: React.FC = () => {
-  const [timeLeft, setTimeLeft] = useState(894); // 14:54 initially
+  const [timeLeft, setTimeLeft] = useState(2700); // 45:00 initially
 
   useEffect(() => {
     if (timeLeft <= 0) return;
@@ -102,7 +103,6 @@ const ScarcityNotification: React.FC = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      // Threshold increased to target the bonus/deliverables section (approx 2500px+)
       if (window.scrollY > 2500) {
         setHasReachedThreshold(true);
       }
@@ -117,11 +117,9 @@ const ScarcityNotification: React.FC = () => {
     const show = () => {
       setName(names[Math.floor(names.length * Math.random())]);
       setVisible(true);
-      // Increased visible time from 5s to 8s
       setTimeout(() => setVisible(false), 8000);
     };
 
-    // Increased interval from 15s to 25s
     const interval = setInterval(show, 25000);
     const timeout = setTimeout(show, 3000);
     return () => {
@@ -158,16 +156,18 @@ const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({ posterUrl, videoU
 
   const finalIframeSrc = useMemo(() => {
     if (!embedUrl) return '';
+    // Autoplay=1 is used here because we only show the iframe AFTER user clicks the thumbnail.
+    // Mute=0 (Sound ON) works because it's a direct result of user interaction.
     if (embedUrl.includes('vimeo.com')) {
-      return `${embedUrl}?autoplay=1&muted=0&badge=0&autopause=0&player_id=0&app_id=58479`;
+      return `${embedUrl}?autoplay=1&muted=0&badge=0&autopause=0&player_id=0&app_id=58479&title=0&byline=0&portrait=0`;
     }
-    return `${embedUrl}?autoplay=1&mute=0&playsinline=1&rel=0&modestbranding=1`;
+    return `${embedUrl}?autoplay=1&mute=0&playsinline=1&rel=0&modestbranding=1&controls=1`;
   }, [embedUrl]);
 
   return (
     <div 
       className={`w-full ${isVertical ? 'aspect-[9/16] max-w-[280px] mx-auto' : 'aspect-video'} rounded-3xl overflow-hidden relative shadow-2xl group cursor-pointer transition-all duration-500 bg-slate-900 border border-white/5`}
-      onClick={() => embedUrl && setIsPlaying(true)}
+      onClick={() => setIsPlaying(true)}
     >
       {!isPlaying ? (
         <>
@@ -175,14 +175,14 @@ const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({ posterUrl, videoU
             className="absolute inset-0 bg-cover bg-center opacity-100 transition-transform duration-700 group-hover:scale-105" 
             style={{ backgroundImage: `url('${posterUrl}')` }}
           />
-          <div className="absolute inset-0 bg-black/30 group-hover:bg-black/10 transition-colors" />
+          <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors" />
           <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-8">
-            <div className="w-14 h-14 md:w-16 md:h-16 bg-pink-600 rounded-full flex items-center justify-center text-white shadow-2xl shadow-pink-600/60 transform group-hover:scale-110 transition-transform duration-300 mb-4 border-2 border-white/40 backdrop-blur-sm">
-              <Play size={24} fill="currentColor" className="ml-1" />
+            <div className="w-20 h-20 md:w-24 md:h-24 bg-pink-600 rounded-full flex items-center justify-center text-white shadow-2xl shadow-pink-600/60 transform group-hover:scale-110 transition-transform duration-300 mb-6 border-4 border-white/40 backdrop-blur-sm">
+              <Play size={40} fill="currentColor" className="ml-2" />
             </div>
             {label && (
-              <div className="bg-black/60 backdrop-blur-md px-5 py-2.5 rounded-full border border-white/20 transform group-hover:-translate-y-1 transition-transform">
-                <p className="text-white text-[11px] font-black uppercase tracking-[0.2em]">{label}</p>
+              <div className="bg-white/10 backdrop-blur-md px-6 py-3 rounded-full border border-white/20 transform group-hover:-translate-y-1 transition-transform">
+                <p className="text-white text-[12px] font-black uppercase tracking-[0.2em]">{label}</p>
               </div>
             )}
           </div>
@@ -202,70 +202,88 @@ const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({ posterUrl, videoU
   );
 };
 
+// --- Image Carousel Component ---
+
 interface ImageCarouselProps {
   images: string[];
   aspectRatio?: string;
   maxWidth?: string;
 }
 
-const ImageCarousel: React.FC<ImageCarouselProps> = ({ images, aspectRatio = "aspect-square", maxWidth = "max-w-lg" }) => {
+const ImageCarousel: React.FC<ImageCarouselProps> = ({ 
+  images, 
+  aspectRatio = "aspect-video", 
+  maxWidth = "max-w-6xl" 
+}) => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const touchStart = useRef<number | null>(null);
+  const scrollRef = useRef<HTMLDivElement>(null);
 
-  const next = () => setCurrentIndex((prev) => (prev + 1) % images.length);
-  const prev = () => setCurrentIndex((prev) => (prev - 1 + images.length) % images.length);
+  const next = () => {
+    setCurrentIndex((prev) => (prev + 1) % images.length);
+  };
+
+  const prev = () => {
+    setCurrentIndex((prev) => (prev - 1 + images.length) % images.length);
+  };
+
+  useEffect(() => {
+    if (scrollRef.current) {
+      const element = scrollRef.current;
+      const scrollAmount = element.clientWidth * currentIndex;
+      element.scrollTo({
+        left: scrollAmount,
+        behavior: 'smooth'
+      });
+    }
+  }, [currentIndex]);
 
   return (
-    <div className={`relative w-full ${maxWidth} mx-auto group`}>
+    <div className={`relative group ${maxWidth} mx-auto`}>
       <div 
-        className={`overflow-hidden rounded-[2.5rem] shadow-2xl border-4 border-white bg-white ${aspectRatio}`}
-        onTouchStart={(e) => touchStart.current = e.touches[0].clientX}
-        onTouchEnd={(e) => {
-          if (!touchStart.current) return;
-          const deltaX = touchStart.current - e.changedTouches[0].clientX;
-          if (deltaX > 50) next();
-          if (deltaX < -50) prev();
-          touchStart.current = null;
-        }}
+        ref={scrollRef}
+        className="flex overflow-x-hidden snap-x snap-mandatory rounded-[2.5rem] shadow-2xl border border-slate-100 bg-slate-100"
       >
-        <div 
-          className="flex transition-transform duration-500 ease-out h-full"
-          style={{ transform: `translateX(-${currentIndex * 100}%)` }}
-        >
-          {images.map((img, i) => (
+        {images.map((img, i) => (
+          <div key={i} className={`flex-shrink-0 w-full snap-center ${aspectRatio} relative overflow-hidden`}>
             <img 
-              key={i} 
               src={img} 
               alt={`Slide ${i}`} 
-              className="w-full h-full object-cover flex-shrink-0"
+              className="absolute inset-0 w-full h-full object-cover"
+              loading="lazy"
             />
-          ))}
-        </div>
-      </div>
-
-      <button 
-        onClick={prev}
-        className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/90 backdrop-blur-md rounded-full flex items-center justify-center text-slate-900 shadow-xl opacity-0 group-hover:opacity-100 transition-all hover:bg-pink-600 hover:text-white z-10"
-      >
-        <ChevronLeft size={20} />
-      </button>
-
-      <button 
-        onClick={next}
-        className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/90 backdrop-blur-md rounded-full flex items-center justify-center text-slate-900 shadow-xl opacity-0 group-hover:opacity-100 transition-all hover:bg-pink-600 hover:text-white z-10"
-      >
-        <ChevronRight size={20} />
-      </button>
-
-      <div className="flex justify-center gap-1.5 mt-4">
-        {images.map((_, i) => (
-          <button 
-            key={i} 
-            onClick={() => setCurrentIndex(i)}
-            className={`h-1.5 rounded-full transition-all ${currentIndex === i ? 'w-6 bg-pink-600' : 'w-1.5 bg-slate-300'}`}
-          />
+          </div>
         ))}
       </div>
+
+      {images.length > 1 && (
+        <>
+          <button 
+            onClick={prev}
+            className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 md:w-12 md:h-12 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center text-slate-900 shadow-lg opacity-0 group-hover:opacity-100 transition-all hover:bg-pink-600 hover:text-white z-10"
+            aria-label="Previous image"
+          >
+            <ChevronLeft size={24} />
+          </button>
+          <button 
+            onClick={next}
+            className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 md:w-12 md:h-12 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center text-slate-900 shadow-lg opacity-0 group-hover:opacity-100 transition-all hover:bg-pink-600 hover:text-white z-10"
+            aria-label="Next image"
+          >
+            <ChevronRight size={24} />
+          </button>
+
+          <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-1.5 md:gap-2 z-10">
+            {images.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => setCurrentIndex(i)}
+                className={`h-1.5 md:h-2 rounded-full transition-all duration-300 ${currentIndex === i ? 'w-6 md:w-8 bg-pink-600' : 'w-1.5 md:w-2 bg-white/50'}`}
+                aria-label={`Go to slide ${i + 1}`}
+              />
+            ))}
+          </div>
+        </>
+      )}
     </div>
   );
 };
@@ -294,13 +312,13 @@ const Hero: React.FC = () => (
       </h1>
       
       <p className="text-sm md:text-base lg:text-lg text-slate-400 mb-8 font-medium max-w-xl mx-auto leading-relaxed">
-        Com um app simples e intuitivo, você escolhe e baixa moldes de festas infantis prontos para vender — sem precisar de experiência ou maquinário caro.
+        Assista ao vídeo abaixo e descubra como nosso app gera moldes prontos para vender em segundos.
       </p>
 
       <div className="w-full max-w-2xl px-4">
         <CustomVideoPlayer 
           posterUrl="https://i.postimg.cc/sX0hqL2w/1.webp"
-          label="Clique para assistir com som"
+          label="CLIQUE PARA ASSISTIR COM SOM"
           videoUrl="https://vimeo.com/1161223581"
           isVertical={true}
         />
@@ -542,14 +560,12 @@ const Deliverables: React.FC = () => {
 
 const Pricing: React.FC = () => {
   const handlePurchase = () => {
-    // Tracking InitiateCheckout before redirect
     trackEvent('InitiateCheckout', {
       content_name: 'Papelaria Descomplicada Access',
       value: 37.00,
       currency: 'BRL'
     });
     
-    // Safety delay to ensure Pixel fires before navigation (300ms is standard)
     setTimeout(() => {
       window.location.href = "https://milionario2026.mycartpanda.com/checkout/206645965:1";
     }, 300);
@@ -697,8 +713,6 @@ const Footer: React.FC = () => (
 
 const App: React.FC = () => {
   useEffect(() => {
-    // Forçar disparo do PageView para garantir ativação no Pixel Helper
-    // Pequeno delay ajuda o SDK da Meta a inicializar totalmente
     const timer = setTimeout(() => {
        trackEvent('PageView');
     }, 500);

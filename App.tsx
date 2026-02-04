@@ -31,7 +31,9 @@ import {
   Camera,
   Target,
   DollarSign,
-  Package
+  Package,
+  Timer,
+  Users
 } from 'lucide-react';
 
 // --- Helper Functions ---
@@ -67,25 +69,66 @@ const trackEvent = (eventName: string, data?: any) => {
 
 // --- Reusable Components ---
 
+const CountdownTimer: React.FC = () => {
+  const [timeLeft, setTimeLeft] = useState(894); // 14:54 initially
+
+  useEffect(() => {
+    if (timeLeft <= 0) return;
+    const intervalId = setInterval(() => {
+      setTimeLeft(prev => prev - 1);
+    }, 1000);
+    return () => clearInterval(intervalId);
+  }, [timeLeft]);
+
+  const formatTime = (seconds: number) => {
+    const mins = Math.floor(seconds / 60);
+    const secs = seconds % 60;
+    return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+  };
+
+  return (
+    <div className="flex items-center gap-2 text-pink-500 font-black text-sm md:text-base animate-pulse">
+      <Timer size={18} />
+      <span>OFERTA TERMINA EM: {formatTime(timeLeft)}</span>
+    </div>
+  );
+};
+
 const ScarcityNotification: React.FC = () => {
   const [visible, setVisible] = useState(false);
+  const [hasReachedThreshold, setHasReachedThreshold] = useState(false);
   const [name, setName] = useState('Mariana');
   const names = ['Ana Paula', 'Julia S.', 'Renata M.', 'Cláudia', 'Beatriz', 'Fernanda R.', 'Carla T.', 'Priscila'];
 
   useEffect(() => {
+    const handleScroll = () => {
+      // Threshold increased to target the bonus/deliverables section (approx 2500px+)
+      if (window.scrollY > 2500) {
+        setHasReachedThreshold(true);
+      }
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  useEffect(() => {
+    if (!hasReachedThreshold) return;
+
     const show = () => {
       setName(names[Math.floor(names.length * Math.random())]);
       setVisible(true);
-      setTimeout(() => setVisible(false), 5000);
+      // Increased visible time from 5s to 8s
+      setTimeout(() => setVisible(false), 8000);
     };
 
-    const interval = setInterval(show, 15000);
+    // Increased interval from 15s to 25s
+    const interval = setInterval(show, 25000);
     const timeout = setTimeout(show, 3000);
     return () => {
       clearInterval(interval);
       clearTimeout(timeout);
     };
-  }, []);
+  }, [hasReachedThreshold]);
 
   return (
     <div className={`fixed bottom-6 left-6 z-[100] transition-all duration-700 transform ${visible ? 'translate-y-0 opacity-100' : 'translate-y-20 opacity-0'}`}>
@@ -313,7 +356,7 @@ const Features: React.FC = () => {
     "https://i.postimg.cc/B6wKkzvx/3.webp",
     "https://i.postimg.cc/xCFzhZdC/4.webp",
     "https://i.postimg.cc/MTrQNLGX/5.webp",
-    "https://i.postimg.cc/FRnL86KY/6.webp", // URL CORRIGIDA NOVAMENTE COM A NOVA HASH FORNECIDA
+    "https://i.postimg.cc/FRnL86KY/6.webp", 
     "https://i.postimg.cc/wvbmZrB7/7.webp"
   ];
 
@@ -377,7 +420,7 @@ const Results: React.FC = () => {
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-8">
           <h2 className="text-2xl md:text-3xl font-black text-slate-900 mb-2 uppercase tracking-tighter italic">O RESULTADO QUE VOCÊ VAI ENTREGAR</h2>
-          <p className="text-slate-500 font-black text-xs tracking-[0.3em] uppercase">Kits de alta lucratividade montados por alunas</p>
+          <p className="text-slate-500 font-black text-xs tracking-[0.3em] uppercase">Kits de alta lucratividade</p>
         </div>
 
         <ImageCarousel images={resultImages} />
@@ -522,8 +565,12 @@ const Pricing: React.FC = () => {
           
           <div className="p-10 md:p-12 text-center">
             <h3 className="text-2xl font-black text-white mb-2 uppercase tracking-tighter italic">PAPELARIA DESCOMPLICADA</h3>
-            <p className="text-[11px] font-black text-slate-500 uppercase tracking-[0.3em] mb-10">ACESSO TOTAL + MOLDES + BÔNUS</p>
+            <p className="text-[11px] font-black text-slate-500 uppercase tracking-[0.3em] mb-8">ACESSO TOTAL + MOLDES + BÔNUS</p>
             
+            <div className="flex flex-col items-center mb-10">
+              <CountdownTimer />
+            </div>
+
             <div className="mb-12">
               <div className="flex flex-col items-center justify-center text-white">
                 <p className="text-slate-400 text-xs font-black uppercase tracking-widest mb-2">Aproveite a oferta de lançamento</p>

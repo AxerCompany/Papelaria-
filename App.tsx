@@ -661,7 +661,7 @@ const FAQ: React.FC = () => {
     { q: "Preciso de um computador?", a: "Absolutamente não. Nosso app foi desenvolvido para ser usado 100% via celular ou tablet." },
     { q: "Como recebo o acesso?", a: "Imediatamente após a aprovação do pagamento. Você receberá um e-mail com o link de login e sua senha pessoal." },
     { q: "Não tenho impressora, posso vender?", a: "Com certeza! Muitas alunas vendem o kit digital (PDF) para o cliente imprimir, ou levam em gráficas rápidas. O lucro continua sendo altíssimo." },
-    { q: "O suporte é via WhatsApp?", a: "O suporte principal para dúvidas técnicas é via e-mail para garantir que nenhuma solicitação seja perdida e tudo seja respondido rapidamente." }
+    { q: "O suporte é via WhatsApp?", a: "Sim! Oferecemos suporte humanizado diretamente pelo WhatsApp para garantir que você tire todas as suas dúvidas rapidamente e comece a lucrar o quanto antes." }
   ];
 
   return (

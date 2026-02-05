@@ -61,13 +61,6 @@ const getEmbedUrl = (url: string) => {
   return videoId ? `https://www.youtube.com/embed/${videoId}` : url;
 };
 
-// --- Tracking Helper ---
-const trackEvent = (eventName: string, data?: any) => {
-  if (typeof window !== 'undefined' && (window as any).fbq) {
-    (window as any).fbq('track', eventName, data);
-  }
-};
-
 // --- Reusable Components ---
 
 const CountdownTimer: React.FC = () => {
@@ -562,15 +555,8 @@ const Deliverables: React.FC = () => {
 
 const Pricing: React.FC = () => {
   const handlePurchase = () => {
-    trackEvent('InitiateCheckout', {
-      content_name: 'Papelaria Descomplicada Access',
-      value: 37.00,
-      currency: 'BRL'
-    });
-    
-    setTimeout(() => {
-      window.location.href = "https://milionario2026.mycartpanda.com/checkout/206645965:1";
-    }, 300);
+    // NOTA: O InitiateCheckout manual foi removido para evitar duplicidade com a Cartpanda.
+    window.location.href = "https://milionario2026.mycartpanda.com/checkout/206645965:1";
   };
 
   return (
@@ -714,13 +700,6 @@ const Footer: React.FC = () => (
 );
 
 const App: React.FC = () => {
-  useEffect(() => {
-    const timer = setTimeout(() => {
-       trackEvent('PageView');
-    }, 500);
-    return () => clearTimeout(timer);
-  }, []);
-
   return (
     <div className="min-h-screen bg-white selection:bg-pink-100 selection:text-pink-600 antialiased overflow-x-hidden font-sans">
       <Navbar />

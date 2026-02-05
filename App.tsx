@@ -156,8 +156,6 @@ const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({ posterUrl, videoU
 
   const finalIframeSrc = useMemo(() => {
     if (!embedUrl) return '';
-    // Autoplay=1 is used here because we only show the iframe AFTER user clicks the thumbnail.
-    // Mute=0 (Sound ON) works because it's a direct result of user interaction.
     if (embedUrl.includes('vimeo.com')) {
       return `${embedUrl}?autoplay=1&muted=0&badge=0&autopause=0&player_id=0&app_id=58479&title=0&byline=0&portrait=0`;
     }
@@ -374,7 +372,7 @@ const Features: React.FC = () => {
     "https://i.postimg.cc/B6wKkzvx/3.webp",
     "https://i.postimg.cc/xCFzhZdC/4.webp",
     "https://i.postimg.cc/MTrQNLGX/5.webp",
-    "https://i.postimg.cc/FRnL86KY/6.webp", 
+    "https://i.postimg.cc/FRnL8KY/6.webp", 
     "https://i.postimg.cc/wvbmZrB7/7.webp"
   ];
 
@@ -621,7 +619,7 @@ const Pricing: React.FC = () => {
               onClick={handlePurchase}
               className="w-full bg-pink-600 hover:bg-pink-700 text-white text-base font-black py-6 rounded-2xl transition-all uppercase tracking-tight shadow-xl shadow-pink-600/30 active:scale-95 mb-10"
             >
-              QUERO MEU ACESSO AGORA
+              LIBERAR ACESSO
             </button>
             
             <div className="flex items-center justify-center gap-5 opacity-50 grayscale brightness-200">

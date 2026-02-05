@@ -22,7 +22,7 @@ import {
   CreditCard, 
   MessageCircle,
   TrendingUp,
-  Play,
+  Play, 
   ShieldAlert,
   MousePointer2,
   Scissors,
@@ -257,14 +257,14 @@ const ImageCarousel: React.FC<ImageCarouselProps> = ({
         <>
           <button 
             onClick={prev}
-            className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 md:w-12 md:h-12 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center text-slate-900 shadow-lg opacity-0 group-hover:opacity-100 transition-all hover:bg-pink-600 hover:text-white z-10"
+            className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 md:w-12 h-12 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center text-slate-900 shadow-lg opacity-0 group-hover:opacity-100 transition-all hover:bg-pink-600 hover:text-white z-10"
             aria-label="Previous image"
           >
             <ChevronLeft size={24} />
           </button>
           <button 
             onClick={next}
-            className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 md:w-12 md:h-12 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center text-slate-900 shadow-lg opacity-0 group-hover:opacity-100 transition-all hover:bg-pink-600 hover:text-white z-10"
+            className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 md:w-12 h-12 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center text-slate-900 shadow-lg opacity-0 group-hover:opacity-100 transition-all hover:bg-pink-600 hover:text-white z-10"
             aria-label="Next image"
           >
             <ChevronRight size={24} />
@@ -439,7 +439,11 @@ const Results: React.FC = () => {
           <p className="text-slate-500 font-black text-xs tracking-[0.3em] uppercase">Kits de alta lucratividade</p>
         </div>
 
-        <ImageCarousel images={resultImages} />
+        <ImageCarousel 
+          images={resultImages} 
+          aspectRatio="aspect-square" 
+          maxWidth="max-w-4xl" 
+        />
       </div>
     </section>
   );
@@ -602,7 +606,7 @@ const Pricing: React.FC = () => {
 
             <div className="space-y-4 mb-12 text-left">
               {[
-                "Acesso Vitalício ao App",
+                "Acesso Completo ao App",
                 "Moldes gerados em segundos",
                 "Temas Infantis Premium",
                 "Licença Comercial de Vendas",
@@ -653,7 +657,7 @@ const FAQ: React.FC = () => {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   const questions = [
-    { q: "O acesso é vitalício?", a: "Sim! Você terá acesso ao app e a todas as atualizações para sempre, sem cobranças mensais." },
+    { q: "Por quanto tempo terei acesso?", a: "Você terá acesso imediato ao app e a todas as atualizações para garantir que seus moldes estejam sempre prontos para venda." },
     { q: "Preciso de um computador?", a: "Absolutamente não. Nosso app foi desenvolvido para ser usado 100% via celular ou tablet." },
     { q: "Como recebo o acesso?", a: "Imediatamente após a aprovação do pagamento. Você receberá um e-mail com o link de login e sua senha pessoal." },
     { q: "Não tenho impressora, posso vender?", a: "Com certeza! Muitas alunas vendem o kit digital (PDF) para o cliente imprimir, ou levam em gráficas rápidas. O lucro continua sendo altíssimo." },

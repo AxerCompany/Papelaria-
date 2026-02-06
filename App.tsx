@@ -37,6 +37,13 @@ import {
   Volume2
 } from 'lucide-react';
 
+// Declaração global para o TypeScript reconhecer o fbq do Meta Pixel
+declare global {
+  interface Window {
+    fbq: any;
+  }
+}
+
 // --- Helper Functions ---
 
 const getEmbedUrl = (url: string) => {
@@ -555,7 +562,13 @@ const Deliverables: React.FC = () => {
 
 const Pricing: React.FC = () => {
   const handlePurchase = () => {
-    // NOTA: O InitiateCheckout manual foi removido para evitar duplicidade com a Cartpanda.
+    // Dispara o evento customizado solicitado para o clique no botão
+    if (window.fbq) {
+      window.fbq('trackCustom', 'SubscribedButtonClick');
+    }
+    
+    // Redireciona para o checkout. O InitiateCheckout será disparado 
+    // APENAS pelo checkout nativo da Cartpanda.
     window.location.href = "https://milionario2026.mycartpanda.com/checkout/206645965:1";
   };
 

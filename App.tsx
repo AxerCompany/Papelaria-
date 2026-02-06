@@ -398,7 +398,7 @@ const Features: React.FC = () => {
 
   return (
     <section className="py-12 bg-white px-6 overflow-hidden">
-      <div className="max-w-4xl mx-auto">
+      <div className="max-w-6xl mx-auto">
         <div className="text-center mb-10">
           <p className="text-pink-600 font-black text-[12px] uppercase tracking-[0.4em] mb-3">TECNOLOGIA EXCLUSIVA</p>
           <h2 className="text-2xl md:text-3xl font-black text-slate-900 mb-4 uppercase tracking-tighter italic">O SEU ATELIÊ NA PALMA DA MÃO</h2>
@@ -426,18 +426,19 @@ const Features: React.FC = () => {
           />
         </div>
 
-        <div className="grid md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {[
             { icon: <Layers size={28} />, title: "Moldes Prontos", desc: "Acesse temas populares como Safari, Patrulha Canina e muito mais." },
             { icon: <Zap size={28} />, title: "Kits Completos", desc: "Caixinhas, toppers e tags em um só lugar." },
-            { icon: <Printer size={28} />, title: "Download PDF", desc: "Arquivos prontos para baixar em alta resolução. Basta imprimir e vender." }
+            { icon: <Printer size={28} />, title: "Download PDF", desc: "Arquivos prontos para baixar em alta resolução. Basta imprimir e vender." },
+            { icon: <Smartphone size={28} />, title: "Passo a passo completo para montar os moldes direto no app", desc: "O app te guia em cada etapa para gerar, baixar e montar os moldes de forma simples e rápida." }
           ].map((item, idx) => (
-            <div key={idx} className="flex flex-col items-center text-center group bg-slate-50 p-10 rounded-3xl border border-slate-100 transition-all hover:-translate-y-2">
-              <div className="w-16 h-16 bg-slate-950 rounded-2xl flex items-center justify-center text-pink-500 mb-6 group-hover:bg-pink-600 group-hover:text-white transition-all shadow-lg">
+            <div key={idx} className="flex flex-col items-center text-center group bg-slate-50 p-8 rounded-3xl border border-slate-100 transition-all hover:-translate-y-2">
+              <div className="w-14 h-14 bg-slate-950 rounded-2xl flex items-center justify-center text-pink-500 mb-6 group-hover:bg-pink-600 group-hover:text-white transition-all shadow-lg">
                 {item.icon}
               </div>
-              <h4 className="text-base font-black text-slate-900 uppercase tracking-tight mb-3">{item.title}</h4>
-              <p className="text-slate-500 text-sm font-medium leading-relaxed">{item.desc}</p>
+              <h4 className="text-sm md:text-base font-black text-slate-900 uppercase tracking-tight mb-3 leading-tight">{item.title}</h4>
+              <p className="text-slate-500 text-[12px] md:text-sm font-medium leading-relaxed">{item.desc}</p>
             </div>
           ))}
         </div>

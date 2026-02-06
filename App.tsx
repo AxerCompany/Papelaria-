@@ -405,11 +405,14 @@ const Features: React.FC = () => {
           <p className="text-slate-500 text-sm md:text-base font-medium max-w-xl mx-auto leading-relaxed">Esqueça programas complexos. Nosso app foi desenhado para você escolher, personalizar e vender em minutos.</p>
         </div>
 
-        {/* Frase de Instrução Discreta e Minimalista */}
-        <div className="flex items-center justify-center gap-2 mb-6 opacity-60">
-          <p className="text-[10px] md:text-xs font-bold text-slate-500 uppercase tracking-[0.3em]">PASSE PARA O LADO E ENTENDA COMO O APP FUNCIONA</p>
-          <div className="flex items-center gap-1 text-pink-500 animate-[bounce_2s_infinite]">
-            <MoveRight size={14} />
+        {/* Frase de Instrução Discreta, Negrito e Minimalista */}
+        <div className="flex flex-col items-center justify-center mb-10 text-center opacity-80">
+          <p className="text-[13px] md:text-sm font-black text-slate-900 leading-relaxed max-w-xs md:max-w-sm">
+            Deslize para o lado e <br />
+            veja como é simples usar o app
+          </p>
+          <div className="mt-2 text-pink-500 animate-[bounce_2s_infinite]">
+            <MoveRight size={16} />
           </div>
         </div>
 
@@ -466,7 +469,17 @@ const Results: React.FC = () => {
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-8">
           <h2 className="text-2xl md:text-3xl font-black text-slate-900 mb-2 uppercase tracking-tighter italic">O RESULTADO QUE VOCÊ VAI ENTREGAR</h2>
-          <p className="text-slate-500 font-black text-xs tracking-[0.3em] uppercase">Kits de alta lucratividade</p>
+          <p className="text-slate-500 font-black text-xs tracking-[0.3em] uppercase mb-10">Kits de alta lucratividade</p>
+        </div>
+
+        {/* Instrução Minimalista para os Resultados */}
+        <div className="flex flex-col items-center justify-center mb-10 text-center opacity-80">
+          <p className="text-[13px] md:text-sm font-black text-slate-900 leading-relaxed uppercase tracking-widest">
+            Deslize para o lado
+          </p>
+          <div className="mt-2 text-pink-500 animate-[bounce_2s_infinite]">
+            <MoveRight size={16} />
+          </div>
         </div>
 
         <ImageCarousel 

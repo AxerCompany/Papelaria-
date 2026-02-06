@@ -34,7 +34,8 @@ import {
   Package,
   Timer,
   Users,
-  Volume2
+  Volume2,
+  MoveRight
 } from 'lucide-react';
 
 // Declaração global para o TypeScript reconhecer o fbq do Meta Pixel
@@ -206,12 +207,16 @@ interface ImageCarouselProps {
   images: string[];
   aspectRatio?: string;
   maxWidth?: string;
+  autoplay?: boolean;
+  interval?: number;
 }
 
 const ImageCarousel: React.FC<ImageCarouselProps> = ({ 
   images, 
   aspectRatio = "aspect-video", 
-  maxWidth = "max-w-6xl" 
+  maxWidth = "max-w-6xl",
+  autoplay = true,
+  interval = 3500
 }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -223,6 +228,13 @@ const ImageCarousel: React.FC<ImageCarouselProps> = ({
   const prev = () => {
     setCurrentIndex((prev) => (prev - 1 + images.length) % images.length);
   };
+
+  useEffect(() => {
+    if (autoplay && images.length > 1) {
+      const timer = setInterval(next, interval);
+      return () => clearInterval(timer);
+    }
+  }, [currentIndex, autoplay, images.length, interval]);
 
   useEffect(() => {
     if (scrollRef.current) {
@@ -339,12 +351,20 @@ const HowItWorks: React.FC = () => (
           { 
             icon: <MousePointer2 size={32} />, 
             title: "✅ 1. Os moldes prontos vêm do app direto pro seu celular", 
-            desc: "Nada de programas complicados. Você escolhe o tema, e o app gera o molde automático — prontos pra baixar e usar." 
+            desc: (
+              <>
+                Nada de <span className="font-bold">programas complicados ou computador</span>. Você escolhe o tema, e o app gera o molde automático — <span className="font-bold">prontos para baixar imprimir e usar</span>.
+              </>
+            )
           },
           { 
             icon: <Scissors size={32} />, 
             title: "✅ 2. Imprima e monte com o que você tem em casa", 
-            desc: "Papel, tesoura, cola. Você imprime os moldes em qualquer gráfica ou impressora simples e monta tudo com a mão." 
+            desc: (
+              <>
+                Você não precisa de impressora. Os moldes podem ser impressos em qualquer gráfica rápida. Com papel, tesoura e cola, você monta tudo à mão — <span className="font-bold">simples acessivel e sem equipamentos caros</span>.
+              </>
+            )
           },
           { 
             icon: <Share2 size={32} />, 
@@ -357,7 +377,7 @@ const HowItWorks: React.FC = () => (
               {item.icon}
             </div>
             <h4 className="text-base md:text-lg font-black text-slate-900 uppercase tracking-tight mb-4 leading-tight">{item.title}</h4>
-            <p className="text-slate-500 text-sm md:text-base font-medium leading-relaxed">{item.desc}</p>
+            <div className="text-slate-500 text-sm md:text-base font-medium leading-relaxed">{item.desc}</div>
           </div>
         ))}
       </div>
@@ -372,7 +392,7 @@ const Features: React.FC = () => {
     "https://i.postimg.cc/B6wKkzvx/3.webp",
     "https://i.postimg.cc/xCFzhZdC/4.webp",
     "https://i.postimg.cc/MTrQNLGX/5.webp",
-    "https://i.postimg.cc/FRnL8KY/6.webp", 
+    "https://i.postimg.cc/FRnL86KY/6.webp", 
     "https://i.postimg.cc/wvbmZrB7/7.webp"
   ];
 
@@ -385,11 +405,21 @@ const Features: React.FC = () => {
           <p className="text-slate-500 text-sm md:text-base font-medium max-w-xl mx-auto leading-relaxed">Esqueça programas complexos. Nosso app foi desenhado para você escolher, personalizar e vender em minutos.</p>
         </div>
 
+        {/* Frase de Instrução Discreta e Minimalista */}
+        <div className="flex items-center justify-center gap-2 mb-6 opacity-60">
+          <p className="text-[10px] md:text-xs font-bold text-slate-500 uppercase tracking-[0.3em]">PASSE PARA O LADO E ENTENDA COMO O APP FUNCIONA</p>
+          <div className="flex items-center gap-1 text-pink-500 animate-[bounce_2s_infinite]">
+            <MoveRight size={14} />
+          </div>
+        </div>
+
         <div className="mb-12">
           <ImageCarousel 
             images={images} 
             aspectRatio="aspect-[9/16]" 
             maxWidth="max-w-[360px]" 
+            autoplay={true}
+            interval={3500}
           />
         </div>
 
@@ -443,6 +473,8 @@ const Results: React.FC = () => {
           images={resultImages} 
           aspectRatio="aspect-square" 
           maxWidth="max-w-4xl" 
+          autoplay={true}
+          interval={4000}
         />
       </div>
     </section>

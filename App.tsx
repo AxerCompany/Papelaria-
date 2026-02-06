@@ -702,10 +702,10 @@ const FAQ: React.FC = () => {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   const questions = [
-    { q: "Por quanto tempo terei acesso?", a: "Você terá acesso imediato ao app e a todas as atualizações para garantir que seus moldes estejam sempre prontos para venda." },
+    { q: "Por quanto tempo terei acesso?", a: "Seu acesso é vitalício. Você terá acesso imediato ao app e a todas as futuras atualizações para garantir que seus moldes estejam sempre prontos para venda." },
     { q: "Preciso de um computador?", a: "Absolutamente não. Nosso app foi desenvolvido para ser usado 100% via celular ou tablet." },
     { q: "Como recebo o acesso?", a: "Imediatamente após a aprovação do pagamento. Você receberá um e-mail com o link de login e sua senha pessoal." },
-    { q: "Não tenho impressora, posso vender?", a: "Com certeza! Muitas alunas vendem o kit digital (PDF) para o cliente imprimir, ou levam em gráficas rápidas. O lucro continua sendo altíssimo." },
+    { q: "Não tenho impressora, posso vender?", a: "Com certeza! Você pode imprimir os moldes em gráficas rápidas sempre que precisar. O processo continua simples, acessível e com ótimo potencial de lucro." },
     { q: "O suporte é via WhatsApp?", a: "Sim! Oferecemos suporte humanizado diretamente pelo WhatsApp para garantir que você tire todas as suas dúvidas rapidamente e comece a lucrar o quanto antes." }
   ];
 

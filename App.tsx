@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect, useRef, useMemo } from 'react';
 import { 
   CheckCircle2, 
@@ -34,7 +35,8 @@ import {
   Timer,
   Users,
   Volume2,
-  MoveRight
+  MoveRight,
+  Info
 } from 'lucide-react';
 
 // Declaração global para o TypeScript reconhecer o fbq do Meta Pixel
@@ -327,20 +329,23 @@ const Hero: React.FC = () => (
     <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[600px] bg-pink-600/10 blur-[120px] rounded-full -z-10" />
     
     <div className="max-w-5xl mx-auto flex flex-col items-center">
-      <div className="inline-flex items-center gap-2 px-5 py-2 bg-pink-600/10 text-pink-400 rounded-full text-[11px] font-black uppercase tracking-[0.2em] mb-8 border border-pink-500/20 shadow-xl">
-        <AlertCircle size={14} /> OPORTUNIDADE ÚNICA DE RENDA EXTRA
+      {/* Badge Superior Estilo Print */}
+      <div className="inline-flex items-center gap-3 px-8 py-3 bg-pink-600/5 text-pink-500 rounded-full border border-pink-500/20 mb-10 shadow-[0_0_30px_rgba(219,39,119,0.1)]">
+        <Info size={16} />
+        <span className="text-[10px] md:text-xs font-black uppercase tracking-[0.3em] italic">OPORTUNIDADE ÚNICA DE RENDA EXTRA</span>
       </div>
       
-      <h1 className="text-3xl md:text-5xl lg:text-6xl font-[900] mb-8 leading-[1.1] tracking-tight uppercase max-w-4xl mx-auto">
-        GANHE ATÉ <span className="text-pink-500">R$ 1.000,00 POR SEMANA</span> COM PAPELARIA PERSONALIZADA
+      {/* Headline Focada no Print */}
+      <h1 className="text-3xl md:text-5xl lg:text-6xl font-[900] mb-8 leading-[1.15] tracking-tight uppercase max-w-4xl mx-auto">
+        GANHE ATÉ <span className="text-pink-500">R$ 1.000,00 POR SEMANA</span> COM PAPELARIA PERSONALIZADA — <span className="text-white">MESMO COMEÇANDO DO ZERO.</span>
       </h1>
       
-      <p className="text-sm md:text-lg lg:text-xl text-slate-400 mb-12 font-bold max-w-2xl mx-auto leading-relaxed">
-        Assista agora e descubra como nosso app gera moldes prontos para vender em poucos segundos.
+      <p className="text-xs md:text-lg text-slate-400 mb-14 font-medium max-w-2xl mx-auto leading-relaxed">
+        Assista ao vídeo abaixo e descubra como nosso app gera moldes prontos para vender em poucos segundos.
       </p>
 
       {/* VSL DESTAQUE */}
-      <div className="w-full max-w-3xl transform hover:scale-[1.02] transition-transform duration-500">
+      <div className="w-full max-w-3xl transform hover:scale-[1.01] transition-transform duration-500">
         <CustomVideoPlayer 
           posterUrl="https://i.postimg.cc/sX0hqL2w/1.webp"
           label="CLIQUE PARA ATIVAR O SOM"

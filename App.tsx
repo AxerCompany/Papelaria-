@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect, useRef, useMemo } from 'react';
 import { 
   CheckCircle2, 
@@ -164,39 +163,54 @@ const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({ posterUrl, videoU
   }, [embedUrl]);
 
   return (
-    <div 
-      className={`w-full ${isVertical ? 'aspect-[9/16] max-w-[280px] mx-auto' : 'aspect-video'} rounded-3xl overflow-hidden relative shadow-2xl group cursor-pointer transition-all duration-500 bg-slate-900 border border-white/5`}
-      onClick={() => setIsPlaying(true)}
-    >
-      {!isPlaying ? (
-        <>
-          <div 
-            className="absolute inset-0 bg-cover bg-center opacity-100 transition-transform duration-700 group-hover:scale-105" 
-            style={{ backgroundImage: `url('${posterUrl}')` }}
-          />
-          <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors" />
-          <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-8">
-            <div className="w-20 h-20 md:w-24 md:h-24 bg-pink-600 rounded-full flex items-center justify-center text-white shadow-2xl shadow-pink-600/60 transform group-hover:scale-110 transition-transform duration-300 mb-6 border-4 border-white/40 backdrop-blur-sm">
-              <Play size={40} fill="currentColor" className="ml-2" />
+    <div className="relative w-full max-w-2xl mx-auto">
+      {/* Efeito Glow atrás do vídeo */}
+      <div className="absolute -inset-4 bg-pink-600/20 blur-3xl rounded-full opacity-50 pointer-events-none group-hover:opacity-75 transition-opacity" />
+      
+      <div 
+        className={`w-full ${isVertical ? 'aspect-[9/16] max-w-[320px] mx-auto' : 'aspect-video'} rounded-3xl overflow-hidden relative shadow-[0_30px_60px_-15px_rgba(0,0,0,0.7)] group cursor-pointer transition-all duration-500 bg-slate-900 border-4 border-white/10 ring-1 ring-white/5`}
+        onClick={() => setIsPlaying(true)}
+      >
+        {!isPlaying ? (
+          <>
+            <div 
+              className="absolute inset-0 bg-cover bg-center opacity-100 transition-transform duration-700 group-hover:scale-110" 
+              style={{ backgroundImage: `url('${posterUrl}')` }}
+            />
+            <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors" />
+            
+            {/* Badge Flutuante "ASSISTA AGORA" */}
+            <div className="absolute top-4 left-4 bg-pink-600 text-white text-[10px] font-black px-4 py-1.5 rounded-full shadow-lg transform rotate-[-2deg] z-20">
+              VEJA COMO FUNCIONA
             </div>
-            {label && (
-              <div className="bg-white/10 backdrop-blur-md px-6 py-3 rounded-full border border-white/20 transform group-hover:-translate-y-1 transition-transform">
-                <p className="text-white text-[12px] font-black uppercase tracking-[0.2em]">{label}</p>
+
+            <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-8 z-10">
+              <div className="relative">
+                {/* Círculo de Pulso */}
+                <div className="absolute inset-0 bg-pink-600 rounded-full animate-ping opacity-30 scale-150" />
+                <div className="w-20 h-20 md:w-28 md:h-28 bg-pink-600 rounded-full flex items-center justify-center text-white shadow-2xl transform group-hover:scale-110 transition-transform duration-300 border-4 border-white/30 backdrop-blur-sm relative z-10">
+                  <Play size={44} fill="currentColor" className="ml-2" />
+                </div>
               </div>
-            )}
+              {label && (
+                <div className="mt-8 bg-white/10 backdrop-blur-md px-6 py-3 rounded-full border border-white/20 transform group-hover:-translate-y-1 transition-transform">
+                  <p className="text-white text-[12px] font-black uppercase tracking-[0.2em]">{label}</p>
+                </div>
+              )}
+            </div>
+          </>
+        ) : (
+          <div className="absolute inset-0 bg-black">
+             <iframe 
+               className="w-full h-full"
+               src={finalIframeSrc}
+               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+               allowFullScreen
+               frameBorder="0"
+             />
           </div>
-        </>
-      ) : (
-        <div className="absolute inset-0 bg-black">
-           <iframe 
-             className="w-full h-full"
-             src={finalIframeSrc}
-             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-             allowFullScreen
-             frameBorder="0"
-           />
-        </div>
-      )}
+        )}
+      </div>
     </div>
   );
 };
@@ -309,26 +323,27 @@ const Navbar: React.FC = () => (
 );
 
 const Hero: React.FC = () => (
-  <section className="pt-24 pb-12 px-6 bg-slate-950 text-white flex flex-col items-center text-center relative overflow-hidden">
-    <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-pink-600/5 blur-[100px] rounded-full -z-10" />
+  <section className="pt-24 pb-20 px-6 bg-slate-950 text-white flex flex-col items-center text-center relative overflow-hidden">
+    <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[600px] bg-pink-600/10 blur-[120px] rounded-full -z-10" />
     
-    <div className="max-w-4xl mx-auto flex flex-col items-center">
-      <div className="inline-flex items-center gap-2 px-5 py-2 bg-pink-600/10 text-pink-400 rounded-full text-[11px] font-black uppercase tracking-[0.2em] mb-6 border border-pink-500/20 shadow-xl">
+    <div className="max-w-5xl mx-auto flex flex-col items-center">
+      <div className="inline-flex items-center gap-2 px-5 py-2 bg-pink-600/10 text-pink-400 rounded-full text-[11px] font-black uppercase tracking-[0.2em] mb-8 border border-pink-500/20 shadow-xl">
         <AlertCircle size={14} /> OPORTUNIDADE ÚNICA DE RENDA EXTRA
       </div>
       
-      <h1 className="text-2xl md:text-3xl lg:text-5xl font-extrabold mb-6 leading-[1.2] tracking-tight uppercase max-w-4xl mx-auto">
-        Ganhe até <span className="text-pink-500">R$ 1.000,00 por semana</span> com papelaria personalizada — mesmo começando do zero.
+      <h1 className="text-3xl md:text-5xl lg:text-6xl font-[900] mb-8 leading-[1.1] tracking-tight uppercase max-w-4xl mx-auto">
+        GANHE ATÉ <span className="text-pink-500">R$ 1.000,00 POR SEMANA</span> COM PAPELARIA PERSONALIZADA
       </h1>
       
-      <p className="text-sm md:text-base lg:text-lg text-slate-400 mb-8 font-medium max-w-xl mx-auto leading-relaxed">
-        Assista ao vídeo abaixo e descubra como nosso app gera moldes prontos para vender em segundos.
+      <p className="text-sm md:text-lg lg:text-xl text-slate-400 mb-12 font-bold max-w-2xl mx-auto leading-relaxed">
+        Assista agora e descubra como nosso app gera moldes prontos para vender em poucos segundos.
       </p>
 
-      <div className="w-full max-w-2xl px-4">
+      {/* VSL DESTAQUE */}
+      <div className="w-full max-w-3xl transform hover:scale-[1.02] transition-transform duration-500">
         <CustomVideoPlayer 
           posterUrl="https://i.postimg.cc/sX0hqL2w/1.webp"
-          label="CLIQUE PARA ASSISTIR COM SOM"
+          label="CLIQUE PARA ATIVAR O SOM"
           videoUrl="https://vimeo.com/1161223581"
           isVertical={true}
         />
@@ -405,7 +420,6 @@ const Features: React.FC = () => {
           <p className="text-slate-500 text-sm md:text-base font-medium max-w-xl mx-auto leading-relaxed">Esqueça programas complexos. Nosso app foi desenhado para você escolher, personalizar e vender em minutos.</p>
         </div>
 
-        {/* Frase de Instrução Discreta, Negrito e Minimalista */}
         <div className="flex flex-col items-center justify-center mb-10 text-center opacity-80">
           <p className="text-[13px] md:text-sm font-black text-slate-900 leading-relaxed max-w-xs md:max-w-sm">
             Deslize para o lado e <br />
@@ -431,7 +445,7 @@ const Features: React.FC = () => {
             { icon: <Layers size={28} />, title: "Moldes Prontos", desc: "Acesse temas populares como Safari, Patrulha Canina e muito mais." },
             { icon: <Zap size={28} />, title: "Kits Completos", desc: "Caixinhas, toppers e tags em um só lugar." },
             { icon: <Printer size={28} />, title: "Download PDF", desc: "Arquivos prontos para baixar em alta resolução. Basta imprimir e vender." },
-            { icon: <Smartphone size={28} />, title: "Passo a passo completo para montar os moldes direto no app", desc: "O app te guia em cada etapa para gerar, baixar e montar os moldes de forma simples e rápida." }
+            { icon: <Smartphone size={28} />, title: "Passo a passo completo", desc: "O app te guia em cada etapa para gerar, baixar e montar os moldes de forma simples e rápida." }
           ].map((item, idx) => (
             <div key={idx} className="flex flex-col items-center text-center group bg-slate-50 p-8 rounded-3xl border border-slate-100 transition-all hover:-translate-y-2">
               <div className="w-14 h-14 bg-slate-950 rounded-2xl flex items-center justify-center text-pink-500 mb-6 group-hover:bg-pink-600 group-hover:text-white transition-all shadow-lg">
@@ -473,7 +487,6 @@ const Results: React.FC = () => {
           <p className="text-slate-500 font-black text-xs tracking-[0.3em] uppercase mb-10">Kits de alta lucratividade</p>
         </div>
 
-        {/* Instrução Minimalista para os Resultados */}
         <div className="flex flex-col items-center justify-center mb-10 text-center opacity-80">
           <p className="text-[13px] md:text-sm font-black text-slate-900 leading-relaxed uppercase tracking-widest">
             Deslize para o lado
@@ -499,7 +512,6 @@ const Deliverables: React.FC = () => {
   return (
     <section className="py-12 bg-white px-6">
       <div className="max-w-4xl mx-auto">
-        {/* Bônus Especial - Ultra Destacado */}
         <div className="relative group mb-12">
           <div className="absolute -inset-2 bg-gradient-to-r from-pink-600 to-pink-400 rounded-[3rem] blur-xl opacity-25 group-hover:opacity-40 transition-opacity" />
           <div className="relative bg-white border-4 border-pink-600 rounded-[2.8rem] p-8 md:p-14 shadow-2xl overflow-hidden">
@@ -524,7 +536,7 @@ const Deliverables: React.FC = () => {
                   { text: "O que postar pra chamar atenção", icon: <Share2 size={16} /> },
                   { text: "Como conseguir os primeiros pedidos usando só o seu celular", icon: <Smartphone size={16} /> },
                   { text: "Como tirar fotos simples que vendem o produto por você", icon: <Camera size={16} /> },
-                  { text: "Estratégias pra vender em grupos, no Instagram e até no boca a boca", icon: <Target size={16} /> },
+                  { text: "Estratégias pra vender em grupos, no Instagram e no boca a boca", icon: <Target size={16} /> },
                   { text: "Como cobrar e entregar de um jeito fácil e seguro", icon: <CreditCard size={16} /> }
                 ].map((point, idx) => (
                   <div key={idx} className="flex items-center gap-4 bg-pink-50/50 p-5 rounded-2xl border border-pink-100/50 group/item transition-all hover:bg-pink-100">
@@ -555,9 +567,7 @@ const Deliverables: React.FC = () => {
           </div>
         </div>
 
-        {/* Bônus de Precificação e Materiais - ULTRA DESTACADOS */}
         <div className="grid md:grid-cols-2 gap-8">
-          {/* Bônus de Precificação */}
           <div className="relative group">
             <div className="absolute -inset-1 bg-gradient-to-b from-green-400 to-green-600 rounded-[2.5rem] blur opacity-10" />
             <div className="relative bg-white border-2 border-slate-100 rounded-[2.5rem] p-10 shadow-xl overflow-hidden flex flex-col items-center text-center transition-all hover:scale-[1.02]">
@@ -579,7 +589,6 @@ const Deliverables: React.FC = () => {
             </div>
           </div>
 
-          {/* Bônus Lista de Materiais */}
           <div className="relative group">
             <div className="absolute -inset-1 bg-gradient-to-b from-blue-400 to-blue-600 rounded-[2.5rem] blur opacity-10" />
             <div className="relative bg-white border-2 border-slate-100 rounded-[2.5rem] p-10 shadow-xl overflow-hidden flex flex-col items-center text-center transition-all hover:scale-[1.02]">
@@ -608,13 +617,9 @@ const Deliverables: React.FC = () => {
 
 const Pricing: React.FC = () => {
   const handlePurchase = () => {
-    // Dispara o evento customizado solicitado para o clique no botão
     if (window.fbq) {
       window.fbq('trackCustom', 'SubscribedButtonClick');
     }
-    
-    // Redireciona para o checkout. O InitiateCheckout será disparado 
-    // APENAS pelo checkout nativo da Cartpanda.
     window.location.href = "https://milionario2026.mycartpanda.com/checkout/206645965:1";
   };
 

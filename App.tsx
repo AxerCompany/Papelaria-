@@ -335,12 +335,13 @@ const Hero: React.FC = () => (
         <span className="text-[10px] md:text-xs font-black uppercase tracking-[0.3em] italic">OPORTUNIDADE ÚNICA DE RENDA EXTRA</span>
       </div>
       
-      {/* Headline Focada no Print */}
-      <h1 className="text-3xl md:text-5xl lg:text-6xl font-[900] mb-8 leading-[1.15] tracking-tight uppercase max-w-4xl mx-auto">
+      {/* Headline Focada no Print - Tamanho Reduzido conforme solicitado */}
+      <h1 className="text-2xl md:text-4xl lg:text-5xl font-[900] mb-8 leading-[1.2] tracking-tight uppercase max-w-4xl mx-auto">
         GANHE ATÉ <span className="text-pink-500">R$ 1.000,00 POR SEMANA</span> COM PAPELARIA PERSONALIZADA — <span className="text-white">MESMO COMEÇANDO DO ZERO.</span>
       </h1>
       
-      <p className="text-xs md:text-lg text-slate-400 mb-14 font-medium max-w-2xl mx-auto leading-relaxed">
+      {/* Texto Negrito Conforme Solicitado */}
+      <p className="text-xs md:text-lg text-slate-400 mb-14 font-black max-w-2xl mx-auto leading-relaxed">
         Assista ao vídeo abaixo e descubra como nosso app gera moldes prontos para vender em poucos segundos.
       </p>
 

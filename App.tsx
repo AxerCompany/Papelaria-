@@ -626,7 +626,10 @@ const Pricing: React.FC = () => {
     if (window.fbq) {
       window.fbq('trackCustom', 'SubscribedButtonClick');
     }
-    window.location.href = "https://milionario2026.mycartpanda.com/checkout/206645965:1";
+    // Forçar a passagem dos parâmetros de URL para a próxima página
+    const baseUrl = "https://milionario2026.mycartpanda.com/checkout/206645965:1";
+    const currentParams = window.location.search;
+    window.location.href = baseUrl + currentParams;
   };
 
   return (

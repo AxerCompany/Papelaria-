@@ -488,6 +488,12 @@ const Testimonials: React.FC = () => {
       role: "Mãe e Empreendedora",
       text: "Eu nunca tinha mexido com papelaria e achava que precisava de computador e maquinario caro. Com o app, faço tudo pelo celular com papel cola e tesoura, enquanto meu filho dorme. Já fiz minha primeira encomenda em 4 dias!🥰​​​💖",
       image: "https://i.postimg.cc/0NCnC7tX/image_14_300x300.webp"
+    },
+    {
+      name: "Arlete Menezes",
+      role: "Artesã experiente",
+      text: "Quando eu estava começando na papelaria em 2017 tudo que eu queria era um app desse, sofri muito pra começar, nao sabia editar e nada disso, foi uma dificuldade enorme, com esse app fica bem mais facil começar a fazer personalizados, recomendo muito pra quem esta começando ou quer começar.",
+      image: "https://i.postimg.cc/t4QzQBwx/image_16_281x300.webp"
     }
   ];
 
@@ -500,7 +506,7 @@ const Testimonials: React.FC = () => {
           <div className="w-16 h-1 bg-pink-600 mx-auto rounded-full" />
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-2 gap-8">
           {testimonials.map((t, i) => (
             <div key={i} className="bg-white p-8 rounded-[2.5rem] shadow-xl shadow-slate-200/50 border border-slate-100 flex flex-col relative transition-all hover:-translate-y-1">
               <div className="absolute top-8 right-8 text-pink-500/10">

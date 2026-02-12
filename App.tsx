@@ -19,6 +19,7 @@ import {
   Quote, 
   Clock, 
   Unlock, 
+  Lock,
   CreditCard, 
   MessageCircle,
   TrendingUp,
@@ -731,10 +732,12 @@ const Pricing: React.FC = () => {
                 "Temas Infantis Premium",
                 "Licença Comercial de Vendas",
                 "Garantia Incondicional",
-                "Todos os Bônus Grátis"
+                "Bônus: Guia de Precificação",
+                "Bônus: Lista de Materiais",
+                "Bônus: Estratégia Venda Rápida"
               ].map(item => (
                 <div key={item} className="flex items-center gap-4 text-xs md:text-sm font-bold text-slate-400 border-b border-white/5 pb-4 last:border-0">
-                  <Unlock size={14} className="text-pink-500 flex-shrink-0" /> {item}
+                  <Lock size={14} className="text-pink-500 flex-shrink-0" /> {item}
                 </div>
               ))}
             </div>

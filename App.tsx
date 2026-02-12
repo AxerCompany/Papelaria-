@@ -468,6 +468,66 @@ const Features: React.FC = () => {
   );
 };
 
+const Testimonials: React.FC = () => {
+  const testimonials = [
+    {
+      name: "Cláudia Ferreira",
+      role: "Empreendedora",
+      text: "Simplesmente maravilhoso. o aplicativo facilitou muito pra mim começar na papelaria pois nao tenho computador e nem sei editar nada, com a app eu consegui finalmente inciar so tenho a agradecer🥰​🥰​.",
+      image: "https://i.postimg.cc/0jh0NnNF/image_15_300x300.webp"
+    },
+    {
+      name: "Renata Mendes",
+      role: "Artesã Iniciante",
+      text: "Os moldes são perfeitos e super fáceis de montar. O bônus de vendas abriu minha mente sobre como postar no Instagram e chamar atenção. O investimento se pagou na primeira encomenda de 10 caixinhas fora que eu perdia horas montando e editando moldes​😁​😁​.",
+      image: "https://i.postimg.cc/CKwHdzFq/image_13_229x300.webp"
+    },
+    {
+      name: "Ana Paula Silva",
+      role: "Mãe e Empreendedora",
+      text: "Eu nunca tinha mexido com papelaria e achava que precisava de computador e maquinario caro. Com o app, faço tudo pelo celular com papel cola e tesoura, enquanto meu filho dorme. Já fiz minha primeira encomenda em 4 dias!🥰​​​💖",
+      image: "https://i.postimg.cc/0NCnC7tX/image_14_300x300.webp"
+    }
+  ];
+
+  return (
+    <section className="py-16 bg-slate-50 px-6 border-b border-slate-200">
+      <div className="max-w-6xl mx-auto">
+        <div className="text-center mb-12">
+          <p className="text-pink-600 font-black text-[12px] uppercase tracking-[0.4em] mb-3">RESULTADOS REAIS</p>
+          <h2 className="text-2xl md:text-3xl font-black text-slate-900 mb-4 uppercase tracking-tighter italic">O QUE ELAS ESTÃO DIZENDO</h2>
+          <div className="w-16 h-1 bg-pink-600 mx-auto rounded-full" />
+        </div>
+
+        <div className="grid md:grid-cols-3 gap-8">
+          {testimonials.map((t, i) => (
+            <div key={i} className="bg-white p-8 rounded-[2.5rem] shadow-xl shadow-slate-200/50 border border-slate-100 flex flex-col relative transition-all hover:-translate-y-1">
+              <div className="absolute top-8 right-8 text-pink-500/10">
+                <Quote size={48} fill="currentColor" />
+              </div>
+              <div className="flex gap-1 mb-6 text-pink-500">
+                {[...Array(5)].map((_, i) => <Star key={i} size={16} fill="currentColor" />)}
+              </div>
+              <p className="text-slate-600 text-sm md:text-base font-medium italic leading-relaxed mb-8 flex-grow">
+                "{t.text}"
+              </p>
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-pink-100">
+                  <img src={t.image} alt={t.name} className="w-full h-full object-cover" />
+                </div>
+                <div>
+                  <h4 className="text-sm font-black text-slate-900 uppercase tracking-tight">{t.name}</h4>
+                  <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">{t.role}</p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
 const Results: React.FC = () => {
   const resultImages = useMemo(() => {
     const images = [
@@ -605,7 +665,7 @@ const Deliverables: React.FC = () => {
               <div className="mb-6">
                 <h4 className="text-xl font-black text-slate-900 uppercase tracking-tight mb-2 italic">LISTA DE MATERIAIS</h4>
                 <p className="text-slate-500 font-bold text-sm leading-relaxed px-4">
-                  O guia exato do que você precisa para começar agora mesmo com o mínimo possível.
+                  O guia exato do que você precisa para começar agora mesmo com the mínimo possível.
                 </p>
               </div>
               <div className="mt-auto w-full pt-8 border-t border-slate-50">
@@ -780,6 +840,7 @@ const App: React.FC = () => {
       <Hero />
       <HowItWorks />
       <Features />
+      <Testimonials />
       <Results />
       <Deliverables />
       <Pricing />

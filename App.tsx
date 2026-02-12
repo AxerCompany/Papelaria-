@@ -450,6 +450,7 @@ const Features: React.FC = () => {
           {[
             { icon: <Layers size={28} />, title: "Moldes Prontos", desc: "Acesse temas populares como Safari, Patrulha Canina e muito mais." },
             { icon: <Zap size={28} />, title: "Kits Completos", desc: "Caixinhas, toppers e tags em um só lugar." },
+            { icon: <FileText size={28} />, title: "+2.000 Moldes", desc: "Acesso a +2.000 moldes prontos e editáveis para você nunca ficar sem opções." },
             { icon: <Printer size={28} />, title: "Download PDF", desc: "Arquivos prontos para baixar em alta resolução. Basta imprimir e vender." },
             { icon: <Smartphone size={28} />, title: "Passo a passo completo", desc: "O app te guia em cada etapa para gerar, baixar e montar os moldes de forma simples e rápida." }
           ].map((item, idx) => (

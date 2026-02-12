@@ -92,8 +92,10 @@ const CountdownTimer: React.FC = () => {
 
   return (
     <div className="flex items-center gap-2 text-pink-500 font-black text-sm md:text-base animate-pulse">
-      <Timer size={18} />
-      <span>OFERTA TERMINA EM: {formatTime(timeLeft)}</span>
+      <div className="flex items-center gap-2">
+        <Timer size={18} />
+        <span>OFERTA TERMINA EM: {formatTime(timeLeft)}</span>
+      </div>
     </div>
   );
 };
@@ -106,7 +108,7 @@ const ScarcityNotification: React.FC = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 2500) {
+      if (window.scrollY > 1500) {
         setHasReachedThreshold(true);
       }
     };
@@ -167,7 +169,6 @@ const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({ posterUrl, videoU
 
   return (
     <div className="relative w-full max-w-2xl mx-auto">
-      {/* Efeito Glow atrás do vídeo */}
       <div className="absolute -inset-4 bg-pink-600/20 blur-3xl rounded-full opacity-50 pointer-events-none group-hover:opacity-75 transition-opacity" />
       
       <div 
@@ -182,14 +183,12 @@ const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({ posterUrl, videoU
             />
             <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors" />
             
-            {/* Badge Flutuante "ASSISTA AGORA" */}
             <div className="absolute top-4 left-4 bg-pink-600 text-white text-[10px] font-black px-4 py-1.5 rounded-full shadow-lg transform rotate-[-2deg] z-20">
               VEJA COMO FUNCIONA
             </div>
 
             <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-8 z-10">
               <div className="relative">
-                {/* Círculo de Pulso */}
                 <div className="absolute inset-0 bg-pink-600 rounded-full animate-ping opacity-30 scale-150" />
                 <div className="w-20 h-20 md:w-28 md:h-28 bg-pink-600 rounded-full flex items-center justify-center text-white shadow-2xl transform group-hover:scale-110 transition-transform duration-300 border-4 border-white/30 backdrop-blur-sm relative z-10">
                   <Play size={44} fill="currentColor" className="ml-2" />
@@ -330,23 +329,19 @@ const Hero: React.FC = () => (
     <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[600px] bg-pink-600/10 blur-[120px] rounded-full -z-10" />
     
     <div className="max-w-5xl mx-auto flex flex-col items-center">
-      {/* Badge Superior Estilo Print */}
       <div className="inline-flex items-center gap-3 px-8 py-3 bg-pink-600/5 text-pink-500 rounded-full border border-pink-500/20 mb-10 shadow-[0_0_30px_rgba(219,39,119,0.1)]">
         <Info size={16} />
         <span className="text-[10px] md:text-xs font-black uppercase tracking-[0.3em] italic">OPORTUNIDADE ÚNICA DE RENDA EXTRA</span>
       </div>
       
-      {/* Headline Focada no Print - Tamanho Reduzido conforme solicitado */}
       <h1 className="text-2xl md:text-4xl lg:text-5xl font-[900] mb-8 leading-[1.2] tracking-tight uppercase max-w-4xl mx-auto">
         GANHE ATÉ <span className="text-pink-500">R$ 1.000,00 POR SEMANA</span> COM PAPELARIA PERSONALIZADA — <span className="text-white">MESMO COMEÇANDO DO ZERO.</span>
       </h1>
       
-      {/* Texto Negrito Conforme Solicitado */}
       <p className="text-xs md:text-lg text-slate-400 mb-14 font-black max-w-2xl mx-auto leading-relaxed">
         Assista ao vídeo abaixo e descubra como nosso app gera moldes prontos para vender em poucos segundos.
       </p>
 
-      {/* VSL DESTAQUE */}
       <div className="w-full max-w-3xl transform hover:scale-[1.01] transition-transform duration-500">
         <CustomVideoPlayer 
           posterUrl="https://i.postimg.cc/sX0hqL2w/1.webp"
@@ -672,7 +667,7 @@ const Deliverables: React.FC = () => {
               <div className="mb-6">
                 <h4 className="text-xl font-black text-slate-900 uppercase tracking-tight mb-2 italic">LISTA DE MATERIAIS</h4>
                 <p className="text-slate-500 font-bold text-sm leading-relaxed px-4">
-                  O guia exato do que você precisa para começar agora mesmo com the mínimo possível.
+                  O guia exato do que você precisa para começar agora mesmo com o mínimo possível.
                 </p>
               </div>
               <div className="mt-auto w-full pt-8 border-t border-slate-50">
@@ -694,7 +689,6 @@ const Pricing: React.FC = () => {
     if (window.fbq) {
       window.fbq('trackCustom', 'SubscribedButtonClick');
     }
-    // Forçar a passagem dos parâmetros de URL para a próxima página
     const baseUrl = "https://milionario2026.mycartpanda.com/checkout/206645965:1";
     const currentParams = window.location.search;
     window.location.href = baseUrl + currentParams;
@@ -740,7 +734,7 @@ const Pricing: React.FC = () => {
                 "Garantia Incondicional",
                 "Bônus: Guia de Precificação",
                 "Bônus: Lista de Materiais",
-                "Bônus: Estratégia Venda Rápida"
+                "Bônus: Estratégia Venda Express"
               ].map(item => (
                 <div key={item} className="flex items-center gap-4 text-xs md:text-sm font-bold text-slate-400 border-b border-white/5 pb-4 last:border-0">
                   <Lock size={14} className="text-pink-500 flex-shrink-0" /> {item}

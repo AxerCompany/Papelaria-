@@ -74,7 +74,7 @@ const getEmbedUrl = (url: string) => {
 // --- Reusable Components ---
 
 const CountdownTimer: React.FC = () => {
-  const [timeLeft, setTimeLeft] = useState(2700); // 45:00 initially
+  const [timeLeft, setTimeLeft] = useState(900); // 15:00 initially for more urgency
 
   useEffect(() => {
     if (timeLeft <= 0) return;
@@ -94,7 +94,7 @@ const CountdownTimer: React.FC = () => {
     <div className="flex items-center gap-2 text-pink-500 font-black text-sm md:text-base animate-pulse">
       <div className="flex items-center gap-2">
         <Timer size={18} />
-        <span>OFERTA TERMINA EM: {formatTime(timeLeft)}</span>
+        <span>OFERTA EXPIRA EM: {formatTime(timeLeft)}</span>
       </div>
     </div>
   );
@@ -104,11 +104,11 @@ const ScarcityNotification: React.FC = () => {
   const [visible, setVisible] = useState(false);
   const [hasReachedThreshold, setHasReachedThreshold] = useState(false);
   const [name, setName] = useState('Mariana');
-  const names = ['Ana Paula', 'Julia S.', 'Renata M.', 'Cláudia', 'Beatriz', 'Fernanda R.', 'Carla T.', 'Priscila'];
+  const names = ['Ana Paula', 'Julia S.', 'Renata M.', 'Cláudia', 'Beatriz', 'Fernanda R.', 'Carla T.', 'Priscila', 'Sandra', 'Mônica', 'Patrícia', 'Daniela'];
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 1500) {
+      if (window.scrollY > 300) { // Show much earlier
         setHasReachedThreshold(true);
       }
     };
@@ -122,11 +122,11 @@ const ScarcityNotification: React.FC = () => {
     const show = () => {
       setName(names[Math.floor(names.length * Math.random())]);
       setVisible(true);
-      setTimeout(() => setVisible(false), 8000);
+      setTimeout(() => setVisible(false), 6000);
     };
 
-    const interval = setInterval(show, 25000);
-    const timeout = setTimeout(show, 3000);
+    const interval = setInterval(show, 15000); // More frequent
+    const timeout = setTimeout(show, 2000);
     return () => {
       clearInterval(interval);
       clearTimeout(timeout);
@@ -699,7 +699,7 @@ const Pricing: React.FC = () => {
       <div className="max-w-lg mx-auto">
         <div className="bg-slate-950 rounded-[2.5rem] overflow-hidden shadow-[0_40px_80px_rgba(0,0,0,0.3)] border border-white/5 relative">
           <div className="bg-pink-600 py-3 text-center text-white text-[12px] font-black uppercase tracking-[0.3em]">
-            PAGAMENTO ÚNICO • SEM MENSALIDADE
+            OFERTA EXCLUSIVA • VAGAS LIMITADAS
           </div>
           
           <div className="p-10 md:p-12 text-center">
@@ -708,6 +708,19 @@ const Pricing: React.FC = () => {
             
             <div className="flex flex-col items-center mb-10">
               <CountdownTimer />
+              <p className="text-pink-500 text-[10px] font-black uppercase tracking-[0.2em] mt-2">O preço subirá para R$ 197,00 após o cronômetro zerar</p>
+            </div>
+
+            {/* Progress Bar Scarcity */}
+            <div className="mb-10 px-4">
+              <div className="flex justify-between items-end mb-2">
+                <span className="text-white text-[10px] font-black uppercase tracking-widest">Vagas Preenchidas:</span>
+                <span className="text-pink-500 text-sm font-black">71%</span>
+              </div>
+              <div className="w-full h-3 bg-white/10 rounded-full overflow-hidden border border-white/5">
+                <div className="h-full bg-pink-600 rounded-full w-[71%] animate-pulse" />
+              </div>
+              <p className="text-slate-500 text-[9px] font-bold uppercase tracking-widest mt-2">Últimas 9 licenças disponíveis com desconto</p>
             </div>
 
             <div className="mb-12">
@@ -744,9 +757,12 @@ const Pricing: React.FC = () => {
 
             <button 
               onClick={handlePurchase}
-              className="w-full bg-pink-600 hover:bg-pink-700 text-white text-base font-black py-6 rounded-2xl transition-all uppercase tracking-tight shadow-xl shadow-pink-600/30 active:scale-95 mb-10"
+              className="w-full bg-pink-600 hover:bg-pink-700 text-white text-base font-black py-6 rounded-2xl transition-all uppercase tracking-tight shadow-xl shadow-pink-600/30 active:scale-95 mb-10 group"
             >
-              LIBERAR ACESSO
+              <span className="flex items-center justify-center gap-2">
+                LIBERAR MEU ACESSO AGORA
+                <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
+              </span>
             </button>
             
             <div className="flex items-center justify-center gap-5 opacity-50 grayscale brightness-200">

@@ -689,7 +689,7 @@ const Pricing: React.FC = () => {
     if (window.fbq) {
       window.fbq('trackCustom', 'SubscribedButtonClick');
     }
-    const baseUrl = "https://pay.wiapy.com/qgBrPAlHcQ";
+    const baseUrl = "https://milionario2026.mycartpanda.com/checkout/206645965:1";
     const currentParams = window.location.search;
     window.location.href = baseUrl + currentParams;
   };

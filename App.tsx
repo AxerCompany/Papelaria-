@@ -153,9 +153,10 @@ interface CustomVideoPlayerProps {
   videoUrl?: string; 
   label?: string;
   isVertical?: boolean;
+  priority?: boolean;
 }
 
-const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({ posterUrl, videoUrl, label, isVertical = false }) => {
+const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({ posterUrl, videoUrl, label, isVertical = false, priority = false }) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const embedUrl = useMemo(() => videoUrl ? getEmbedUrl(videoUrl) : '', [videoUrl]);
 
@@ -177,9 +178,14 @@ const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({ posterUrl, videoU
       >
         {!isPlaying ? (
           <>
-            <div 
-              className="absolute inset-0 bg-cover bg-center opacity-100 transition-transform duration-700 group-hover:scale-110" 
-              style={{ backgroundImage: `url('${posterUrl}')` }}
+            <img 
+              src={posterUrl}
+              alt="Video Poster"
+              className="absolute inset-0 w-full h-full object-cover opacity-100 transition-transform duration-700 group-hover:scale-110"
+              fetchPriority={priority ? "high" : "auto"}
+              loading={priority ? "eager" : "lazy"}
+              width={isVertical ? 320 : 1280}
+              height={isVertical ? 568 : 720}
             />
             <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors" />
             
@@ -225,6 +231,8 @@ interface ImageCarouselProps {
   maxWidth?: string;
   autoplay?: boolean;
   interval?: number;
+  width?: number;
+  height?: number;
 }
 
 const ImageCarousel: React.FC<ImageCarouselProps> = ({ 
@@ -232,7 +240,9 @@ const ImageCarousel: React.FC<ImageCarouselProps> = ({
   aspectRatio = "aspect-video", 
   maxWidth = "max-w-6xl",
   autoplay = true,
-  interval = 3500
+  interval = 3500,
+  width = 800,
+  height = 450
 }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -276,6 +286,8 @@ const ImageCarousel: React.FC<ImageCarouselProps> = ({
               alt={`Slide ${i}`} 
               className="absolute inset-0 w-full h-full object-cover"
               loading="lazy"
+              width={width}
+              height={height}
             />
           </div>
         ))}
@@ -348,6 +360,7 @@ const Hero: React.FC = () => (
           label="CLIQUE PARA ATIVAR O SOM"
           videoUrl="https://vimeo.com/1161223581"
           isVertical={true}
+          priority={true}
         />
       </div>
     </div>
@@ -439,6 +452,8 @@ const Features: React.FC = () => {
             maxWidth="max-w-[360px]" 
             autoplay={true}
             interval={3500}
+            width={360}
+            height={640}
           />
         </div>
 
@@ -515,7 +530,14 @@ const Testimonials: React.FC = () => {
               </p>
               <div className="flex items-center gap-4">
                 <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-pink-100">
-                  <img src={t.image} alt={t.name} className="w-full h-full object-cover" />
+                  <img 
+                    src={t.image} 
+                    alt={t.name} 
+                    className="w-full h-full object-cover" 
+                    width={48} 
+                    height={48} 
+                    loading="lazy"
+                  />
                 </div>
                 <div>
                   <h4 className="text-sm font-black text-slate-900 uppercase tracking-tight">{t.name}</h4>
@@ -571,6 +593,8 @@ const Results: React.FC = () => {
           maxWidth="max-w-4xl" 
           autoplay={true}
           interval={4000}
+          width={800}
+          height={800}
         />
       </div>
     </section>

@@ -5,6 +5,7 @@ export default {
     "./index.html",
     "./index.tsx",
     "./App.tsx",
+    "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
     extend: {

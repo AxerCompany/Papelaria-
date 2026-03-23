@@ -5,6 +5,9 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Papelaria Descomplicada - Fature com Papelaria Personalizada</title>
+    
+    <!-- Preload LCP Image -->
+    <link rel="preload" href="https://i.postimg.cc/sX0hqL2w/1.webp" as="image" fetchpriority="high">
 
     <!-- Microsoft Clarity -->
     <script type="text/javascript">
@@ -42,33 +45,9 @@
       defer
     ></script>
 
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            fontFamily: {
-              sans: ['Montserrat', 'sans-serif'],
-            },
-          },
-        },
-      }
-    </script>
-
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    
-    <script type="importmap">
-    {
-      "imports": {
-        "react": "https://esm.sh/react@^19.2.4",
-        "react-dom/": "https://esm.sh/react-dom@^19.2.4/",
-        "react/": "https://esm.sh/react@^19.2.4/",
-        "lucide-react": "https://esm.sh/lucide-react@^0.563.0",
-        "vite": "https://esm.sh/vite@^7.3.1",
-        "@vitejs/plugin-react": "https://esm.sh/@vitejs/plugin-react@^5.1.3"
-      }
-    }
-    </script>
   </head>
   <body class="bg-white text-slate-900">
     <noscript><img height="1" width="1" style="display:none"

@@ -37,7 +37,8 @@ import {
   Users,
   Volume2,
   MoveRight,
-  Info
+  Info,
+  Loader2
 } from 'lucide-react';
 
 // Declaração global para o TypeScript reconhecer o fbq do Meta Pixel
@@ -709,13 +710,31 @@ const Deliverables: React.FC = () => {
 };
 
 const Pricing: React.FC = () => {
+  const [isLoading, setIsLoading] = useState(false);
+
   const handlePurchase = () => {
+    if (isLoading) return;
+    
+    setIsLoading(true);
+
     if (window.fbq) {
       window.fbq('trackCustom', 'SubscribedButtonClick');
     }
+    
     const baseUrl = "https://milionario2026.mycartpanda.com/checkout/206645965:1";
     const currentParams = window.location.search;
-    window.location.href = baseUrl + currentParams;
+    
+    // Pequeno delay para garantir que o Pixel dispare antes do redirecionamento
+    // e para dar tempo do usuário ver o feedback visual
+    setTimeout(() => {
+      window.location.href = baseUrl + currentParams;
+    }, 500);
+
+    // Fallback: se por algum motivo o redirecionamento falhar ou demorar muito,
+    // permitimos o clique novamente após 8 segundos
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 8000);
   };
 
   return (
@@ -781,12 +800,27 @@ const Pricing: React.FC = () => {
 
             <button 
               onClick={handlePurchase}
-              className="w-full bg-pink-600 hover:bg-pink-700 text-white text-base font-black py-6 rounded-2xl transition-all uppercase tracking-tight shadow-xl shadow-pink-600/30 active:scale-95 mb-10 group"
+              disabled={isLoading}
+              className={`w-full ${isLoading ? 'bg-pink-800 cursor-not-allowed' : 'bg-pink-600 hover:bg-pink-700 active:scale-95'} text-white text-base font-black py-6 rounded-2xl transition-all uppercase tracking-tight shadow-xl shadow-pink-600/30 mb-10 group relative overflow-hidden`}
             >
               <span className="flex items-center justify-center gap-2">
-                LIBERAR MEU ACESSO AGORA
-                <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
+                {isLoading ? (
+                  <>
+                    <Loader2 size={20} className="animate-spin" />
+                    PROCESSANDO...
+                  </>
+                ) : (
+                  <>
+                    LIBERAR MEU ACESSO AGORA
+                    <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
+                  </>
+                )}
               </span>
+              
+              {/* Efeito de brilho quando não está carregando */}
+              {!isLoading && (
+                <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:animate-[shimmer_1.5s_infinite]" />
+              )}
             </button>
             
             <div className="flex items-center justify-center gap-5 opacity-50 grayscale brightness-200">

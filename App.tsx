@@ -908,7 +908,7 @@ const Footer: React.FC = () => (
       <p className="text-[10px] font-black text-slate-800 uppercase tracking-[0.4em] mb-8">© 2025 PAPELARIA DESCOMPLICADA • TODOS OS DIREITOS RESERVADOS</p>
 
       <div className="pt-8 border-t border-white/5">
-        <p className="text-slate-600 text-[9px] font-black uppercase tracking-widest mb-4">© 2026 AxerCompany • Todos os direitos reservados.</p>
+        <p className="text-slate-600 text-[9px] font-black uppercase tracking-widest mb-4">© 2026 • Todos os direitos reservados.</p>
         <p className="text-slate-700 text-[9px] font-bold uppercase tracking-widest opacity-40 leading-relaxed max-w-2xl mx-auto mb-4">
           Todo o conteúdo presente nesta página, incluindo textos, imagens, design, estrutura, vídeos, materiais e quaisquer outros elementos, é protegido por leis de direitos autorais e propriedade intelectual.
         </p>

@@ -380,35 +380,43 @@ const HowItWorks: React.FC = () => (
       <div className="grid md:grid-cols-3 gap-8">
         {[
           { 
-            icon: <MousePointer2 size={32} />, 
-            title: "✅ 1. Os moldes prontos vêm do app direto pro seu celular", 
+            icon: <MousePointer2 size={28} className="transform rotate-90" />, 
+            title: "✅ 1. OS MOLDES PRONTOS VÊM DO APP DIRETO PRO SEU CELULAR", 
             desc: (
               <>
-                Nada de <span className="font-bold">programas complicados ou computador</span>. Você escolhe o tema, e o app gera o molde automático — <span className="font-bold">prontos para baixar imprimir e usar</span>.
+                Nada de <strong className="font-extrabold text-slate-800">programas complicados ou computador</strong>. Você escolhe o tema, e o app gera o molde automático — <strong className="font-extrabold text-slate-800">prontos para baixar imprimir e usar</strong>.
               </>
             )
           },
           { 
-            icon: <Scissors size={32} />, 
-            title: "✅ 2. Imprima e monte com o que você tem em casa", 
+            icon: <Scissors size={28} />, 
+            title: "✅ 2. IMPRIMA E MONTE COM O QUE VOCÊ TEM EM CASA", 
             desc: (
               <>
-                Você não precisa de impressora. Os moldes podem ser impressos em qualquer gráfica rápida. Com papel, tesoura e cola, você monta tudo à mão — <span className="font-bold">simples acessivel e sem equipamentos caros</span>.
+                Você não precisa de impressora. Os moldes podem ser impressos em qualquer gráfica rápida. Com papel, tesoura e cola, você monta tudo à mão — <strong className="font-extrabold text-slate-800">simples acessível e sem equipamentos caros</strong>.
               </>
             )
           },
           { 
-            icon: <Share2 size={32} />, 
-            title: "✅ 3. Mostre seu trabalho e veja os pedidos chegarem", 
-            desc: "Quando você compartilha o que faz, as pessoas veem valor. Festa infantil é o que mais vende — e os seus kits feitos à mão chamam atenção na hora." 
+            icon: <Share2 size={28} />, 
+            title: "✅ 3. MOSTRE SEU TRABALHO E VEJA OS PEDIDOS CHEGAREM", 
+            desc: (
+              <>
+                Quando você compartilha o que faz, as pessoas veem valor. Festa infantil é o que mais vende — e os seus kits feitos à mão chamam atenção na hora.
+              </>
+            )
           }
         ].map((item, idx) => (
-          <div key={idx} className="bg-white p-10 rounded-[2.5rem] shadow-xl shadow-slate-200/50 border border-slate-100 flex flex-col items-start transition-all hover:scale-[1.02] duration-300">
-            <div className="w-14 h-14 bg-pink-600/10 rounded-2xl flex items-center justify-center text-pink-600 mb-8">
+          <div key={idx} className="bg-white p-10 rounded-[2.5rem] shadow-[0_24px_48px_rgba(15,23,42,0.04)] border border-slate-100 flex flex-col items-start transition-all hover:scale-[1.02] duration-300">
+            <div className="w-14 h-14 bg-pink-50 rounded-2xl flex items-center justify-center text-pink-600 mb-8 border border-pink-100/50">
               {item.icon}
             </div>
-            <h4 className="text-base md:text-lg font-black text-slate-900 uppercase tracking-tight mb-4 leading-tight">{item.title}</h4>
-            <div className="text-slate-500 text-sm md:text-base font-medium leading-relaxed">{item.desc}</div>
+            <h4 className="text-base md:text-lg font-black text-slate-900 uppercase tracking-tight mb-5 leading-[1.3] text-left">
+              {item.title}
+            </h4>
+            <p className="text-slate-500 text-sm md:text-base font-medium leading-relaxed text-left">
+              {item.desc}
+            </p>
           </div>
         ))}
       </div>
@@ -433,13 +441,12 @@ const Features: React.FC = () => {
         <div className="text-center mb-10">
           <p className="text-pink-600 font-black text-[12px] uppercase tracking-[0.4em] mb-3">TECNOLOGIA EXCLUSIVA</p>
           <h2 className="text-2xl md:text-3xl font-black text-slate-900 mb-4 uppercase tracking-tighter italic">O SEU ATELIÊ NA PALMA DA MÃO</h2>
-          <p className="text-slate-500 text-sm md:text-base font-medium max-w-xl mx-auto leading-relaxed">Esqueça programas complexos. Nosso app foi desenhado para você escolher, personalizar e vender em minutos.</p>
+          <p className="text-slate-500 text-sm md:text-base font-medium max-w-2xl mx-auto leading-relaxed">Tudo o que você precisa para começar na papelaria em um único lugar: moldes prontos, precificação automática, montagem, divulgação e vendas.</p>
         </div>
 
         <div className="flex flex-col items-center justify-center mb-10 text-center opacity-80">
-          <p className="text-[13px] md:text-sm font-black text-slate-900 leading-relaxed max-w-xs md:max-w-sm">
-            Deslize para o lado e <br />
-            veja como é simples usar o app
+          <p className="text-[13px] md:text-sm font-black text-slate-900 leading-relaxed max-w-md">
+            Deslize para o lado e descubra tudo o que você encontra dentro do aplicativo.
           </p>
           <div className="mt-2 text-pink-500 animate-[bounce_2s_infinite]">
             <MoveRight size={16} />
@@ -458,13 +465,15 @@ const Features: React.FC = () => {
           />
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {[
-            { icon: <Layers size={28} />, title: "Moldes Prontos", desc: "Acesse temas populares como Safari, Patrulha Canina e muito mais." },
-            { icon: <Zap size={28} />, title: "Kits Completos", desc: "Caixinhas, toppers e tags em um só lugar." },
-            { icon: <FileText size={28} />, title: "+2.000 Moldes", desc: "Acesso a +2.000 moldes prontos e editáveis para você nunca ficar sem opções." },
-            { icon: <Printer size={28} />, title: "Download PDF", desc: "Arquivos prontos para baixar em alta resolução. Basta imprimir e vender." },
-            { icon: <Smartphone size={28} />, title: "Passo a passo completo", desc: "O app te guia em cada etapa para gerar, baixar e montar os moldes de forma simples e rápida." }
+            { icon: <Gift size={28} />, title: "🎁 BIBLIOTECA DE MOLDES PRONTOS", desc: "Mais de 2.000 moldes organizados para imprimir, personalizar e vender." },
+            { icon: <Rocket size={28} />, title: "🚀 COMECE COM APENAS R$100", desc: "Receba um plano simples para fazer sua primeira venda mesmo começando com pouco dinheiro e sem impressora." },
+            { icon: <DollarSign size={28} />, title: "💰 DESCUBRA QUANTO COBRAR", desc: "Calcule preços e lucros automaticamente para vender com mais confiança." },
+            { icon: <Scissors size={28} />, title: "✂️ APRENDA COMO MONTAR", desc: "Veja os materiais necessários e siga tutoriais simples de produção." },
+            { icon: <Volume2 size={28} />, title: "📢 TEXTOS PRONTOS PARA VENDER", desc: "Mensagens prontas para WhatsApp e Instagram para divulgar seus produtos." },
+            { icon: <Layers size={28} />, title: "🏪 ONDE COMPRAR MATERIAIS", desc: "Descubra fornecedores confiáveis e economize tempo procurando tudo sozinha." },
+            { icon: <Package size={28} />, title: "📦 KIT INICIAL PARA COMEÇAR", desc: "Saiba exatamente o que comprar para iniciar sem desperdícios." }
           ].map((item, idx) => (
             <div key={idx} className="flex flex-col items-center text-center group bg-slate-50 p-8 rounded-3xl border border-slate-100 transition-all hover:-translate-y-2">
               <div className="w-14 h-14 bg-slate-950 rounded-2xl flex items-center justify-center text-pink-500 mb-6 group-hover:bg-pink-600 group-hover:text-white transition-all shadow-lg">
@@ -630,7 +639,6 @@ const Deliverables: React.FC = () => {
                   { text: "O que postar pra chamar atenção", icon: <Share2 size={16} /> },
                   { text: "Como conseguir os primeiros pedidos usando só o seu celular", icon: <Smartphone size={16} /> },
                   { text: "Como tirar fotos simples que vendem o produto por você", icon: <Camera size={16} /> },
-                  { text: "Estratégias pra vender em grupos, no Instagram e no boca a boca", icon: <Target size={16} /> },
                   { text: "Como cobrar e entregar de um jeito fácil e seguro", icon: <CreditCard size={16} /> }
                 ].map((point, idx) => (
                   <div key={idx} className="flex items-center gap-4 bg-pink-50/50 p-5 rounded-2xl border border-pink-100/50 group/item transition-all hover:bg-pink-100">
@@ -661,7 +669,7 @@ const Deliverables: React.FC = () => {
           </div>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-8">
+        <div className="grid md:grid-cols-3 gap-8">
           <div className="relative group">
             <div className="absolute -inset-1 bg-gradient-to-b from-green-400 to-green-600 rounded-[2.5rem] blur opacity-10" />
             <div className="relative bg-white border-2 border-slate-100 rounded-[2.5rem] p-10 shadow-xl overflow-hidden flex flex-col items-center text-center transition-all hover:scale-[1.02]">
@@ -669,14 +677,37 @@ const Deliverables: React.FC = () => {
                 <DollarSign size={40} />
               </div>
               <div className="mb-6">
-                <h4 className="text-xl font-black text-slate-900 uppercase tracking-tight mb-2 italic">GUIA DE PRECIFICAÇÃO</h4>
+                <span className="text-xs font-black text-pink-600 bg-pink-50 px-3 py-1 rounded-full uppercase tracking-widest mb-3 inline-block">🎁 BÔNUS 01</span>
+                <h4 className="text-xl font-black text-slate-900 uppercase tracking-tight mb-2 italic">PRIMEIROS CLIENTES EM 7 DIAS</h4>
                 <p className="text-slate-500 font-bold text-sm leading-relaxed px-4">
-                  Aprenda como cobrar de forma lucrativa mesmo sendo iniciante. Pare de perder dinheiro!
+                  Aprenda estratégias simples para conseguir seus primeiros pedidos usando WhatsApp, Instagram, Facebook e divulgação local.
                 </p>
               </div>
               <div className="mt-auto w-full pt-8 border-t border-slate-50">
-                <span className="text-[11px] font-black text-green-600 px-6 py-2 bg-green-50 rounded-full uppercase tracking-[0.2em] italic line-through decoration-slate-400">
-                  VALE R$ 47,00
+                <span className="text-[11px] font-black text-green-600 px-6 py-2 bg-green-50 rounded-full uppercase tracking-[0.2em] italic line-through decoration-slate-400 font-sans">
+                  VALE R$ 97,00
+                </span>
+                <p className="text-[10px] text-slate-400 mt-3 font-black uppercase tracking-widest">LIBERADO GRÁTIS HOJE</p>
+              </div>
+            </div>
+          </div>
+
+          <div className="relative group">
+            <div className="absolute -inset-1 bg-gradient-to-b from-pink-400 to-pink-600 rounded-[2.5rem] blur opacity-10" />
+            <div className="relative bg-white border-2 border-slate-100 rounded-[2.5rem] p-10 shadow-xl overflow-hidden flex flex-col items-center text-center transition-all hover:scale-[1.02]">
+              <div className="w-20 h-20 bg-pink-600 rounded-3xl flex items-center justify-center text-white mb-8 -rotate-3 shadow-lg shadow-pink-600/30">
+                <Zap size={40} />
+              </div>
+              <div className="mb-6">
+                <span className="text-xs font-black text-pink-600 bg-pink-50 px-3 py-1 rounded-full uppercase tracking-widest mb-3 inline-block">🎁 BÔNUS 02</span>
+                <h4 className="text-xl font-black text-slate-900 uppercase tracking-tight mb-2 italic">GUIA DA PRIMEIRA VENDA</h4>
+                <p className="text-slate-500 font-bold text-sm leading-relaxed px-4">
+                  Descubra exatamente o que postar, como divulgar, cobrar, entregar e transformar interesse em pedidos reais.
+                </p>
+              </div>
+              <div className="mt-auto w-full pt-8 border-t border-slate-50">
+                <span className="text-[11px] font-black text-pink-600 px-6 py-2 bg-pink-50 rounded-full uppercase tracking-[0.2em] italic line-through decoration-slate-400 font-sans">
+                  VALE R$ 67,00
                 </span>
                 <p className="text-[10px] text-slate-400 mt-3 font-black uppercase tracking-widest">LIBERADO GRÁTIS HOJE</p>
               </div>
@@ -686,17 +717,18 @@ const Deliverables: React.FC = () => {
           <div className="relative group">
             <div className="absolute -inset-1 bg-gradient-to-b from-blue-400 to-blue-600 rounded-[2.5rem] blur opacity-10" />
             <div className="relative bg-white border-2 border-slate-100 rounded-[2.5rem] p-10 shadow-xl overflow-hidden flex flex-col items-center text-center transition-all hover:scale-[1.02]">
-              <div className="w-20 h-20 bg-blue-500 rounded-3xl flex items-center justify-center text-white mb-8 -rotate-3 shadow-lg shadow-blue-500/30">
+              <div className="w-20 h-20 bg-blue-500 rounded-3xl flex items-center justify-center text-white mb-8 rotate-3 shadow-lg shadow-blue-500/30">
                 <Package size={40} />
               </div>
               <div className="mb-6">
-                <h4 className="text-xl font-black text-slate-900 uppercase tracking-tight mb-2 italic">LISTA DE MATERIAIS</h4>
+                <span className="text-xs font-black text-pink-600 bg-pink-50 px-3 py-1 rounded-full uppercase tracking-widest mb-3 inline-block">🎁 BÔNUS 03</span>
+                <h4 className="text-xl font-black text-slate-900 uppercase tracking-tight mb-2 italic">LISTA DE MATERIAIS PARA COMEÇAR</h4>
                 <p className="text-slate-500 font-bold text-sm leading-relaxed px-4">
-                  O guia exato do que você precisa para começar agora mesmo com o mínimo possível.
+                  Saiba exatamente o que comprar para fazer seus primeiros personalizados sem gastar dinheiro com itens desnecessários.
                 </p>
               </div>
               <div className="mt-auto w-full pt-8 border-t border-slate-50">
-                <span className="text-[11px] font-black text-blue-600 px-6 py-2 bg-blue-50 rounded-full uppercase tracking-[0.2em] italic line-through decoration-slate-400">
+                <span className="text-[11px] font-black text-blue-600 px-6 py-2 bg-blue-50 rounded-full uppercase tracking-[0.2em] italic line-through decoration-slate-400 font-sans">
                   VALE R$ 37,00
                 </span>
                 <p className="text-[10px] text-slate-400 mt-3 font-black uppercase tracking-widest">LIBERADO GRÁTIS HOJE</p>
@@ -746,8 +778,10 @@ const Pricing: React.FC = () => {
           </div>
           
           <div className="p-10 md:p-12 text-center">
-            <h3 className="text-2xl font-black text-white mb-2 uppercase tracking-tighter italic">PAPELARIA DESCOMPLICADA</h3>
-            <p className="text-[11px] font-black text-slate-500 uppercase tracking-[0.3em] mb-8">ACESSO TOTAL + MOLDES + BÔNUS</p>
+            <h3 className="text-2xl font-black text-white mb-2 uppercase tracking-tighter italic">ACESSO COMPLETO AO PAPELARIA DESCOMPLICADA</h3>
+            <p className="text-sm font-medium text-slate-400 mb-8 max-w-sm mx-auto">
+              Moldes, precificação, montagem, divulgação e vendas.
+            </p>
             
             <div className="flex flex-col items-center mb-10">
               <CountdownTimer />
@@ -783,17 +817,22 @@ const Pricing: React.FC = () => {
 
             <div className="space-y-4 mb-12 text-left">
               {[
-                "Acesso Completo ao App",
-                "Moldes gerados em segundos",
-                "Temas Infantis Premium",
-                "Licença Comercial de Vendas",
-                "Garantia Incondicional",
-                "Bônus: Guia de Precificação",
-                "Bônus: Lista de Materiais",
-                "Bônus: Estratégia Venda Express"
-              ].map(item => (
-                <div key={item} className="flex items-center gap-4 text-xs md:text-sm font-bold text-slate-400 border-b border-white/5 pb-4 last:border-0">
-                  <Lock size={14} className="text-pink-500 flex-shrink-0" /> {item}
+                { type: "check", text: "Acesso Completo ao Aplicativo" },
+                { type: "check", text: "Biblioteca com +2.000 Moldes Prontos" },
+                { type: "check", text: "Plano para Começar com Apenas R$100" },
+                { type: "check", text: "Calculadora de Preços e Lucros" },
+                { type: "check", text: "Tutoriais de Montagem Passo a Passo" },
+                { type: "check", text: "Textos Prontos para WhatsApp e Instagram" },
+                { type: "check", text: "Lista de Fornecedores Recomendados" },
+                { type: "check", text: "Licença Comercial de Vendas" },
+                { type: "check", text: "Garantia de 7 Dias" },
+                { type: "bonus", text: "BÔNUS: Primeiros Clientes em 7 Dias" },
+                { type: "bonus", text: "BÔNUS: Guia da Primeira Venda" },
+                { type: "bonus", text: "BÔNUS: Lista de Materiais" }
+              ].map((item, idx) => (
+                <div key={idx} className={`flex items-center gap-4 text-xs md:text-sm font-bold border-b border-white/5 pb-4 last:border-0 ${item.type === 'bonus' ? 'text-pink-400 font-extrabold' : 'text-slate-400'}`}>
+                  <span className="text-[14px] flex-shrink-0 leading-none">{item.type === 'bonus' ? '🎁' : '✅'}</span>
+                  <span>{item.text}</span>
                 </div>
               ))}
             </div>

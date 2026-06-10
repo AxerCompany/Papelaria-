@@ -332,23 +332,24 @@ const ImageCarousel: React.FC<ImageCarouselProps> = ({
 const Navbar: React.FC = () => (
   <nav className="fixed top-0 left-0 w-full z-50 bg-white/80 backdrop-blur-xl border-b border-gray-100">
     <div className="max-w-6xl mx-auto px-6 h-14 flex items-center justify-center">
-      <span className="text-slate-900 font-black text-xl tracking-tighter uppercase italic">PAPELARIA<span className="text-pink-600">DESCOMPLICADA</span></span>
+      <span className="text-slate-900 font-black text-xl tracking-tighter uppercase italic">PAPELARIA<span className="text-[#5B2A86]">DESCOMPLICADA</span></span>
     </div>
   </nav>
 );
 
 const Hero: React.FC = () => (
   <section className="pt-24 pb-20 px-6 bg-slate-950 text-white flex flex-col items-center text-center relative overflow-hidden">
-    <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[600px] bg-pink-600/10 blur-[120px] rounded-full -z-10" />
+    <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[600px] bg-gradient-to-b from-[#5B2A86]/20 to-[#7B3DB8]/5 blur-[120px] rounded-full -z-10" />
+    <div className="absolute -top-[10%] -right-[10%] w-[300px] h-[300px] bg-[#EC4899]/5 blur-[100px] rounded-full -z-10" />
     
     <div className="max-w-5xl mx-auto flex flex-col items-center">
-      <div className="inline-flex items-center gap-3 px-8 py-3 bg-pink-600/5 text-pink-500 rounded-full border border-pink-500/20 mb-10 shadow-[0_0_30px_rgba(219,39,119,0.1)]">
+      <div className="inline-flex items-center gap-3 px-8 py-3 bg-[#5B2A86]/10 text-[#F472B6] rounded-full border border-[#5B2A86]/30 mb-10 shadow-[0_0_30px_rgba(91,42,134,0.25)]">
         <Info size={16} />
-        <span className="text-[10px] md:text-xs font-black uppercase tracking-[0.3em] italic">OPORTUNIDADE ÚNICA DE RENDA EXTRA</span>
+        <span className="text-[10px] md:text-xs font-black uppercase tracking-[0.3em] italic">OPORTUNIDADE ÚNICA DE RENDDA EXTRA</span>
       </div>
       
       <h1 className="text-2xl md:text-4xl lg:text-5xl font-[900] mb-8 leading-[1.2] tracking-tight uppercase max-w-4xl mx-auto">
-        GANHE ATÉ <span className="text-pink-500">R$ 1.000,00 POR SEMANA</span> COM PAPELARIA PERSONALIZADA — <span className="text-white">MESMO COMEÇANDO DO ZERO.</span>
+        GANHE ATÉ <span className="text-[#EC4899]">R$ 1.000,00 POR SEMANA</span> COM PAPELARIA PERSONALIZADA — <span className="text-white">MESMO COMEÇANDO DO ZERO.</span>
       </h1>
       
       <p className="text-xs md:text-lg text-slate-400 mb-14 font-black max-w-2xl mx-auto leading-relaxed">
@@ -359,7 +360,7 @@ const Hero: React.FC = () => (
         <CustomVideoPlayer 
           posterUrl="https://i.postimg.cc/sX0hqL2w/1.webp"
           label="CLIQUE PARA ATIVAR O SOM"
-          videoUrl="https://vimeo.com/1161223581"
+          videoUrl="https://vimeo.com/1200216131"
           isVertical={true}
           priority={true}
         />
@@ -369,12 +370,12 @@ const Hero: React.FC = () => (
 );
 
 const HowItWorks: React.FC = () => (
-  <section className="py-16 bg-slate-50 px-6 border-b border-slate-200">
+  <section className="py-16 bg-[#F8F8F8] px-6 border-b border-slate-200">
     <div className="max-w-6xl mx-auto">
       <div className="text-center mb-12">
-        <p className="text-pink-600 font-black text-[12px] uppercase tracking-[0.4em] mb-3">O MÉTODO</p>
+        <p className="text-[#5B2A86] font-black text-[12px] uppercase tracking-[0.4em] mb-3">O MÉTODO</p>
         <h2 className="text-2xl md:text-3xl font-black text-slate-900 mb-4 uppercase tracking-tighter italic leading-tight">COMO FUNCIONA O PROCESSO:</h2>
-        <div className="w-16 h-1 bg-pink-600 mx-auto rounded-full" />
+        <div className="w-16 h-1 bg-[#5B2A86] mx-auto rounded-full" />
       </div>
 
       <div className="grid md:grid-cols-3 gap-8">
@@ -407,8 +408,8 @@ const HowItWorks: React.FC = () => (
             )
           }
         ].map((item, idx) => (
-          <div key={idx} className="bg-white p-10 rounded-[2.5rem] shadow-[0_24px_48px_rgba(15,23,42,0.04)] border border-slate-100 flex flex-col items-start transition-all hover:scale-[1.02] duration-300">
-            <div className="w-14 h-14 bg-pink-50 rounded-2xl flex items-center justify-center text-pink-600 mb-8 border border-pink-100/50">
+          <div key={idx} className="bg-white p-10 rounded-[2rem] shadow-[0_12px_30px_rgba(91,42,134,0.03)] border border-slate-200/60 flex flex-col items-start">
+            <div className="w-14 h-14 bg-[#5B2A86]/10 rounded-2xl flex items-center justify-center text-[#5B2A86] mb-8 border border-[#5B2A86]/20">
               {item.icon}
             </div>
             <h4 className="text-base md:text-lg font-black text-slate-900 uppercase tracking-tight mb-5 leading-[1.3] text-left">
@@ -448,7 +449,7 @@ const Features: React.FC = () => {
     <section className="py-12 bg-white px-6 overflow-hidden">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-10">
-          <p className="text-pink-600 font-black text-[12px] uppercase tracking-[0.4em] mb-3">TECNOLOGIA EXCLUSIVA</p>
+          <p className="text-[#5B2A86] font-black text-[12px] uppercase tracking-[0.4em] mb-3">TECNOLOGIA EXCLUSIVA</p>
           <h2 className="text-2xl md:text-3xl font-black text-slate-900 mb-4 uppercase tracking-tighter italic">O SEU ATELIÊ NA PALMA DA MÃO</h2>
           <p className="text-slate-500 text-sm md:text-base font-medium max-w-2xl mx-auto leading-relaxed">Tudo o que você precisa para começar na papelaria em um único lugar: moldes prontos, precificação automática, montagem, divulgação e vendas.</p>
         </div>
@@ -457,7 +458,7 @@ const Features: React.FC = () => {
           <p className="text-[13px] md:text-sm font-black text-slate-900 leading-relaxed max-w-md">
             Deslize para o lado e descubra tudo o que você encontra dentro do aplicativo.
           </p>
-          <div className="mt-2 text-pink-500 animate-[bounce_2s_infinite]">
+          <div className="mt-2 text-[#5B2A86]">
             <MoveRight size={16} />
           </div>
         </div>
@@ -484,8 +485,8 @@ const Features: React.FC = () => {
             { icon: <Layers size={28} />, title: "🏪 ONDE COMPRAR MATERIAIS", desc: "Descubra fornecedores confiáveis e economize tempo procurando tudo sozinha." },
             { icon: <Package size={28} />, title: "📦 KIT INICIAL PARA COMEÇAR", desc: "Saiba exatamente o que comprar para iniciar sem desperdícios." }
           ].map((item, idx) => (
-            <div key={idx} className="flex flex-col items-center text-center group bg-slate-50 p-8 rounded-3xl border border-slate-100 transition-all hover:-translate-y-2">
-              <div className="w-14 h-14 bg-slate-950 rounded-2xl flex items-center justify-center text-pink-500 mb-6 group-hover:bg-pink-600 group-hover:text-white transition-all shadow-lg">
+            <div key={idx} className="flex flex-col items-center text-center bg-[#F8F8F8] p-8 rounded-2xl border border-slate-200/50">
+              <div className="w-14 h-14 bg-[#5B2A86]/10 rounded-2xl flex items-center justify-center text-[#5B2A86] mb-6 shadow-sm">
                 {item.icon}
               </div>
               <h4 className="text-sm md:text-base font-black text-slate-900 uppercase tracking-tight mb-3 leading-tight">{item.title}</h4>
@@ -521,34 +522,34 @@ const Testimonials: React.FC = () => {
     {
       name: "Arlete Menezes",
       role: "Artesã experiente",
-      text: "Quando eu estava começando na papelaria em 2017 tudo que eu queria era um app desse, sofri muito pra começar, nao sabia editar e nada disso, foi uma dificuldade enorme, com esse app fica bem mais facil começar a fazer personalizados, recomendo muito pra quem esta começando ou quer começar.",
+      text: "Quando eu estava começando na papelaria in 2017 tudo que eu queria era um app desse, sofri muito pra começar, nao sabia editar e nada disso, foi uma dificuldade enorme, com esse app fica bem mais facil começar a fazer personalizados, recomendo muito pra quem esta começando ou quer começar.",
       image: "https://i.postimg.cc/t4QzQBwx/image_16_281x300.webp"
     }
   ];
 
   return (
-    <section className="py-16 bg-slate-50 px-6 border-b border-slate-200">
+    <section className="py-16 bg-[#F8F8F8] px-6 border-b border-slate-200">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-12">
-          <p className="text-pink-600 font-black text-[12px] uppercase tracking-[0.4em] mb-3">RESULTADOS REAIS</p>
+          <p className="text-[#5B2A86] font-black text-[12px] uppercase tracking-[0.4em] mb-3">RESULTADOS REAIS</p>
           <h2 className="text-2xl md:text-3xl font-black text-slate-900 mb-4 uppercase tracking-tighter italic">O QUE ELAS ESTÃO DIZENDO</h2>
-          <div className="w-16 h-1 bg-pink-600 mx-auto rounded-full" />
+          <div className="w-16 h-1 bg-[#5B2A86] mx-auto rounded-full" />
         </div>
 
         <div className="grid md:grid-cols-2 gap-8">
           {testimonials.map((t, i) => (
-            <div key={i} className="bg-white p-8 rounded-[2.5rem] shadow-xl shadow-slate-200/50 border border-slate-100 flex flex-col relative transition-all hover:-translate-y-1">
-              <div className="absolute top-8 right-8 text-pink-500/10">
+            <div key={i} className="bg-white p-8 rounded-2xl shadow-sm border border-slate-200/60 flex flex-col relative">
+              <div className="absolute top-8 right-8 text-[#5B2A86]/10">
                 <Quote size={48} fill="currentColor" />
               </div>
-              <div className="flex gap-1 mb-6 text-pink-500">
+              <div className="flex gap-1 mb-6 text-[#EC4899]">
                 {[...Array(5)].map((_, i) => <Star key={i} size={16} fill="currentColor" />)}
               </div>
               <p className="text-slate-600 text-sm md:text-base font-medium italic leading-relaxed mb-8 flex-grow">
                 "{t.text}"
               </p>
               <div className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-pink-100">
+                <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-purple-100">
                   <img 
                     src={t.image} 
                     alt={t.name} 
@@ -560,7 +561,7 @@ const Testimonials: React.FC = () => {
                 </div>
                 <div>
                   <h4 className="text-sm font-black text-slate-900 uppercase tracking-tight">{t.name}</h4>
-                  <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">{t.role}</p>
+                  <p className="text-[10px] font-bold text-[#5B2A86] uppercase tracking-widest">{t.role}</p>
                 </div>
               </div>
             </div>
@@ -590,18 +591,18 @@ const Results: React.FC = () => {
   }, []);
 
   return (
-    <section className="py-12 bg-slate-50 px-6 border-y border-slate-200">
+    <section className="py-12 bg-[#F8F8F8] px-6 border-y border-slate-200">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-8">
           <h2 className="text-2xl md:text-3xl font-black text-slate-900 mb-2 uppercase tracking-tighter italic">O RESULTADO QUE VOCÊ VAI ENTREGAR</h2>
-          <p className="text-slate-500 font-black text-xs tracking-[0.3em] uppercase mb-10">Kits de alta lucratividade</p>
+          <p className="text-[#5B2A86] font-black text-xs tracking-[0.3em] uppercase mb-10">Kits de alta lucratividade</p>
         </div>
 
         <div className="flex flex-col items-center justify-center mb-10 text-center opacity-80">
           <p className="text-[13px] md:text-sm font-black text-slate-900 leading-relaxed uppercase tracking-widest">
             Deslize para o lado
           </p>
-          <div className="mt-2 text-pink-500 animate-[bounce_2s_infinite]">
+          <div className="mt-2 text-[#5B2A86]">
             <MoveRight size={16} />
           </div>
         </div>
@@ -614,7 +615,7 @@ const Results: React.FC = () => {
           interval={4000}
           width={800}
           height={800}
-        />
+         />
       </div>
     </section>
   );
@@ -624,19 +625,19 @@ const Deliverables: React.FC = () => {
   return (
     <section className="py-12 bg-white px-6">
       <div className="max-w-4xl mx-auto">
-        <div className="relative group mb-12">
-          <div className="absolute -inset-2 bg-gradient-to-r from-pink-600 to-pink-400 rounded-[3rem] blur-xl opacity-25 group-hover:opacity-40 transition-opacity" />
-          <div className="relative bg-white border-4 border-pink-600 rounded-[2.8rem] p-8 md:p-14 shadow-2xl overflow-hidden">
-            <div className="absolute top-0 right-0 w-40 h-40 bg-pink-50 rounded-full blur-3xl -z-0 translate-x-1/2 -translate-y-1/2" />
+        <div className="relative mb-12">
+          <div className="absolute -inset-2 bg-gradient-to-r from-[#5B2A86] to-[#EC4899] rounded-[3rem] blur-xl opacity-25" />
+          <div className="relative bg-white border-4 border-[#5B2A86] rounded-[2.8rem] p-8 md:p-14 shadow-2xl overflow-hidden">
+            <div className="absolute top-0 right-0 w-40 h-40 bg-purple-50 rounded-full blur-3xl -z-0 translate-x-1/2 -translate-y-1/2" />
             
             <div className="flex flex-col items-center text-center relative z-10">
-              <div className="inline-flex items-center gap-2 px-6 py-2.5 bg-pink-600 text-white rounded-full text-[13px] font-black uppercase tracking-[0.2em] mb-10 shadow-lg shadow-pink-600/20">
+              <div className="inline-flex items-center gap-2 px-6 py-2.5 bg-[#5B2A86] text-white rounded-full text-[13px] font-black uppercase tracking-[0.2em] mb-10 shadow-lg shadow-[#5B2A86]/20">
                 <Rocket size={18} /> BÔNUS ESPECIAL: COMO VENDER AINDA ESSA SEMANA
               </div>
               
               <h3 className="text-2xl md:text-4xl font-black text-slate-900 mb-6 uppercase tracking-tight italic leading-[1.1]">
                 Montar os kits é simples. <br className="hidden md:block" />
-                <span className="text-pink-600">Agora você vai aprender a vender rápido</span>, mesmo começando do zero.
+                <span className="text-[#EC4899]">Agora você vai aprender a vender rápido</span>, mesmo começando do zero.
               </h3>
               
               <p className="text-slate-500 text-sm md:text-lg font-medium mb-12 max-w-2xl leading-relaxed">
@@ -650,8 +651,8 @@ const Deliverables: React.FC = () => {
                   { text: "Como tirar fotos simples que vendem o produto por você", icon: <Camera size={16} /> },
                   { text: "Como cobrar e entregar de um jeito fácil e seguro", icon: <CreditCard size={16} /> }
                 ].map((point, idx) => (
-                  <div key={idx} className="flex items-center gap-4 bg-pink-50/50 p-5 rounded-2xl border border-pink-100/50 group/item transition-all hover:bg-pink-100">
-                    <span className="flex-shrink-0 w-8 h-8 bg-pink-600 text-white rounded-full flex items-center justify-center text-xs font-black group-hover/item:scale-110 transition-transform">
+                  <div key={idx} className="flex items-center gap-4 bg-[#5B2A86]/5 p-5 rounded-2xl border border-[#5B2A86]/10">
+                    <span className="flex-shrink-0 w-8 h-8 bg-[#5B2A86] text-white rounded-full flex items-center justify-center text-xs font-black">
                       {idx + 1}
                     </span>
                     <p className="text-slate-800 text-sm md:text-base font-bold">{point.text}</p>
@@ -663,14 +664,14 @@ const Deliverables: React.FC = () => {
                 <div className="bg-slate-950 text-white px-8 py-4 rounded-2xl flex items-center gap-4 shadow-xl">
                   <span className="text-xl md:text-2xl">📲</span>
                   <p className="text-xs md:text-sm font-black uppercase tracking-widest leading-tight">
-                    Tudo testado, direto ao ponto, <span className="text-pink-500">sem enrolação.</span>
+                    Tudo testado, direto ao ponto, <span className="text-[#EC4899]">sem enrolação.</span>
                   </p>
                 </div>
                 
-                <div className="flex items-start md:items-center gap-3 bg-pink-600/5 p-6 rounded-[2rem] border border-pink-200">
+                <div className="flex items-start md:items-center gap-3 bg-[#5B2A86]/5 p-6 rounded-[2rem] border border-purple-200">
                   <span className="text-2xl flex-shrink-0">👉</span>
                   <p className="text-slate-900 text-base md:text-xl font-black italic tracking-tight leading-tight">
-                    Com esse bônus, você pode fazer sua primeira venda <span className="text-pink-600 underline">ainda essa semana.</span> Literalmente.
+                    Com esse bônus, você pode fazer sua primeira venda <span className="text-[#EC4899] underline">ainda essa semana.</span> Literalmente.
                   </p>
                 </div>
               </div>
@@ -679,21 +680,21 @@ const Deliverables: React.FC = () => {
         </div>
 
         <div className="grid md:grid-cols-3 gap-8">
-          <div className="relative group">
-            <div className="absolute -inset-1 bg-gradient-to-b from-green-400 to-green-600 rounded-[2.5rem] blur opacity-10" />
-            <div className="relative bg-white border-2 border-slate-100 rounded-[2.5rem] p-10 shadow-xl overflow-hidden flex flex-col items-center text-center transition-all hover:scale-[1.02]">
-              <div className="w-20 h-20 bg-green-500 rounded-3xl flex items-center justify-center text-white mb-8 rotate-3 shadow-lg shadow-green-500/30">
+          <div className="relative">
+            <div className="absolute -inset-1 bg-gradient-to-b from-[#5B2A86] to-[#7B3DB8] rounded-[2.5rem] blur opacity-15" />
+            <div className="relative bg-white border border-slate-200/60 rounded-[2rem] p-8 shadow-md shadow-slate-100/50 flex flex-col items-center text-center">
+              <div className="w-20 h-20 bg-[#5B2A86] rounded-3xl flex items-center justify-center text-white mb-8 rotate-3 shadow-lg shadow-purple-500/30">
                 <DollarSign size={40} />
               </div>
               <div className="mb-6">
-                <span className="text-xs font-black text-pink-600 bg-pink-50 px-3 py-1 rounded-full uppercase tracking-widest mb-3 inline-block">🎁 BÔNUS 01</span>
+                <span className="text-xs font-black text-[#5B2A86] bg-[#5B2A86]/10 px-3 py-1 rounded-full uppercase tracking-widest mb-3 inline-block">🎁 BÔNUS 01</span>
                 <h4 className="text-xl font-black text-slate-900 uppercase tracking-tight mb-2 italic">PRIMEIROS CLIENTES EM 7 DIAS</h4>
                 <p className="text-slate-500 font-bold text-sm leading-relaxed px-4">
                   Aprenda estratégias simples para conseguir seus primeiros pedidos usando WhatsApp, Instagram, Facebook e divulgação local.
                 </p>
               </div>
               <div className="mt-auto w-full pt-8 border-t border-slate-50">
-                <span className="text-[11px] font-black text-green-600 px-6 py-2 bg-green-50 rounded-full uppercase tracking-[0.2em] italic line-through decoration-slate-400 font-sans">
+                <span className="text-[11px] font-black text-[#EC4899] px-6 py-2 bg-[#EC4899]/5 rounded-full uppercase tracking-[0.2em] italic border border-[#EC4899]/15 line-through decoration-slate-400 font-sans">
                   VALE R$ 97,00
                 </span>
                 <p className="text-[10px] text-slate-400 mt-3 font-black uppercase tracking-widest">LIBERADO GRÁTIS HOJE</p>
@@ -701,21 +702,21 @@ const Deliverables: React.FC = () => {
             </div>
           </div>
 
-          <div className="relative group">
-            <div className="absolute -inset-1 bg-gradient-to-b from-pink-400 to-pink-600 rounded-[2.5rem] blur opacity-10" />
-            <div className="relative bg-white border-2 border-slate-100 rounded-[2.5rem] p-10 shadow-xl overflow-hidden flex flex-col items-center text-center transition-all hover:scale-[1.02]">
-              <div className="w-20 h-20 bg-pink-600 rounded-3xl flex items-center justify-center text-white mb-8 -rotate-3 shadow-lg shadow-pink-600/30">
+          <div className="relative">
+            <div className="absolute -inset-1 bg-gradient-to-b from-[#EC4899] to-[#F472B6] rounded-[2.5rem] blur opacity-15" />
+            <div className="relative bg-white border border-slate-200/60 rounded-[2rem] p-8 shadow-md shadow-slate-100/50 flex flex-col items-center text-center">
+              <div className="w-20 h-20 bg-[#EC4899] rounded-3xl flex items-center justify-center text-white mb-8 -rotate-3 shadow-lg shadow-pink-600/30">
                 <Zap size={40} />
               </div>
               <div className="mb-6">
-                <span className="text-xs font-black text-pink-600 bg-pink-50 px-3 py-1 rounded-full uppercase tracking-widest mb-3 inline-block">🎁 BÔNUS 02</span>
+                <span className="text-xs font-black text-[#EC4899] bg-[#EC4899]/10 px-3 py-1 rounded-full uppercase tracking-widest mb-3 inline-block">🎁 BÔNUS 02</span>
                 <h4 className="text-xl font-black text-slate-900 uppercase tracking-tight mb-2 italic">GUIA DA PRIMEIRA VENDA</h4>
                 <p className="text-slate-500 font-bold text-sm leading-relaxed px-4">
                   Descubra exatamente o que postar, como divulgar, cobrar, entregar e transformar interesse em pedidos reais.
                 </p>
               </div>
               <div className="mt-auto w-full pt-8 border-t border-slate-50">
-                <span className="text-[11px] font-black text-pink-600 px-6 py-2 bg-pink-50 rounded-full uppercase tracking-[0.2em] italic line-through decoration-slate-400 font-sans">
+                <span className="text-[11px] font-black text-[#EC4899] px-6 py-2 bg-[#EC4899]/5 rounded-full uppercase tracking-[0.2em] italic border border-[#EC4899]/15 line-through decoration-slate-400 font-sans">
                   VALE R$ 67,00
                 </span>
                 <p className="text-[10px] text-slate-400 mt-3 font-black uppercase tracking-widest">LIBERADO GRÁTIS HOJE</p>
@@ -723,21 +724,21 @@ const Deliverables: React.FC = () => {
             </div>
           </div>
 
-          <div className="relative group">
-            <div className="absolute -inset-1 bg-gradient-to-b from-blue-400 to-blue-600 rounded-[2.5rem] blur opacity-10" />
-            <div className="relative bg-white border-2 border-slate-100 rounded-[2.5rem] p-10 shadow-xl overflow-hidden flex flex-col items-center text-center transition-all hover:scale-[1.02]">
-              <div className="w-20 h-20 bg-blue-500 rounded-3xl flex items-center justify-center text-white mb-8 rotate-3 shadow-lg shadow-blue-500/30">
+          <div className="relative">
+            <div className="absolute -inset-1 bg-gradient-to-b from-[#7B3DB8] to-[#5B2A86] rounded-[2.5rem] blur opacity-15" />
+            <div className="relative bg-white border border-slate-200/60 rounded-[2rem] p-8 shadow-md shadow-slate-100/50 flex flex-col items-center text-center">
+              <div className="w-20 h-20 bg-[#7B3DB8] rounded-3xl flex items-center justify-center text-white mb-8 rotate-3 shadow-lg shadow-purple-500/30">
                 <Package size={40} />
               </div>
               <div className="mb-6">
-                <span className="text-xs font-black text-pink-600 bg-pink-50 px-3 py-1 rounded-full uppercase tracking-widest mb-3 inline-block">🎁 BÔNUS 03</span>
+                <span className="text-xs font-black text-[#7B3DB8] bg-[#7B3DB8]/10 px-3 py-1 rounded-full uppercase tracking-widest mb-3 inline-block">🎁 BÔNUS 03</span>
                 <h4 className="text-xl font-black text-slate-900 uppercase tracking-tight mb-2 italic">LISTA DE MATERIAIS PARA COMEÇAR</h4>
                 <p className="text-slate-500 font-bold text-sm leading-relaxed px-4">
                   Saiba exatamente o que comprar para fazer seus primeiros personalizados sem gastar dinheiro com itens desnecessários.
                 </p>
               </div>
               <div className="mt-auto w-full pt-8 border-t border-slate-50">
-                <span className="text-[11px] font-black text-blue-600 px-6 py-2 bg-blue-50 rounded-full uppercase tracking-[0.2em] italic line-through decoration-slate-400 font-sans">
+                <span className="text-[11px] font-black text-[#EC4899] px-6 py-2 bg-[#EC4899]/5 rounded-full uppercase tracking-[0.2em] italic border border-[#EC4899]/15 line-through decoration-slate-400 font-sans">
                   VALE R$ 37,00
                 </span>
                 <p className="text-[10px] text-slate-400 mt-3 font-black uppercase tracking-widest">LIBERADO GRÁTIS HOJE</p>
@@ -781,8 +782,8 @@ const Pricing: React.FC = () => {
   return (
     <section id="offer" className="py-12 bg-white px-6">
       <div className="max-w-lg mx-auto">
-        <div className="bg-slate-950 rounded-[2.5rem] overflow-hidden shadow-[0_40px_80px_rgba(0,0,0,0.3)] border border-white/5 relative">
-          <div className="bg-pink-600 py-3 text-center text-white text-[12px] font-black uppercase tracking-[0.3em]">
+        <div className="bg-[#0e071c] rounded-[2.5rem] overflow-hidden shadow-[0_40px_80px_rgba(91,42,134,0.15)] border border-white/5 relative">
+          <div className="bg-[#5B2A86] py-4 text-center text-white text-[12px] font-black uppercase tracking-[0.3em]">
             OFERTA EXCLUSIVA • VAGAS LIMITADAS
           </div>
           
@@ -794,17 +795,17 @@ const Pricing: React.FC = () => {
             
             <div className="flex flex-col items-center mb-10">
               <CountdownTimer />
-              <p className="text-pink-500 text-[10px] font-black uppercase tracking-[0.2em] mt-2">O preço subirá para R$ 197,00 após o cronômetro zerar</p>
+              <p className="text-[#EC4899] text-[10px] font-black uppercase tracking-[0.2em] mt-2">O preço subirá para R$ 197,00 após o cronômetro zerar</p>
             </div>
 
             {/* Progress Bar Scarcity */}
             <div className="mb-10 px-4">
               <div className="flex justify-between items-end mb-2">
                 <span className="text-white text-[10px] font-black uppercase tracking-widest">Vagas Preenchidas:</span>
-                <span className="text-pink-500 text-sm font-black">71%</span>
+                <span className="text-[#EC4899] text-sm font-black">71%</span>
               </div>
               <div className="w-full h-3 bg-white/10 rounded-full overflow-hidden border border-white/5">
-                <div className="h-full bg-pink-600 rounded-full w-[71%] animate-pulse" />
+                <div className="h-full bg-gradient-to-r from-[#5B2A86] to-[#EC4899] rounded-full w-[71%] animate-pulse" />
               </div>
               <p className="text-slate-500 text-[9px] font-bold uppercase tracking-widest mt-2">Últimas 9 licenças disponíveis com desconto</p>
             </div>
@@ -812,13 +813,13 @@ const Pricing: React.FC = () => {
             <div className="mb-12">
               <div className="flex flex-col items-center justify-center text-white">
                 <p className="text-slate-400 text-xs font-black uppercase tracking-widest mb-2">Aproveite a oferta de lançamento</p>
-                <div className="h-px w-16 bg-pink-600 mb-6" />
+                <div className="h-px w-16 bg-[#EC4899] mb-6" />
                 <div className="flex flex-col items-center">
                    <span className="text-slate-500 text-xs line-through font-bold mb-2">DE R$ 197,00</span>
-                   <div className="flex items-baseline gap-1">
+                   <div className="flex items-baseline gap-1 text-[#EC4899]">
                      <span className="text-white text-xl font-black">R$</span>
-                     <span className="text-white text-7xl font-black tracking-tighter">37</span>
-                     <span className="text-white text-xl font-black">,00</span>
+                     <span className="text-[#EC4899] text-7xl font-black tracking-tighter">37</span>
+                     <span className="text-[#EC4899] text-xl font-black">,00</span>
                    </div>
                 </div>
               </div>
@@ -839,7 +840,7 @@ const Pricing: React.FC = () => {
                 { type: "bonus", text: "BÔNUS: Guia da Primeira Venda" },
                 { type: "bonus", text: "BÔNUS: Lista de Materiais" }
               ].map((item, idx) => (
-                <div key={idx} className={`flex items-center gap-4 text-xs md:text-sm font-bold border-b border-white/5 pb-4 last:border-0 ${item.type === 'bonus' ? 'text-pink-400 font-extrabold' : 'text-slate-400'}`}>
+                <div key={idx} className={`flex items-center gap-4 text-xs md:text-sm font-bold border-b border-white/5 pb-4 last:border-0 ${item.type === 'bonus' ? 'text-[#F472B6] font-extrabold' : 'text-slate-400'}`}>
                   <span className="text-[14px] flex-shrink-0 leading-none">{item.type === 'bonus' ? '🎁' : '✅'}</span>
                   <span>{item.text}</span>
                 </div>
@@ -849,7 +850,7 @@ const Pricing: React.FC = () => {
             <button 
               onClick={handlePurchase}
               disabled={isLoading}
-              className={`w-full ${isLoading ? 'bg-pink-800 cursor-not-allowed' : 'bg-pink-600 hover:bg-pink-700 active:scale-95'} text-white text-base font-black py-6 rounded-2xl transition-all uppercase tracking-tight shadow-xl shadow-pink-600/30 mb-10 group relative overflow-hidden`}
+              className={`w-full ${isLoading ? 'bg-[#5B2A86]/70 cursor-not-allowed' : 'bg-[#5B2A86] hover:bg-[#EC4899] active:scale-95'} text-white text-base font-black py-6 rounded-2xl transition-all uppercase tracking-tight shadow-xl shadow-[#5B2A86]/45 mb-10 group relative overflow-hidden`}
             >
               <span className="flex items-center justify-center gap-2">
                 {isLoading ? (
@@ -871,21 +872,21 @@ const Pricing: React.FC = () => {
               )}
             </button>
             
-            <div className="flex items-center justify-center gap-5 opacity-50 grayscale brightness-200">
+            <div className="flex items-center justify-center gap-5 opacity-55 grayscale brightness-200">
               <CreditCard size={20} className="text-white" />
               <span className="text-white text-[10px] font-black uppercase tracking-widest italic">PIX • CARTÃO • BOLETO</span>
             </div>
           </div>
         </div>
         
-        <div className="mt-8 bg-slate-50 p-8 rounded-[2.5rem] border-2 border-slate-200 flex flex-col md:flex-row items-center gap-8 shadow-sm">
-          <div className="w-24 h-24 flex-shrink-0 bg-white rounded-full border-4 border-pink-500 flex items-center justify-center text-pink-500 shadow-inner">
+        <div className="mt-8 bg-[#F8F8F8] p-8 rounded-[2.5rem] border-2 border-[#5B2A86]/10 flex flex-col md:flex-row items-center gap-8 shadow-sm">
+          <div className="w-24 h-24 flex-shrink-0 bg-white rounded-full border-4 border-[#5B2A86] flex items-center justify-center text-[#5B2A86] shadow-inner shadow-[#5B2A86]/5">
             <ShieldAlert size={48} strokeWidth={2.5} />
           </div>
           <div className="text-center md:text-left">
             <h4 className="text-base font-black text-slate-900 uppercase tracking-tighter mb-2">SATISFAÇÃO GARANTIDA OU SEU DINHEIRO DE VOLTA</h4>
             <p className="text-slate-500 text-xs md:text-sm font-medium leading-relaxed">
-              Você tem <span className="text-pink-600 font-black">7 DIAS INTEIROS</span> para testar nosso app. Se não gostar, devolvemos 100% do seu investimento na hora. Sem perguntas, sem estresse.
+              Você tem <span className="text-[#EC4899] font-black">7 DIAS INTEIROS</span> para testar nosso app. Se não gostar, devolvemos 100% do seu investimento na hora. Sem perguntas, sem estresse.
             </p>
           </div>
         </div>
@@ -915,13 +916,13 @@ const FAQ: React.FC = () => {
         <h2 className="text-xl md:text-2xl font-black text-center mb-10 uppercase tracking-tighter text-slate-900 italic">DÚVIDAS FREQUENTES</h2>
         <div className="space-y-4">
           {questions.map((item, i) => (
-            <div key={i} className="border border-slate-100 rounded-2xl overflow-hidden transition-all duration-300 shadow-sm">
+            <div key={i} className="border border-[#5B2A86]/10 rounded-2xl overflow-hidden shadow-sm">
               <button 
                 onClick={() => setOpenIndex(openIndex === i ? null : i)}
-                className="w-full flex items-center justify-between p-6 md:p-8 text-left bg-white hover:bg-slate-50 transition-colors"
-              >
+                className="w-full flex items-center justify-between p-6 md:p-8 text-left bg-white"
+               >
                 <span className="font-black text-slate-800 uppercase tracking-tight text-xs md:text-sm leading-relaxed pr-6">{item.q}</span>
-                <ChevronDown size={16} className={`text-pink-500 transition-transform duration-500 flex-shrink-0 ${openIndex === i ? 'rotate-180' : 'rotate-0'}`} />
+                <ChevronDown size={16} className={`text-[#EC4899] flex-shrink-0 ${openIndex === i ? 'rotate-180' : 'rotate-0'}`} />
               </button>
               {openIndex === i && (
                 <div className="p-8 pt-0 text-xs md:text-sm text-slate-500 leading-relaxed font-medium bg-white">
@@ -937,17 +938,17 @@ const FAQ: React.FC = () => {
 };
 
 const Footer: React.FC = () => (
-  <footer className="py-12 bg-slate-950 text-center px-6 border-t border-white/5">
+  <footer className="py-12 bg-[#0a0514] text-center px-6 border-t border-white/5">
     <div className="max-w-4xl mx-auto">
-      <span className="text-white font-black text-xl tracking-tighter block uppercase italic mb-8">PAPELARIA<span className="text-pink-600">DESCOMPLICADA</span></span>
+      <span className="text-white font-black text-xl tracking-tighter block uppercase italic mb-8">PAPELARIA<span className="text-[#EC4899]">DESCOMPLICADA</span></span>
       
-      <div className="flex flex-wrap justify-center gap-8 text-[10px] font-black text-slate-600 uppercase tracking-[0.4em] mb-12">
-        <a href="#" className="hover:text-pink-600 transition-colors">Privacidade</a>
-        <a href="#" className="hover:text-pink-600 transition-colors">Termos</a>
-        <a href="#" className="hover:text-pink-600 transition-colors">Contato</a>
+      <div className="flex flex-wrap justify-center gap-8 text-[10px] font-black text-slate-500 uppercase tracking-[0.4em] mb-12">
+        <a href="#" className="hover:text-[#EC4899] transition-colors">Privacidade</a>
+        <a href="#" className="hover:text-[#EC4899] transition-colors">Termos</a>
+        <a href="#" className="hover:text-[#EC4899] transition-colors">Contato</a>
       </div>
 
-      <p className="text-slate-700 text-[10px] font-bold leading-relaxed max-w-xl mx-auto uppercase tracking-widest mb-10 opacity-60">
+      <p className="text-slate-600 text-[10px] font-bold leading-relaxed max-w-xl mx-auto uppercase tracking-widest mb-10 opacity-60">
         Resultados podem variar. Este site não faz parte do Facebook Inc ou Google Inc. Toda informação é de nossa responsabilidade.
       </p>
 
@@ -960,7 +961,7 @@ const Footer: React.FC = () => (
         <p className="text-slate-700 text-[9px] font-bold uppercase tracking-widest opacity-40 leading-relaxed max-w-2xl mx-auto mb-4">
           Todo o conteúdo presente nesta página, incluindo textos, imagens, design, estrutura, vídeos, materiais e quaisquer outros elementos, é protegido por leis de direitos autorais e propriedade intelectual.
         </p>
-        <p className="text-slate-700 text-[9px] font-bold uppercase tracking-widest opacity-40 leading-relaxed max-w-2xl mx-auto">
+        <p className="text-[#4b3c66] text-[9px] font-bold uppercase tracking-widest opacity-40 leading-relaxed max-w-2xl mx-auto">
           É proibida a reprodução, cópia, distribuição ou modificação, total ou parcial, sem autorização prévia por escrito do responsável. O uso indevido do conteúdo poderá resultar em medidas legais conforme a legislação vigente.
         </p>
       </div>
@@ -970,7 +971,7 @@ const Footer: React.FC = () => (
 
 const App: React.FC = () => {
   return (
-    <div className="min-h-screen bg-white selection:bg-pink-100 selection:text-pink-600 antialiased overflow-x-hidden font-sans">
+    <div className="min-h-screen bg-white selection:bg-purple-100 selection:text-[#5B2A86] antialiased overflow-x-hidden font-sans">
       <Navbar />
       <Hero />
       <HowItWorks />

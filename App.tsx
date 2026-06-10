@@ -352,7 +352,7 @@ const Hero: React.FC = () => (
       </h1>
       
       <p className="text-xs md:text-lg text-slate-400 mb-14 font-black max-w-2xl mx-auto leading-relaxed">
-        Assista ao vídeo abaixo e descubra como nosso app gera moldes prontos para vender em poucos segundos.
+        Assista ao vídeo abaixo e descubra como transformar moldes em vendas usando um aplicativo simples e fácil de usar.
       </p>
 
       <div className="w-full max-w-3xl transform hover:scale-[1.01] transition-transform duration-500">

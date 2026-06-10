@@ -426,13 +426,22 @@ const HowItWorks: React.FC = () => (
 
 const Features: React.FC = () => {
   const images = [
-    "https://i.postimg.cc/sX0hqL2w/1.webp",
-    "https://i.postimg.cc/C16qX2KN/2.webp",
-    "https://i.postimg.cc/B6wKkzvx/3.webp",
-    "https://i.postimg.cc/xCFzhZdC/4.webp",
-    "https://i.postimg.cc/MTrQNLGX/5.webp",
-    "https://i.postimg.cc/FRnL86KY/6.webp", 
-    "https://i.postimg.cc/wvbmZrB7/7.webp"
+    "https://i.postimg.cc/rwGJTxcX/Whats-App-Image-2026-06-10-at-11-13-27.webp",
+    "https://i.postimg.cc/mg3w4C4n/Whats-App-Image-2026-06-10-at-11-13-27-(1).webp",
+    "https://i.postimg.cc/K87NbBF2/Whats-App-Image-2026-06-10-at-11-13-27-(2).webp",
+    "https://i.postimg.cc/DwQghLF2/Whats-App-Image-2026-06-10-at-11-13-28.webp",
+    "https://i.postimg.cc/tgXz4JC4/Whats-App-Image-2026-06-10-at-11-16-12.webp",
+    "https://i.postimg.cc/3wKZxNJJ/Whats-App-Image-2026-06-10-at-11-16-12-(1).webp",
+    "https://i.postimg.cc/vmQvZTHm/Whats-App-Image-2026-06-10-at-11-16-13-(1).webp",
+    "https://i.postimg.cc/bw0TPk8j/Whats-App-Image-2026-06-10-at-11-13-28-(1).webp",
+    "https://i.postimg.cc/Bn5g3Hsf/Whats-App-Image-2026-06-10-at-11-13-28-(2).webp",
+    "https://i.postimg.cc/zGwjNK55/Whats-App-Image-2026-06-10-at-11-13-28-(3).webp",
+    "https://i.postimg.cc/0yGfvDxj/Whats-App-Image-2026-06-10-at-11-13-29.webp",
+    "https://i.postimg.cc/Jz3q8Zmz/Whats-App-Image-2026-06-10-at-11-13-29-(2).webp",
+    "https://i.postimg.cc/9fWBQ0FC/Whats-App-Image-2026-06-10-at-11-13-30.webp",
+    "https://i.postimg.cc/jjshS2dr/Whats-App-Image-2026-06-10-at-11-13-30-(1).webp",
+    "https://i.postimg.cc/MGWYpHKx/Whats-App-Image-2026-06-10-at-11-13-30-(3).webp",
+    "https://i.postimg.cc/6Q9hpq5W/Whats-App-Image-2026-06-10-at-11-13-31.webp"
   ];
 
   return (

@@ -763,7 +763,7 @@ const Pricing: React.FC = () => {
       window.fbq('trackCustom', 'SubscribedButtonClick');
     }
     
-    const baseUrl = "https://milionario2026.mycartpanda.com/checkout/206645965:1";
+    const baseUrl = "https://pay.wiapy.com/Ww__qKklj3";
     const currentParams = window.location.search;
     
     // Pequeno delay para garantir que o Pixel dispare antes do redirecionamento

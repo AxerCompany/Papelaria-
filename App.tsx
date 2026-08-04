@@ -789,9 +789,24 @@ const Pricing: React.FC = () => {
           
           <div className="p-10 md:p-12 text-center">
             <h3 className="text-2xl font-black text-white mb-2 uppercase tracking-tighter italic">ACESSO COMPLETO AO PAPELARIA DESCOMPLICADA</h3>
-            <p className="text-sm font-medium text-slate-400 mb-8 max-w-sm mx-auto">
+            <p className="text-sm font-medium text-slate-400 mb-6 max-w-sm mx-auto">
               Moldes, precificação, montagem, divulgação e vendas.
             </p>
+
+            {/* Destaque de Entrega via WhatsApp */}
+            <div className="bg-green-500/10 border border-green-500/30 rounded-xl p-3.5 mb-8 flex items-center justify-center gap-3 text-left max-w-md mx-auto">
+              <div className="w-9 h-9 bg-green-500/20 text-green-400 rounded-lg flex items-center justify-center flex-shrink-0">
+                <MessageCircle size={20} />
+              </div>
+              <div>
+                <p className="text-white text-xs md:text-sm font-bold">
+                  Entrega via WhatsApp
+                </p>
+                <p className="text-slate-300 text-[11px] font-medium mt-0.5">
+                  Receba seu acesso e aplicativo direto no seu WhatsApp logo após a compra.
+                </p>
+              </div>
+            </div>
             
             <div className="flex flex-col items-center mb-10">
               <CountdownTimer />
@@ -827,6 +842,7 @@ const Pricing: React.FC = () => {
 
             <div className="space-y-4 mb-12 text-left">
               {[
+                { type: "whatsapp", text: "Entrega Imediata e Acesso Direto no WhatsApp" },
                 { type: "check", text: "Acesso Completo ao Aplicativo" },
                 { type: "check", text: "Biblioteca com +2.000 Moldes Prontos" },
                 { type: "check", text: "Plano para Começar com Apenas R$100" },
@@ -840,8 +856,8 @@ const Pricing: React.FC = () => {
                 { type: "bonus", text: "BÔNUS: Guia da Primeira Venda" },
                 { type: "bonus", text: "BÔNUS: Lista de Materiais" }
               ].map((item, idx) => (
-                <div key={idx} className={`flex items-center gap-4 text-xs md:text-sm font-bold border-b border-white/5 pb-4 last:border-0 ${item.type === 'bonus' ? 'text-[#F472B6] font-extrabold' : 'text-slate-400'}`}>
-                  <span className="text-[14px] flex-shrink-0 leading-none">{item.type === 'bonus' ? '🎁' : '✅'}</span>
+                <div key={idx} className={`flex items-center gap-4 text-xs md:text-sm font-bold border-b border-white/5 pb-4 last:border-0 ${item.type === 'bonus' ? 'text-[#F472B6] font-extrabold' : item.type === 'whatsapp' ? 'text-green-400 font-extrabold' : 'text-slate-400'}`}>
+                  <span className="text-[14px] flex-shrink-0 leading-none">{item.type === 'bonus' ? '🎁' : item.type === 'whatsapp' ? '📲' : '✅'}</span>
                   <span>{item.text}</span>
                 </div>
               ))}
@@ -905,7 +921,7 @@ const FAQ: React.FC = () => {
   const questions = [
     { q: "Por quanto tempo terei acesso?", a: "Seu acesso é vitalício. Você terá acesso imediato ao app e a todas as futuras atualizações para garantir que seus moldes estejam sempre prontos para venda." },
     { q: "Preciso de um computador?", a: "Absolutamente não. Nosso app foi desenvolvido para ser usado 100% via celular ou tablet." },
-    { q: "Como recebo o acesso?", a: "Imediatamente após a aprovação do pagamento. Você receberá um e-mail com o link de login e sua senha pessoal." },
+    { q: "Como recebo o acesso?", a: "Imediatamente após a aprovação do pagamento. O aplicativo e os dados de acesso são entregues 100% de forma automática diretamente no seu WhatsApp e também no seu e-mail cadastrado." },
     { q: "Não tenho impressora, posso vender?", a: "Com certeza! Você pode imprimir os moldes em gráficas rápidas sempre que precisar. O processo continua simples, acessível e com ótimo potencial de lucro." },
     { q: "O suporte é via WhatsApp?", a: "Sim! Oferecemos suporte humanizado diretamente pelo WhatsApp para garantir que você tire todas as suas dúvidas rapidamente e comece a lucrar o quanto antes." }
   ];

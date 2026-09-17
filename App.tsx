@@ -190,22 +190,27 @@ const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({ posterUrl, videoU
             />
             <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors" />
             
-            <div className="absolute top-4 left-4 bg-pink-600 text-white text-[10px] font-black px-4 py-1.5 rounded-full shadow-lg transform rotate-[-2deg] z-20">
-              VEJA COMO FUNCIONA
-            </div>
+            <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-4 z-10">
+              <div className="flex flex-col items-center animate-bounce-subtle">
+                <div className="relative mb-3">
+                  {/* Efeito piscando em vermelho */}
+                  <div className="absolute inset-0 bg-red-600 rounded-full animate-ping opacity-75 scale-125" />
+                  {/* Botão de play menor em vermelho */}
+                  <div className="w-14 h-14 md:w-16 md:h-16 bg-red-600 rounded-full flex items-center justify-center text-white shadow-[0_0_30px_rgba(220,38,38,0.9)] border-2 md:border-[3px] border-white backdrop-blur-sm relative z-10 transform group-hover:scale-110 transition-transform duration-300 animate-pulse">
+                    <Play size={24} fill="currentColor" className="ml-1 text-white" />
+                  </div>
+                </div>
 
-            <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-8 z-10">
-              <div className="relative">
-                <div className="absolute inset-0 bg-pink-600 rounded-full animate-ping opacity-30 scale-150" />
-                <div className="w-20 h-20 md:w-28 md:h-28 bg-pink-600 rounded-full flex items-center justify-center text-white shadow-2xl transform group-hover:scale-110 transition-transform duration-300 border-4 border-white/30 backdrop-blur-sm relative z-10">
-                  <Play size={44} fill="currentColor" className="ml-2" />
+                {/* Mensagem logo abaixo do botão */}
+                <div className="bg-black/80 backdrop-blur-md px-4 py-2 rounded-2xl border border-white/20 shadow-2xl">
+                  <p className="text-white text-xs md:text-sm font-black uppercase tracking-tight">
+                    veja o aplicativo por dentro
+                  </p>
+                  <p className="text-red-400 text-[10px] md:text-xs font-black uppercase tracking-wider mt-0.5">
+                    CLIQUE PARA ASSISTIR
+                  </p>
                 </div>
               </div>
-              {label && (
-                <div className="mt-8 bg-white/10 backdrop-blur-md px-6 py-3 rounded-full border border-white/20 transform group-hover:-translate-y-1 transition-transform">
-                  <p className="text-white text-[12px] font-black uppercase tracking-[0.2em]">{label}</p>
-                </div>
-              )}
             </div>
           </>
         ) : (

@@ -11,18 +11,10 @@ import {
   ChevronRight,
   Layers, 
   Zap, 
-  Printer, 
   Gift, 
-  FileText, 
-  Award, 
-  AlertCircle, 
   Quote, 
-  Clock, 
-  Unlock, 
-  Lock,
   CreditCard, 
   MessageCircle,
-  TrendingUp,
   Play, 
   ShieldAlert,
   MousePointer2,
@@ -30,11 +22,9 @@ import {
   Share2,
   Rocket,
   Camera,
-  Target,
   DollarSign,
   Package,
   Timer,
-  Users,
   Volume2,
   MoveRight,
   Info,
@@ -113,7 +103,7 @@ const ScarcityNotification: React.FC = () => {
         setHasReachedThreshold(true);
       }
     };
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -171,7 +161,10 @@ const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({ posterUrl, videoU
 
   return (
     <div className="relative w-full max-w-2xl mx-auto">
-      <div className="absolute -inset-4 bg-pink-600/20 blur-3xl rounded-full opacity-50 pointer-events-none group-hover:opacity-75 transition-opacity" />
+      <div
+        className="absolute -inset-4 rounded-full opacity-50 pointer-events-none group-hover:opacity-75 transition-opacity"
+        style={{ background: 'radial-gradient(circle, rgba(219,39,119,0.28) 0%, rgba(219,39,119,0) 70%)' }}
+      />
       
       <div 
         className={`w-full ${isVertical ? 'aspect-[9/16] max-w-[320px] mx-auto' : 'aspect-video'} rounded-3xl overflow-hidden relative shadow-[0_30px_60px_-15px_rgba(0,0,0,0.7)] group cursor-pointer transition-all duration-500 bg-slate-900 border-4 border-white/10 ring-1 ring-white/5`}
@@ -185,6 +178,7 @@ const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({ posterUrl, videoU
               className="absolute inset-0 w-full h-full object-cover opacity-100 transition-transform duration-700 group-hover:scale-110"
               fetchPriority={priority ? "high" : "auto"}
               loading={priority ? "eager" : "lazy"}
+              decoding={priority ? "sync" : "async"}
               width={isVertical ? 320 : 1280}
               height={isVertical ? 568 : 720}
             />
@@ -251,6 +245,9 @@ const ImageCarousel: React.FC<ImageCarouselProps> = ({
   height = 450
 }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [isVisible, setIsVisible] = useState(false);
+  const [hasEntered, setHasEntered] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
 
   const next = () => {
@@ -262,11 +259,33 @@ const ImageCarousel: React.FC<ImageCarouselProps> = ({
   };
 
   useEffect(() => {
-    if (autoplay && images.length > 1) {
+    const el = containerRef.current;
+    if (!el || typeof IntersectionObserver === 'undefined') {
+      setIsVisible(true);
+      setHasEntered(true);
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsVisible(entry.isIntersecting);
+        if (entry.isIntersecting) {
+          setHasEntered(true);
+        }
+      },
+      { rootMargin: '250px' }
+    );
+
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (autoplay && isVisible && images.length > 1) {
       const timer = setInterval(next, interval);
       return () => clearInterval(timer);
     }
-  }, [currentIndex, autoplay, images.length, interval]);
+  }, [currentIndex, autoplay, isVisible, images.length, interval]);
 
   useEffect(() => {
     if (scrollRef.current) {
@@ -279,22 +298,33 @@ const ImageCarousel: React.FC<ImageCarouselProps> = ({
     }
   }, [currentIndex]);
 
+  const shouldRenderSlideImage = (idx: number) => {
+    if (!hasEntered) return false;
+    const len = images.length;
+    const prevIdx = (currentIndex - 1 + len) % len;
+    const nextIdx = (currentIndex + 1) % len;
+    return idx === currentIndex || idx === prevIdx || idx === nextIdx;
+  };
+
   return (
-    <div className={`relative group ${maxWidth} mx-auto`}>
+    <div ref={containerRef} className={`relative group ${maxWidth} mx-auto`}>
       <div 
         ref={scrollRef}
         className="flex overflow-x-hidden snap-x snap-mandatory rounded-[2.5rem] shadow-2xl border border-slate-100 bg-slate-100"
       >
         {images.map((img, i) => (
-          <div key={i} className={`flex-shrink-0 w-full snap-center ${aspectRatio} relative overflow-hidden`}>
-            <img 
-              src={img} 
-              alt={`Slide ${i}`} 
-              className="absolute inset-0 w-full h-full object-cover"
-              loading="lazy"
-              width={width}
-              height={height}
-            />
+          <div key={i} className={`flex-shrink-0 w-full snap-center ${aspectRatio} relative overflow-hidden bg-slate-200`}>
+            {shouldRenderSlideImage(i) && (
+              <img 
+                src={img} 
+                alt={`Slide ${i}`} 
+                className="absolute inset-0 w-full h-full object-cover"
+                loading="lazy"
+                decoding="async"
+                width={width}
+                height={height}
+              />
+            )}
           </div>
         ))}
       </div>
@@ -344,8 +374,14 @@ const Navbar: React.FC = () => (
 
 const Hero: React.FC = () => (
   <section className="pt-24 pb-20 px-6 bg-slate-950 text-white flex flex-col items-center text-center relative overflow-hidden">
-    <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[600px] bg-gradient-to-b from-[#5B2A86]/20 to-[#7B3DB8]/5 blur-[120px] rounded-full -z-10" />
-    <div className="absolute -top-[10%] -right-[10%] w-[300px] h-[300px] bg-[#EC4899]/5 blur-[100px] rounded-full -z-10" />
+    <div
+      className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[600px] rounded-full -z-10 pointer-events-none"
+      style={{ background: 'radial-gradient(ellipse at center, rgba(91,42,134,0.22) 0%, rgba(123,61,184,0.06) 45%, rgba(2,6,23,0) 70%)' }}
+    />
+    <div
+      className="absolute -top-[10%] -right-[10%] w-[300px] h-[300px] rounded-full -z-10 pointer-events-none"
+      style={{ background: 'radial-gradient(circle, rgba(236,72,153,0.08) 0%, rgba(236,72,153,0) 70%)' }}
+    />
     
     <div className="max-w-5xl mx-auto flex flex-col items-center">
       <div className="inline-flex items-center gap-3 px-8 py-3 bg-[#5B2A86]/10 text-[#F472B6] rounded-full border border-[#5B2A86]/30 mb-10 shadow-[0_0_30px_rgba(91,42,134,0.25)]">
@@ -562,6 +598,7 @@ const Testimonials: React.FC = () => {
                     width={48} 
                     height={48} 
                     loading="lazy"
+                    decoding="async"
                   />
                 </div>
                 <div>

@@ -5,19 +5,31 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Papelaria Descomplicada - Fature com Papelaria Personalizada</title>
-    
-    <!-- Preload LCP Image -->
-    <link rel="preload" href="https://i.postimg.cc/sX0hqL2w/1.webp" as="image" fetchpriority="high">
+    <meta name="description" content="Aprenda a faturar com papelaria personalizada direto do celular usando moldes prontos, calculadora de preços e guia passo a passo." />
 
-    <!-- Microsoft Clarity -->
-    <script type="text/javascript">
-        (function(c,l,a,r,i,t,y){
-            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-        })(window, document, "clarity", "script", "vc4phcrwkt");
-    </script>
-    
+    <!-- Preconnect & DNS Prefetch for critical external origins -->
+    <link rel="preconnect" href="https://i.postimg.cc" crossorigin />
+    <link rel="dns-prefetch" href="https://i.postimg.cc" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="dns-prefetch" href="https://connect.facebook.net" />
+    <link rel="dns-prefetch" href="https://cdn.utmify.com.br" />
+    <link rel="dns-prefetch" href="https://www.clarity.ms" />
+
+    <!-- Preload LCP Image -->
+    <link rel="preload" href="https://i.postimg.cc/sX0hqL2w/1.webp" as="image" fetchpriority="high" />
+
+    <!-- Non-blocking Google Fonts (only used weights: 500, 700, 800, 900) -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;800;900&display=swap"
+      rel="stylesheet"
+      media="print"
+      onload="this.media='all'"
+    />
+    <noscript>
+      <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;800;900&display=swap" rel="stylesheet" />
+    </noscript>
+
     <!-- Meta Pixel Code -->
     <script>
     !function(f,b,e,v,n,t,s)
@@ -43,16 +55,49 @@
       defer
     ></script>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- Deferred Microsoft Clarity (loads after interaction or post-load idle so it never slows FCP/LCP) -->
+    <script type="text/javascript">
+      (function () {
+        var loaded = false;
+        function loadClarity() {
+          if (loaded) return;
+          loaded = true;
+          (function(c,l,a,r,i,t,y){
+              c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+              t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+              y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+          })(window, document, "clarity", "script", "vc4phcrwkt");
+        }
+        ['scroll', 'touchstart', 'mousedown', 'keydown'].forEach(function (evt) {
+          window.addEventListener(evt, loadClarity, { once: true, passive: true });
+        });
+        window.addEventListener('load', function () {
+          setTimeout(loadClarity, 2500);
+        });
+      })();
+    </script>
   </head>
   <body class="bg-white text-slate-900">
     <noscript><img height="1" width="1" style="display:none"
     src="https://www.facebook.com/tr?id=26668860062784483&ev=PageView&noscript=1"
     /></noscript>
     
-    <div id="root"></div>
+    <div id="root">
+      <!-- Instant First-Paint Shell (eliminates blank white screen on 4G before JS mounts) -->
+      <div style="min-height:100vh;background:#020617;color:#fff;font-family:system-ui,-apple-system,sans-serif;">
+        <div style="height:56px;background:rgba(255,255,255,0.92);display:flex;align-items:center;justify-content:center;border-bottom:1px solid #f1f5f9;">
+          <span style="color:#0f172a;font-weight:900;font-size:20px;letter-spacing:-0.05em;text-transform:uppercase;font-style:italic;">PAPELARIA<span style="color:#5B2A86;">DESCOMPLICADA</span></span>
+        </div>
+        <div style="padding:40px 24px 80px;max-width:960px;margin:0 auto;text-align:center;">
+          <h1 style="font-size:clamp(24px,4vw,44px);font-weight:900;line-height:1.2;text-transform:uppercase;margin:24px auto 24px;">
+            GANHE ATÉ <span style="color:#EC4899;">R$ 1.000,00 POR SEMANA</span> COM PAPELARIA PERSONALIZADA — MESMO COMEÇANDO DO ZERO.
+          </h1>
+          <p style="color:#94a3b8;font-size:14px;font-weight:700;max-width:640px;margin:0 auto 40px;line-height:1.6;">
+            Assista ao vídeo abaixo e descubra como transformar moldes em vendas usando um aplicativo simples e fácil de usar.
+          </p>
+        </div>
+      </div>
+    </div>
     <script type="module" src="/index.tsx"></script>
   </body>
 </html>
